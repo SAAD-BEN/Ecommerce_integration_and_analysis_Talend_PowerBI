@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ContextType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmi:id="_OglloGEBEe6DWNjYcNz39A" confirmationNeeded="false" name="Default">
+  <contextParameter xmi:id="_OglloWEBEe6DWNjYcNz39A" comment="" name="ecom_eval_dw_Password" prompt="ecom_eval_dw_Password?" promptNeeded="false" repositoryContextId="" type="id_Password" value="enc:system.encryption.key.v1:dI4ym/qSAGVh0n4SJ7i/0LKURlOTPTvljO7ZfeUj6g=="/>
+  <contextParameter xmi:id="_OgllomEBEe6DWNjYcNz39A" comment="" name="ecom_eval_dw_Login" prompt="ecom_eval_dw_Login?" promptNeeded="false" repositoryContextId="" type="id_String" value="de"/>
+  <contextParameter xmi:id="_Ogllo2EBEe6DWNjYcNz39A" comment="" name="ecom_eval_dw_Schema" prompt="ecom_eval_dw_Schema?" promptNeeded="false" repositoryContextId="" type="id_String" value="dbo"/>
+  <contextParameter xmi:id="_OgllpGEBEe6DWNjYcNz39A" comment="" name="ecom_eval_dw_AdditionalParams" prompt="ecom_eval_dw_AdditionalParams?" promptNeeded="false" repositoryContextId="" type="id_String" value=""/>
+  <contextParameter xmi:id="_OgllpWEBEe6DWNjYcNz39A" comment="" name="ecom_eval_dw_Port" prompt="ecom_eval_dw_Port?" promptNeeded="false" repositoryContextId="" type="id_String" value="1433"/>
+  <contextParameter xmi:id="_OgllpmEBEe6DWNjYcNz39A" comment="" name="ecom_eval_dw_Server" prompt="ecom_eval_dw_Server?" promptNeeded="false" repositoryContextId="" type="id_String" value="localhost"/>
+  <contextParameter xmi:id="_Ogllp2EBEe6DWNjYcNz39A" comment="" name="ecom_eval_dw_Database" prompt="ecom_eval_dw_Database?" promptNeeded="false" repositoryContextId="" type="id_String" value="ecom_eval_DW"/>
+</talendfile:ContextType>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010">
+  <TalendMetadata:GenericSchemaConnection xmi:id="_1NwaAGEBEe6DWNjYcNz39A" comment="connectionComment" label="connectionLabel" dataPackage="_1NwaAWEBEe6DWNjYcNz39A"/>
+  <TalendMetadata:GenericPackage xmi:id="_1NwaAWEBEe6DWNjYcNz39A" dataManager="_1NwaAGEBEe6DWNjYcNz39A">
+    <ownedElement xsi:type="TalendMetadata:MetadataTable" xmi:id="_1NwaAmEBEe6DWNjYcNz39A" id="_m4R5gGESEe6DWNjYcNz39A" label="metadata">
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaA2EBEe6DWNjYcNz39A" name="Date" id="22" label="Date" length="10" sourceType="VARCHAR" talendType="id_Date" pattern="&quot;dd-MM-yyyy&quot;">
+        <initialValue xmi:id="_1NwaBGEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaBWEBEe6DWNjYcNz39A" name="ProductName" id="23" label="ProductName" length="50" sourceType="VARCHAR" talendType="id_String">
+        <initialValue xmi:id="_1NwaBmEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaB2EBEe6DWNjYcNz39A" name="ProductCategory" id="24" label="ProductCategory" length="50" sourceType="VARCHAR" talendType="id_String">
+        <initialValue xmi:id="_1NwaCGEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaCWEBEe6DWNjYcNz39A" name="ProductSubCategory" id="25" label="ProductSubCategory" length="50" sourceType="VARCHAR" talendType="id_String">
+        <initialValue xmi:id="_1NwaCmEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaC2EBEe6DWNjYcNz39A" name="ProductPrice" id="26" label="ProductPrice" length="-1" sourceType="VARCHAR" talendType="id_Double">
+        <initialValue xmi:id="_1NwaDGEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaDWEBEe6DWNjYcNz39A" name="CustomerID" id="27" label="CustomerID" length="50" sourceType="VARCHAR" talendType="id_String">
+        <initialValue xmi:id="_1NwaDmEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaD2EBEe6DWNjYcNz39A" name="CustomerSegment" id="28" label="CustomerSegment" length="60" sourceType="VARCHAR" talendType="id_String">
+        <initialValue xmi:id="_1NwaEGEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaEWEBEe6DWNjYcNz39A" name="SupplierName" id="29" label="SupplierName" length="60" sourceType="VARCHAR" talendType="id_String">
+        <initialValue xmi:id="_1NwaEmEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaE2EBEe6DWNjYcNz39A" name="SupplierLocation" id="30" label="SupplierLocation" length="60" sourceType="VARCHAR" talendType="id_String">
+        <initialValue xmi:id="_1NwaFGEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaF2EBEe6DWNjYcNz39A" name="ShipperName" id="32" label="ShipperName" length="60" sourceType="VARCHAR" talendType="id_String">
+        <initialValue xmi:id="_1NwaGGEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaGWEBEe6DWNjYcNz39A" name="ShippingMethod" id="33" label="ShippingMethod" length="60" sourceType="VARCHAR" talendType="id_String">
+        <initialValue xmi:id="_1NwaGmEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaG2EBEe6DWNjYcNz39A" name="QuantitySold" id="34" label="QuantitySold" length="10" sourceType="INT" talendType="id_Integer">
+        <initialValue xmi:id="_1NwaHGEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaHWEBEe6DWNjYcNz39A" name="TotalAmount" id="35" label="TotalAmount" length="24" sourceType="REAL" talendType="id_Float">
+        <initialValue xmi:id="_1NwaHmEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaH2EBEe6DWNjYcNz39A" name="DiscountAmount" id="36" label="DiscountAmount" length="24" sourceType="REAL" talendType="id_Float">
+        <initialValue xmi:id="_1NwaIGEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaIWEBEe6DWNjYcNz39A" name="NetAmount" id="37" label="NetAmount" length="24" sourceType="REAL" talendType="id_Float">
+        <initialValue xmi:id="_1NwaImEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaI2EBEe6DWNjYcNz39A" name="StockReceived" id="38" label="StockReceived" length="10" sourceType="INT" talendType="id_Integer">
+        <initialValue xmi:id="_1NwaJGEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaJWEBEe6DWNjYcNz39A" name="StockSold" id="39" label="StockSold" length="10" sourceType="INT" talendType="id_Integer">
+        <initialValue xmi:id="_1NwaJmEBEe6DWNjYcNz39A"/>
+      </feature>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaJ2EBEe6DWNjYcNz39A" name="StockOnHand" id="40" label="StockOnHand" length="10" sourceType="INT" talendType="id_Integer">
+        <initialValue xmi:id="_1NwaKGEBEe6DWNjYcNz39A"/>
+      </feature>
+    </ownedElement>
+  </TalendMetadata:GenericPackage>
+</xmi:XMI>

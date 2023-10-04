@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ContextType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmi:id="_COOiwGBqEe6MepcncmepuQ" confirmationNeeded="false" name="Default">
+  <contextParameter xmi:id="_COOiwWBqEe6MepcncmepuQ" comment="" name="key" prompt="key?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="youcode#BENTAL-2023/2024"/>
+</talendfile:ContextType>

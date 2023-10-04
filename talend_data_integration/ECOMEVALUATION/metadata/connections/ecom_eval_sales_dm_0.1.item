@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.relational="http:///orgomg/cwm/resource/relational.ecore">
+  <TalendMetadata:DatabaseConnection xmi:id="_p1MokGK9Ee695vpjMfTxsA" name="ecom_eval_sales_dm" id="_YhyAAGK9Ee695vpjMfTxsA" label="ecom_eval_sales_dm" dataPackage="_tEmj0GK9Ee695vpjMfTxsA" ContextMode="true" ContextId="_stiusGK9Ee695vpjMfTxsA" contextName="Default" DatabaseType="Microsoft SQL Server" DriverClass="net.sourceforge.jtds.jdbc.Driver" URL="jdbc:jtds:sqlserver://localhost:1433/ecom_eval_sales_dm;" dbVersionString="JTDS" Port="context.ecom_eval_sales_dm_Port" Username="context.ecom_eval_sales_dm_Login" Password="context.ecom_eval_sales_dm_Password" ServerName="context.ecom_eval_sales_dm_Server" DatasourceName="" FileFieldName="" SID="context.ecom_eval_sales_dm_Database" SqlSynthax="" StringQuote="" NullChar="" DbmsId="id_MSSQL" ProductId="SQL_SERVER" AdditionalParams="context.ecom_eval_sales_dm_AdditionalParams" StandardSQL="true" SQLMode="false" UiSchema="context.ecom_eval_sales_dm_Schema">
+    <taggedValue xmi:id="_p1NPoGK9Ee695vpjMfTxsA" tag="Is Conn Need Reload" value="false"/>
+    <taggedValue xmi:id="_p15zMGK9Ee695vpjMfTxsA" tag="package filter" value=""/>
+    <taggedValue xmi:id="_p16aQGK9Ee695vpjMfTxsA" tag="Status" value=""/>
+    <taggedValue xmi:id="_p16aQWK9Ee695vpjMfTxsA" tag="Version" value="0.1"/>
+    <taggedValue xmi:id="_p17BUGK9Ee695vpjMfTxsA" tag="Purpose" value=""/>
+    <taggedValue xmi:id="_p17BUWK9Ee695vpjMfTxsA" tag="Description" value=""/>
+    <taggedValue xmi:id="_p17BUmK9Ee695vpjMfTxsA" tag="Author" value=""/>
+    <taggedValue xmi:id="_p17BU2K9Ee695vpjMfTxsA" tag="otherParameter"/>
+    <taggedValue xmi:id="_p2GngGK9Ee695vpjMfTxsA" tag="DB ProductName" value="Microsoft SQL Server"/>
+    <taggedValue xmi:id="_p2GngWK9Ee695vpjMfTxsA" tag="DB ProductVersion" value="16.00.1000"/>
+    <taggedValue xmi:id="_p2GngmK9Ee695vpjMfTxsA" tag="DB IdentifierQuoteString" value="&quot;"/>
+    <parameters xmi:id="_p1NPoWK9Ee695vpjMfTxsA" key="CONN_PARA_KEY_USERNAME" value="context.ecom_eval_sales_dm_Login"/>
+    <parameters xmi:id="_rCAZ8GK9Ee695vpjMfTxsA" key="CONN_PARA_KEY_MAPRDB_TABLE_NS_MAPPING" value=""/>
+  </TalendMetadata:DatabaseConnection>
+  <orgomg.cwm.resource.relational:Catalog xmi:id="_tEmj0GK9Ee695vpjMfTxsA" name="ecom_eval_sales_dm" dataManager="_p1MokGK9Ee695vpjMfTxsA">
+    <ownedElement xsi:type="orgomg.cwm.resource.relational:Schema" xmi:id="_tEmj0WK9Ee695vpjMfTxsA" name="dbo"/>
+  </orgomg.cwm.resource.relational:Catalog>
+</xmi:XMI>

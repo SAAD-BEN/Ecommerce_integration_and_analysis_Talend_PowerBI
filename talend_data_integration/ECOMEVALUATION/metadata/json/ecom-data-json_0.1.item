@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendJSON="http://www.talend.org/json" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.record="http:///orgomg/cwm/resource/record.ecore">
+  <TalendJSON:JSONFileConnection xmi:id="_Es51sF7rEe6fj-7pc4XMIg" name="ecom-data-json" id="_Es5OoF7rEe6fj-7pc4XMIg" dataPackage="_Es51yF7rEe6fj-7pc4XMIg" JSONFilePath="C:/Users/YouCode/Desktop/saad/2023-09-29_evaluation/data/splitted/ecommerce-data.json" Encoding="UTF-8" readbyMode="JSONPATH">
+    <schema xmi:id="_Es51sV7rEe6fj-7pc4XMIg" LimitBoucle="50" AbsoluteXPathQuery="$[*]">
+      <schemaTargets xmi:id="_Es51sl7rEe6fj-7pc4XMIg" RelativeXPathQuery="Date" TagName="Date"/>
+      <schemaTargets xmi:id="_Es51s17rEe6fj-7pc4XMIg" RelativeXPathQuery="ProductName" TagName="ProductName"/>
+      <schemaTargets xmi:id="_Es51tF7rEe6fj-7pc4XMIg" RelativeXPathQuery="ProductCategory" TagName="ProductCategory"/>
+      <schemaTargets xmi:id="_Es51tV7rEe6fj-7pc4XMIg" RelativeXPathQuery="ProductSubCategory" TagName="ProductSubCategory"/>
+      <schemaTargets xmi:id="_Es51tl7rEe6fj-7pc4XMIg" RelativeXPathQuery="ProductPrice" TagName="ProductPrice"/>
+      <schemaTargets xmi:id="_Es51t17rEe6fj-7pc4XMIg" RelativeXPathQuery="CustomerName" TagName="CustomerName"/>
+      <schemaTargets xmi:id="_Es51uF7rEe6fj-7pc4XMIg" RelativeXPathQuery="CustomerEmail" TagName="CustomerEmail"/>
+      <schemaTargets xmi:id="_Es51uV7rEe6fj-7pc4XMIg" RelativeXPathQuery="CustomerAddress" TagName="CustomerAddress"/>
+      <schemaTargets xmi:id="_Es51ul7rEe6fj-7pc4XMIg" RelativeXPathQuery="CustomerPhone" TagName="CustomerPhone"/>
+      <schemaTargets xmi:id="_Es51u17rEe6fj-7pc4XMIg" RelativeXPathQuery="CustomerSegment" TagName="CustomerSegment"/>
+      <schemaTargets xmi:id="_Es51vF7rEe6fj-7pc4XMIg" RelativeXPathQuery="SupplierName" TagName="SupplierName"/>
+      <schemaTargets xmi:id="_Es51vV7rEe6fj-7pc4XMIg" RelativeXPathQuery="SupplierLocation" TagName="SupplierLocation"/>
+      <schemaTargets xmi:id="_Es51vl7rEe6fj-7pc4XMIg" RelativeXPathQuery="SupplierContact" TagName="SupplierContact"/>
+      <schemaTargets xmi:id="_Es51v17rEe6fj-7pc4XMIg" RelativeXPathQuery="ShipperName" TagName="ShipperName"/>
+      <schemaTargets xmi:id="_Es51wF7rEe6fj-7pc4XMIg" RelativeXPathQuery="ShippingMethod" TagName="ShippingMethod"/>
+      <schemaTargets xmi:id="_Es51wV7rEe6fj-7pc4XMIg" RelativeXPathQuery="QuantitySold" TagName="QuantitySold"/>
+      <schemaTargets xmi:id="_Es51wl7rEe6fj-7pc4XMIg" RelativeXPathQuery="TotalAmount" TagName="TotalAmount"/>
+      <schemaTargets xmi:id="_Es51w17rEe6fj-7pc4XMIg" RelativeXPathQuery="DiscountAmount" TagName="DiscountAmount"/>
+      <schemaTargets xmi:id="_Es51xF7rEe6fj-7pc4XMIg" RelativeXPathQuery="NetAmount" TagName="NetAmount"/>
+      <schemaTargets xmi:id="_Es51xV7rEe6fj-7pc4XMIg" RelativeXPathQuery="StockReceived" TagName="StockReceived"/>
+      <schemaTargets xmi:id="_Es51xl7rEe6fj-7pc4XMIg" RelativeXPathQuery="StockSold" TagName="StockSold"/>
+      <schemaTargets xmi:id="_Es51x17rEe6fj-7pc4XMIg" RelativeXPathQuery="StockOnHand" TagName="StockOnHand"/>
+    </schema>
+  </TalendJSON:JSONFileConnection>
+  <orgomg.cwm.resource.record:RecordFile xmi:id="_Es51yF7rEe6fj-7pc4XMIg" name="default" dataManager="_Es51sF7rEe6fj-7pc4XMIg">
+    <ownedElement xsi:type="TalendMetadata:MetadataTable" xmi:id="_Es51yV7rEe6fj-7pc4XMIg" id="_agIG4F7qEe6fj-7pc4XMIg" label="ecom-json">
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es51yl7rEe6fj-7pc4XMIg" label="Date" length="-1" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es51y17rEe6fj-7pc4XMIg" label="ProductName" length="18" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es51zF7rEe6fj-7pc4XMIg" label="ProductCategory" length="15" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es51zV7rEe6fj-7pc4XMIg" label="ProductSubCategory" length="15" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es51zl7rEe6fj-7pc4XMIg" label="ProductPrice" length="17" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es51z17rEe6fj-7pc4XMIg" label="CustomerName" length="28" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es510F7rEe6fj-7pc4XMIg" label="CustomerEmail" length="32" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es510V7rEe6fj-7pc4XMIg" label="CustomerAddress" length="65" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es510l7rEe6fj-7pc4XMIg" label="CustomerPhone" length="22" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es51017rEe6fj-7pc4XMIg" label="CustomerSegment" length="6" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es511F7rEe6fj-7pc4XMIg" label="SupplierName" length="28" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es511V7rEe6fj-7pc4XMIg" label="SupplierLocation" length="16" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es511l7rEe6fj-7pc4XMIg" label="SupplierContact" length="21" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es51117rEe6fj-7pc4XMIg" label="ShipperName" length="8" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es512F7rEe6fj-7pc4XMIg" label="ShippingMethod" length="6" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es512V7rEe6fj-7pc4XMIg" label="QuantitySold" length="3" talendType="id_Integer" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es512l7rEe6fj-7pc4XMIg" label="TotalAmount" length="8" precision="3" talendType="id_Float" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es51217rEe6fj-7pc4XMIg" label="DiscountAmount" length="6" precision="3" talendType="id_Float" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es513F7rEe6fj-7pc4XMIg" label="NetAmount" length="8" precision="3" talendType="id_Float" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es513V7rEe6fj-7pc4XMIg" label="StockReceived" length="3" talendType="id_Integer" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es513l7rEe6fj-7pc4XMIg" label="StockSold" length="3" talendType="id_Integer" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_Es51317rEe6fj-7pc4XMIg" label="StockOnHand" length="3" talendType="id_Integer" pattern="&quot;dd-MM-yyyy&quot;"/>
+    </ownedElement>
+  </orgomg.cwm.resource.record:RecordFile>
+</xmi:XMI>

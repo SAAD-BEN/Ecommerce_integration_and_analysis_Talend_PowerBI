@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ContextType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmi:id="_CkTYMF7wEe6fj-7pc4XMIg" confirmationNeeded="false" name="Default">
+  <contextParameter xmi:id="_CkT_QF7wEe6fj-7pc4XMIg" comment="" name="ecom_eval_staging_Password" prompt="ecom_eval_staging_Password?" promptNeeded="false" repositoryContextId="built-in" type="id_Password" value=""/>
+  <contextParameter xmi:id="_CkT_QV7wEe6fj-7pc4XMIg" comment="" name="ecom_eval_staging_Server" prompt="ecom_eval_staging_Server?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="localhost"/>
+  <contextParameter xmi:id="_CkT_Ql7wEe6fj-7pc4XMIg" comment="" name="ecom_eval_staging_Database" prompt="ecom_eval_staging_Database?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="ecom_eval_staging"/>
+  <contextParameter xmi:id="_CkT_Q17wEe6fj-7pc4XMIg" comment="" name="ecom_eval_staging_Schema" prompt="ecom_eval_staging_Schema?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="dbo"/>
+  <contextParameter xmi:id="_CkT_RF7wEe6fj-7pc4XMIg" comment="" name="ecom_eval_staging_Login" prompt="ecom_eval_staging_Login?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+  <contextParameter xmi:id="_CkT_RV7wEe6fj-7pc4XMIg" comment="" name="ecom_eval_staging_AdditionalParams" prompt="ecom_eval_staging_AdditionalParams?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value=""/>
+  <contextParameter xmi:id="_CkT_Rl7wEe6fj-7pc4XMIg" comment="" name="ecom_eval_staging_Port" prompt="ecom_eval_staging_Port?" promptNeeded="false" repositoryContextId="built-in" type="id_String" value="1433"/>
+</talendfile:ContextType>
