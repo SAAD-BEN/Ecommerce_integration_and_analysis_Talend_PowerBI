@@ -1,0 +1,79 @@
+{
+  "itemId" : "_rBUvYGK7Ee695vpjMfTxsA",
+  "contextList" : [ {
+    "contextName" : "Default",
+    "repoId" : "_OgXjMGEBEe6DWNjYcNz39A",
+    "parameterList" : [ {
+      "id" : "_OglloWEBEe6DWNjYcNz39A",
+      "name" : "ecom_eval_dw_Password"
+    }, {
+      "id" : "_OgllomEBEe6DWNjYcNz39A",
+      "name" : "ecom_eval_dw_Login"
+    }, {
+      "id" : "_Ogllo2EBEe6DWNjYcNz39A",
+      "name" : "ecom_eval_dw_Schema"
+    }, {
+      "id" : "_OgllpGEBEe6DWNjYcNz39A",
+      "name" : "ecom_eval_dw_AdditionalParams"
+    }, {
+      "id" : "_OgllpWEBEe6DWNjYcNz39A",
+      "name" : "ecom_eval_dw_Port"
+    }, {
+      "id" : "_OgllpmEBEe6DWNjYcNz39A",
+      "name" : "ecom_eval_dw_Server"
+    }, {
+      "id" : "_Ogllp2EBEe6DWNjYcNz39A",
+      "name" : "ecom_eval_dw_Database"
+    } ]
+  }, {
+    "contextName" : "Default",
+    "repoId" : "_stiusGK9Ee695vpjMfTxsA",
+    "parameterList" : [ {
+      "id" : "_st8XV2K9Ee695vpjMfTxsA",
+      "name" : "ecom_eval_sales_dm_Schema"
+    }, {
+      "id" : "_st8XVWK9Ee695vpjMfTxsA",
+      "name" : "ecom_eval_sales_dm_Login"
+    }, {
+      "id" : "_st8XUmK9Ee695vpjMfTxsA",
+      "name" : "ecom_eval_sales_dm_AdditionalParams"
+    }, {
+      "id" : "_st8XU2K9Ee695vpjMfTxsA",
+      "name" : "ecom_eval_sales_dm_Database"
+    }, {
+      "id" : "_st8XVmK9Ee695vpjMfTxsA",
+      "name" : "ecom_eval_sales_dm_Password"
+    }, {
+      "id" : "_st8XUWK9Ee695vpjMfTxsA",
+      "name" : "ecom_eval_sales_dm_Server"
+    }, {
+      "id" : "_st8XVGK9Ee695vpjMfTxsA",
+      "name" : "ecom_eval_sales_dm_Port"
+    } ]
+  }, {
+    "contextName" : "Default",
+    "repoId" : "_nSLNwGNjEe6w8cG8cV7rgg",
+    "parameterList" : [ {
+      "id" : "_nSU-w2NjEe6w8cG8cV7rgg",
+      "name" : "ecom_eval_sales_dm1_Server"
+    }, {
+      "id" : "_nSU-x2NjEe6w8cG8cV7rgg",
+      "name" : "ecom_eval_sales_dm1_Port"
+    }, {
+      "id" : "_nSU-wmNjEe6w8cG8cV7rgg",
+      "name" : "ecom_eval_sales_dm1_Schema"
+    }, {
+      "id" : "_nSU-xGNjEe6w8cG8cV7rgg",
+      "name" : "ecom_eval_sales_dm1_Database"
+    }, {
+      "id" : "_nSU-wWNjEe6w8cG8cV7rgg",
+      "name" : "ecom_eval_sales_dm1_Login"
+    }, {
+      "id" : "_nSU-xWNjEe6w8cG8cV7rgg",
+      "name" : "ecom_eval_sales_dm1_Password"
+    }, {
+      "id" : "_nSU-xmNjEe6w8cG8cV7rgg",
+      "name" : "ecom_eval_sales_dm1_AdditionalParams"
+    } ]
+  } ]
+}

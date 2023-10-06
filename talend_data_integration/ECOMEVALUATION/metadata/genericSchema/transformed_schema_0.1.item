@@ -18,7 +18,7 @@
       <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaC2EBEe6DWNjYcNz39A" name="ProductPrice" id="26" label="ProductPrice" length="-1" sourceType="VARCHAR" talendType="id_Double">
         <initialValue xmi:id="_1NwaDGEBEe6DWNjYcNz39A"/>
       </feature>
-      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaDWEBEe6DWNjYcNz39A" name="CustomerID" id="27" label="CustomerID" length="50" sourceType="VARCHAR" talendType="id_String">
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaDWEBEe6DWNjYcNz39A" name="HashedPI" id="27" label="HashedPI" length="255" sourceType="VARCHAR" talendType="id_String">
         <initialValue xmi:id="_1NwaDmEBEe6DWNjYcNz39A"/>
       </feature>
       <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_1NwaD2EBEe6DWNjYcNz39A" name="CustomerSegment" id="28" label="CustomerSegment" length="60" sourceType="VARCHAR" talendType="id_String">

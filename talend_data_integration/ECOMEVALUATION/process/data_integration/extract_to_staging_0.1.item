@@ -52,7 +52,7 @@
     <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:UX+vKBNMRFOkmNJDS+n60sz05fMuCcsL05kSaxTz" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:u4pdlQTwBv7T0K43qh/t5LwUt+BNzNRlZNL3fnp9" show="false"/>
     <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
@@ -87,7 +87,7 @@
     <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:kCSfoa0kaQnAH+p/VjBKvryaoNbpR+tWe98cJn1x" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:E+oVnpXIJRHlnZj2nqiYCFxVYjRqTx1EAEGo4x9+" show="false"/>
     <elementParameter field="FILE" name="DBFILE" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_STATS" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_LOGS" value="&quot;&quot;" show="false"/>
@@ -584,7 +584,7 @@
       <column comment="" key="false" length="50" name="ProductCategory" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="CustomerID" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" originalLength="500" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="HashedPI" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" originalLength="500" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="SupplierName" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="SupplierLocation" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
@@ -610,7 +610,7 @@
         <mapperTableEntries name="ProductCategory" expression="row3.ProductCategory " type="id_String" nullable="true"/>
         <mapperTableEntries name="ProductSubCategory" expression="row3.ProductSubCategory " type="id_String" nullable="true"/>
         <mapperTableEntries name="ProductPrice" expression="row3.ProductPrice " type="id_String" nullable="true"/>
-        <mapperTableEntries name="CustomerID" expression="Var.CustomerID " type="id_String"/>
+        <mapperTableEntries name="HashedPI" expression="Var.CustomerID " type="id_String"/>
         <mapperTableEntries name="CustomerSegment" expression="row3.CustomerSegment " type="id_String" nullable="true"/>
         <mapperTableEntries name="SupplierName" expression="row3.SupplierName " type="id_String" nullable="true"/>
         <mapperTableEntries name="SupplierLocation" expression="row3.SupplierLocation " type="id_String" nullable="true"/>
@@ -665,7 +665,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="context.ecom_eval_staging_Schema" show="false"/>
     <elementParameter field="TEXT" name="DBNAME" value="context.ecom_eval_staging_Database" show="false"/>
     <elementParameter field="TEXT" name="USER" value="context.ecom_eval_staging_Login" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:ZPPQJtq9MuAC00j62fmg884JpRfJeBGv55bytIiWYlnEq3UPOX74qyv0IrNUSsQeHc033/s9xiHgJBtj6zs=" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:KLv3LNpnHC4gARv8B6+xdXpA3khG/AavzudtnZH6XhSWa93v0JmDlKJsGuavH85r/Tl/BAywkElyd2RABbE=" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;ecomStaging&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="DROP_IF_EXISTS_AND_CREATE"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Program Files (x86)/TOS_DI-8.0.1/studio/workspace/mssql_data.txt&quot;"/>
@@ -684,12 +684,12 @@
     <elementParameter field="TEXT" name="LABEL" value="ecom_eval_staging"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBOutputBulkExec_1">
-      <column comment="" key="false" length="10" name="Date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="ProductName" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="ProductCategory" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="200" name="CustomerID" nullable="false" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="500" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="Date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductName" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductCategory" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="255" name="HashedPI" nullable="false" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="500" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="SupplierName" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="SupplierLocation" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
@@ -720,7 +720,7 @@
     <elementParameter field="TEXT" name="SCHEMA_DB" value="context.ecom_eval_staging_Schema"/>
     <elementParameter field="TEXT" name="DBNAME" value="context.ecom_eval_staging_Database"/>
     <elementParameter field="TEXT" name="USER" value="context.ecom_eval_staging_Login"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:HUEY4FEkUlWz1JseK16b+UtrRQnhzA4viXgkkYLPNc9F1NnMy6MG61Q1H8ANfP+DLtaRGN6guolzML2dvS8="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:aGP/WCBYXO7XO1ER1wvWEsbhMhC4x/IhY97cNxRJ2hAezRi37XRsmzkhZu0riFISQr9XS41B3yXmhrgG9J0="/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="TEXT" name="PROPERTIES" value="context.ecom_eval_staging_AdditionalParams"/>

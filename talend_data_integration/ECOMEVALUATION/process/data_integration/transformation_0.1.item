@@ -51,7 +51,7 @@
     <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:Mbr26T4dDv2WOYUfUysVAC8H/5YIPIE6iXvJSUZe" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:id5RXFLzWS6uyr+c7qpuOIazJaTJ7AwwXeZnI9iU" show="false"/>
     <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
@@ -86,7 +86,7 @@
     <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:CauSYI2XZ83QhQyKc6eliZEoTca9SRe7WsAbNMK3" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:itPjNxpI/+tuwwk6FEo0EN5pgVdHNod2h06vWjtm" show="false"/>
     <elementParameter field="FILE" name="DBFILE" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_STATS" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_LOGS" value="&quot;&quot;" show="false"/>
@@ -131,7 +131,7 @@
     <elementParameter field="TEXT" name="SCHEMA_DB" value="context.ecom_eval_staging_Schema"/>
     <elementParameter field="TEXT" name="DBNAME" value="context.ecom_eval_staging_Database"/>
     <elementParameter field="TEXT" name="USER" value="context.ecom_eval_staging_Login"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:35mWPvB0szAen7SO/m5VGRXOU1P6edt1vE8O7O0Vr4QYDclqIpRkd5+g18NkX68XKxp3gFRmFTLsh9gy8JY="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:ZW1eAXUg3M8t7612mNlAWGJZbAb6j9mrIfx0/Rp3KHn1b9VVy+XJl23rqJJ5BUlxTBc6GVHvMfYYG24xEn8="/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="TEXT" name="PROPERTIES" value="context.ecom_eval_staging_AdditionalParams"/>
@@ -168,7 +168,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="context.ecom_eval_staging_Schema" show="false"/>
     <elementParameter field="TEXT" name="DBNAME" value="context.ecom_eval_staging_Database" show="false"/>
     <elementParameter field="TEXT" name="USER" value="context.ecom_eval_staging_Login" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:o2jONMzo318rt5nh6P1If2nE8kq2y3dmmra2oUqFl9UC+/aDTZxUhMpNyOHXK38tzi3wI7G9DR9ZGOMc49k=" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:qgmOHYL5qcP9ImousJoGfWURazpaiiPL9lhMns6T/UKosTs/hiEGA8byOttJLst2TxueQbPKV7ojjP2bEZc=" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;ecomStaging&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -319,7 +319,7 @@
       </column>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var">
         <mapperTableEntries name="Date" expression="TalendDate.isDate(row1.Date, &quot;yyyy-MM-dd&quot;) ? TalendDate.TO_DATE(row1.Date, &quot;yyyy-MM-dd&quot;) : TalendDate.TO_DATE(row1.Date, &quot;MM-dd-yyyy&quot;) " type="id_Date"/>
       </varTables>

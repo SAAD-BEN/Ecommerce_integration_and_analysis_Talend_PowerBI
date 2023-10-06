@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ContextType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmi:id="_nSU-wGNjEe6w8cG8cV7rgg" confirmationNeeded="false" name="Default">
+  <contextParameter xmi:id="_nSU-wWNjEe6w8cG8cV7rgg" comment="" name="ecom_eval_sales_dm1_Login" prompt="ecom_eval_sales_dm1_Login?" promptNeeded="false" repositoryContextId="" type="id_String" value=""/>
+  <contextParameter xmi:id="_nSU-wmNjEe6w8cG8cV7rgg" comment="" name="ecom_eval_sales_dm1_Schema" prompt="ecom_eval_sales_dm1_Schema?" promptNeeded="false" repositoryContextId="" type="id_String" value=""/>
+  <contextParameter xmi:id="_nSU-w2NjEe6w8cG8cV7rgg" comment="" name="ecom_eval_sales_dm1_Server" prompt="ecom_eval_sales_dm1_Server?" promptNeeded="false" repositoryContextId="" type="id_String" value="localhost"/>
+  <contextParameter xmi:id="_nSU-xGNjEe6w8cG8cV7rgg" comment="" name="ecom_eval_sales_dm1_Database" prompt="ecom_eval_sales_dm1_Database?" promptNeeded="false" repositoryContextId="" type="id_String" value="ecom_eval_sales_dm"/>
+  <contextParameter xmi:id="_nSU-xWNjEe6w8cG8cV7rgg" comment="" name="ecom_eval_sales_dm1_Password" prompt="ecom_eval_sales_dm1_Password?" promptNeeded="false" repositoryContextId="" type="id_Password" value=""/>
+  <contextParameter xmi:id="_nSU-xmNjEe6w8cG8cV7rgg" comment="" name="ecom_eval_sales_dm1_AdditionalParams" prompt="ecom_eval_sales_dm1_AdditionalParams?" promptNeeded="false" repositoryContextId="" type="id_String" value=""/>
+  <contextParameter xmi:id="_nSU-x2NjEe6w8cG8cV7rgg" comment="" name="ecom_eval_sales_dm1_Port" prompt="ecom_eval_sales_dm1_Port?" promptNeeded="false" repositoryContextId="" type="id_String" value="1433"/>
+</talendfile:ContextType>

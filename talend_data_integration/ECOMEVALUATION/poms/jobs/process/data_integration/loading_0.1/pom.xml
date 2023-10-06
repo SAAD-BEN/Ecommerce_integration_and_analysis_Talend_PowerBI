@@ -175,6 +175,17 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>org.talend.components.lib</groupId>
+      <artifactId>thashfile</artifactId>
+      <version>3.1-20190910</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>org.talend.libraries</groupId>
       <artifactId>trove</artifactId>
       <version>6.0.0</version>
@@ -189,6 +200,16 @@
       <groupId>org.example.ecomevaluation.code</groupId>
       <artifactId>routines</artifactId>
       <version>8.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.example.ecomevaluation.job</groupId>
+      <artifactId>sales_DM</artifactId>
+      <version>0.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.example.ecomevaluation.job</groupId>
+      <artifactId>inventory_DM</artifactId>
+      <version>0.1.0</version>
     </dependency>
     <dependency>
       <groupId>org.example.ecomevaluation.job</groupId>

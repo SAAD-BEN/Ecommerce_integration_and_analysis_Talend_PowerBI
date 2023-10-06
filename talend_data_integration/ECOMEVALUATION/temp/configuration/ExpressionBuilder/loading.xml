@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<expression:EMFExpression xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:expression="http:///expression.ecore" id="tMap_12=>" expression="TalendDate.formatDate(&quot;dd-MM-yyyy&quot;, row15.Date)">
+  <variables name="row15.StockReceived" value="null" talendType="id_Integer" nullable="true"/>
+  <variables name="row15.StockSold" value="null" talendType="id_Integer" nullable="true"/>
+  <variables name="row15.StockOnHand" value="null" talendType="id_Integer" nullable="true"/>
+  <variables name="row15.Date" value="null" talendType="id_Date" nullable="true"/>
+  <variables name="row15.ProductID" value="0" talendType="id_Integer"/>
+  <variables name="row15.SupplierID" value="0" talendType="id_Integer"/>
+  <variables name="Numeric.sequence(&quot;InventoryID&quot;,1,1) " value="0" talendType="id_Integer"/>
+</expression:EMFExpression>
