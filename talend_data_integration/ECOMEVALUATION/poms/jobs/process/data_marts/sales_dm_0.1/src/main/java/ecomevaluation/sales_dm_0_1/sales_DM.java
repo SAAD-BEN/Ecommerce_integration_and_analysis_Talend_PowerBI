@@ -721,40 +721,6 @@ private class TalendException extends Exception {
 					tDBInput_11_onSubJobError(exception, errorComponent, globalMap);
 			}
 			
-			public void tDBInput_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
-				
-				end_Hash.put(errorComponent, System.currentTimeMillis());
-				
-				status = "failure";
-				
-					tDBInput_1_onSubJobError(exception, errorComponent, globalMap);
-			}
-			
-			public void tDBOutput_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
-				
-				end_Hash.put(errorComponent, System.currentTimeMillis());
-				
-						try {
-							
-								if(this.execStat){
-									runStat.updateStatOnConnection("OnComponentError1", 0, "error");
-								}
-							
-							
-								errorCode = null;
-								tDBRollback_1Process(globalMap);
-								if (!"failure".equals(status)) {
-									status = "end";
-								}
-								
-
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						
-					tDBInput_1_onSubJobError(exception, errorComponent, globalMap);
-			}
-			
 			public void tDBInput_3_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 				
 				end_Hash.put(errorComponent, System.currentTimeMillis());
@@ -787,6 +753,40 @@ private class TalendException extends Exception {
 						}
 						
 					tDBInput_3_onSubJobError(exception, errorComponent, globalMap);
+			}
+			
+			public void tDBInput_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+				
+				end_Hash.put(errorComponent, System.currentTimeMillis());
+				
+				status = "failure";
+				
+					tDBInput_1_onSubJobError(exception, errorComponent, globalMap);
+			}
+			
+			public void tDBOutput_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+				
+				end_Hash.put(errorComponent, System.currentTimeMillis());
+				
+						try {
+							
+								if(this.execStat){
+									runStat.updateStatOnConnection("OnComponentError1", 0, "error");
+								}
+							
+							
+								errorCode = null;
+								tDBRollback_1Process(globalMap);
+								if (!"failure".equals(status)) {
+									status = "end";
+								}
+								
+
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						
+					tDBInput_1_onSubJobError(exception, errorComponent, globalMap);
 			}
 			
 			public void tPrejob_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
@@ -864,12 +864,12 @@ resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThrea
 resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
 
 			}
-			public void tDBInput_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+			public void tDBInput_3_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 
 resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
 
 			}
-			public void tDBInput_3_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+			public void tDBInput_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 
 resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
 
@@ -1138,7 +1138,7 @@ public void tDBConnection_1Process(final java.util.Map<String, Object> globalMap
 	
 	
 		 
-	final String decryptedPassword_tDBConnection_1 = routines.system.PasswordEncryptUtil.decryptPassword("enc:routine.encryption.key.v1:jfoOByXLOr/Q6COho4Qcj+P0HqVMrXvYwn5p5g==");
+	final String decryptedPassword_tDBConnection_1 = routines.system.PasswordEncryptUtil.decryptPassword("enc:routine.encryption.key.v1:lyIA1dR/cXfnRN2BJW6K+QPR8gQG89Lx2mxNXg==");
 		String dbPwd_tDBConnection_1 = decryptedPassword_tDBConnection_1;
 	
 	
@@ -3259,6 +3259,12 @@ public static class row4Struct implements routines.system.IPersistableRow<row4St
 					return this.HashedPI;
 				}
 				
+			    public String CustomerState;
+
+				public String getCustomerState () {
+					return this.CustomerState;
+				}
+				
 			    public String CustomerSegment;
 
 				public String getCustomerSegment () {
@@ -3299,6 +3305,7 @@ public static class row4Struct implements routines.system.IPersistableRow<row4St
 
 		other.CustomerID = this.CustomerID;
 	            other.HashedPI = this.HashedPI;
+	            other.CustomerState = this.CustomerState;
 	            other.CustomerSegment = this.CustomerSegment;
 	            
 	}
@@ -3384,6 +3391,8 @@ public static class row4Struct implements routines.system.IPersistableRow<row4St
 					
 					this.HashedPI = readString(dis);
 					
+					this.CustomerState = readString(dis);
+					
 					this.CustomerSegment = readString(dis);
 					
         	} catch (IOException e) {
@@ -3411,6 +3420,8 @@ public static class row4Struct implements routines.system.IPersistableRow<row4St
 			        this.CustomerID = dis.readInt();
 					
 					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
 					
 					this.CustomerSegment = readString(dis);
 					
@@ -3442,6 +3453,10 @@ public static class row4Struct implements routines.system.IPersistableRow<row4St
 					
 					// String
 				
+						writeString(this.CustomerState,dos);
+					
+					// String
+				
 						writeString(this.CustomerSegment,dos);
 					
         	} catch (IOException e) {
@@ -3465,6 +3480,10 @@ public static class row4Struct implements routines.system.IPersistableRow<row4St
 					
 					// String
 				
+						writeString(this.CustomerState,dos);
+					
+					// String
+				
 						writeString(this.CustomerSegment,dos);
 					
         	} catch (IOException e) {
@@ -3482,6 +3501,7 @@ public static class row4Struct implements routines.system.IPersistableRow<row4St
 		sb.append("[");
 		sb.append("CustomerID="+String.valueOf(CustomerID));
 		sb.append(",HashedPI="+HashedPI);
+		sb.append(",CustomerState="+CustomerState);
 		sb.append(",CustomerSegment="+CustomerSegment);
 	    sb.append("]");
 
@@ -3608,7 +3628,7 @@ java.util.Calendar calendar_datetimeoffset_tDBOutput_4 = java.util.Calendar.getI
         int updateKeyCount_tDBOutput_4 = 1;
         if(updateKeyCount_tDBOutput_4 < 1) {
             throw new RuntimeException("For update, Schema must have a key");
-        } else if (updateKeyCount_tDBOutput_4 == 3 && true) {
+        } else if (updateKeyCount_tDBOutput_4 == 4 && true) {
                     System.err.println("For update, every Schema column can not be a key");
         }
 
@@ -3639,13 +3659,13 @@ globalMap.put("tDBOutput_4_ERROR_MESSAGE",e.getMessage());
                                 }
                                 if(!whetherExist_tDBOutput_4) {
                                     try (java.sql.Statement stmtCreate_tDBOutput_4 = conn_tDBOutput_4.createStatement()) {
-                                        stmtCreate_tDBOutput_4.execute("CREATE TABLE [" + tableName_tDBOutput_4 + "]([CustomerID] INT  not null ,[HashedPI] VARCHAR(200)  ,[CustomerSegment] VARCHAR(60)  ,primary key([CustomerID]))");
+                                        stmtCreate_tDBOutput_4.execute("CREATE TABLE [" + tableName_tDBOutput_4 + "]([CustomerID] INT  not null ,[HashedPI] VARCHAR(255)  ,[CustomerState] VARCHAR(50)  ,[CustomerSegment] VARCHAR(60)  ,primary key([CustomerID]))");
                                     }
                                 }
-        String update_tDBOutput_4 = "UPDATE [" + tableName_tDBOutput_4 + "] SET [HashedPI] = ?,[CustomerSegment] = ? WHERE [CustomerID] = ?";
+        String update_tDBOutput_4 = "UPDATE [" + tableName_tDBOutput_4 + "] SET [HashedPI] = ?,[CustomerState] = ?,[CustomerSegment] = ? WHERE [CustomerID] = ?";
         java.sql.PreparedStatement pstmtUpdate_tDBOutput_4 = conn_tDBOutput_4.prepareStatement(update_tDBOutput_4);
         resourceMap.put("pstmtUpdate_tDBOutput_4", pstmtUpdate_tDBOutput_4);
-        String insert_tDBOutput_4 = "INSERT INTO [" + tableName_tDBOutput_4 + "] ([CustomerID],[HashedPI],[CustomerSegment]) VALUES (?,?,?)";
+        String insert_tDBOutput_4 = "INSERT INTO [" + tableName_tDBOutput_4 + "] ([CustomerID],[HashedPI],[CustomerState],[CustomerSegment]) VALUES (?,?,?,?)";
         java.sql.PreparedStatement pstmtInsert_tDBOutput_4 = conn_tDBOutput_4.prepareStatement(insert_tDBOutput_4);
         resourceMap.put("pstmtInsert_tDBOutput_4", pstmtInsert_tDBOutput_4);
  	boolean isShareIdentity_tDBOutput_4 = globalMap.get("shareIdentitySetting_tDBConnection_1") != null && (Boolean)globalMap.get("shareIdentitySetting_tDBConnection_1") == true;
@@ -3694,7 +3714,7 @@ globalMap.put("tDBOutput_4_ERROR_MESSAGE",e.getMessage());
 		    
 			java.sql.Statement stmt_tDBInput_4 = conn_tDBInput_4.createStatement();
 
-		    String dbquery_tDBInput_4 = "SELECT \""+context.ecom_eval_dw_Schema+"\".CustomerDim.CustomerID,\n		\""+context.ecom_eval_dw_Schema+"\".CustomerDim.HashedPI,\n		\""+context.ecom_eval_dw_Schema+"\".CustomerDim.CustomerSegment"
+		    String dbquery_tDBInput_4 = "SELECT \""+context.ecom_eval_dw_Schema+"\".CustomerDim.CustomerID,\n		\""+context.ecom_eval_dw_Schema+"\".CustomerDim.HashedPI,\n		\""+context.ecom_eval_dw_Schema+"\".CustomerDim.CustomerState,\n		\""+context.ecom_eval_dw_Schema+"\".CustomerDim.CustomerSegment"
 +"\nFROM	\""+context.ecom_eval_dw_Schema+"\".CustomerDim";
 		    
 
@@ -3737,12 +3757,27 @@ globalMap.put("tDBOutput_4_ERROR_MESSAGE",e.getMessage());
             }
 		                    }
 							if(colQtyInRs_tDBInput_4 < 3) {
-								row4.CustomerSegment = null;
+								row4.CustomerState = null;
 							} else {
 	                         		
            		tmpContent_tDBInput_4 = rs_tDBInput_4.getString(3);
             if(tmpContent_tDBInput_4 != null) {
             	if (talendToDBList_tDBInput_4 .contains(rsmd_tDBInput_4.getColumnTypeName(3).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row4.CustomerState = FormatterUtils.formatUnwithE(tmpContent_tDBInput_4);
+            	} else {
+                	row4.CustomerState = tmpContent_tDBInput_4;
+                }
+            } else {
+                row4.CustomerState = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_4 < 4) {
+								row4.CustomerSegment = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_4 = rs_tDBInput_4.getString(4);
+            if(tmpContent_tDBInput_4 != null) {
+            	if (talendToDBList_tDBInput_4 .contains(rsmd_tDBInput_4.getColumnTypeName(4).toUpperCase(java.util.Locale.ENGLISH))) {
             		row4.CustomerSegment = FormatterUtils.formatUnwithE(tmpContent_tDBInput_4);
             	} else {
                 	row4.CustomerSegment = tmpContent_tDBInput_4;
@@ -3836,13 +3871,18 @@ pstmtUpdate_tDBOutput_4.setNull(1, java.sql.Types.VARCHAR);
 } else {pstmtUpdate_tDBOutput_4.setString(1, row4.HashedPI);
 }
 
-                    if(row4.CustomerSegment == null) {
+                    if(row4.CustomerState == null) {
 pstmtUpdate_tDBOutput_4.setNull(2, java.sql.Types.VARCHAR);
-} else {pstmtUpdate_tDBOutput_4.setString(2, row4.CustomerSegment);
+} else {pstmtUpdate_tDBOutput_4.setString(2, row4.CustomerState);
+}
+
+                    if(row4.CustomerSegment == null) {
+pstmtUpdate_tDBOutput_4.setNull(3, java.sql.Types.VARCHAR);
+} else {pstmtUpdate_tDBOutput_4.setString(3, row4.CustomerSegment);
 }
 
 
-                    pstmtUpdate_tDBOutput_4.setInt(3 + count_tDBOutput_4, row4.CustomerID);
+                    pstmtUpdate_tDBOutput_4.setInt(4 + count_tDBOutput_4, row4.CustomerID);
 
             try {
                 updateFlag_tDBOutput_4=pstmtUpdate_tDBOutput_4.executeUpdate();
@@ -3857,9 +3897,14 @@ pstmtInsert_tDBOutput_4.setNull(2, java.sql.Types.VARCHAR);
 } else {pstmtInsert_tDBOutput_4.setString(2, row4.HashedPI);
 }
 
-                        if(row4.CustomerSegment == null) {
+                        if(row4.CustomerState == null) {
 pstmtInsert_tDBOutput_4.setNull(3, java.sql.Types.VARCHAR);
-} else {pstmtInsert_tDBOutput_4.setString(3, row4.CustomerSegment);
+} else {pstmtInsert_tDBOutput_4.setString(3, row4.CustomerState);
+}
+
+                        if(row4.CustomerSegment == null) {
+pstmtInsert_tDBOutput_4.setNull(4, java.sql.Types.VARCHAR);
+} else {pstmtInsert_tDBOutput_4.setString(4, row4.CustomerSegment);
 }
 
                     int processedCount_tDBOutput_4 = pstmtInsert_tDBOutput_4.executeUpdate();
@@ -6277,1355 +6322,6 @@ end_Hash.put("tDBOutput_5", System.currentTimeMillis());
 	
 
 
-public static class row1Struct implements routines.system.IPersistableRow<row1Struct> {
-    final static byte[] commonByteArrayLock_ECOMEVALUATION_sales_DM = new byte[0];
-    static byte[] commonByteArray_ECOMEVALUATION_sales_DM = new byte[0];
-	protected static final int DEFAULT_HASHCODE = 1;
-    protected static final int PRIME = 31;
-    protected int hashCode = DEFAULT_HASHCODE;
-    public boolean hashCodeDirty = true;
-
-    public String loopKey;
-
-
-
-	
-			    public int SalesID;
-
-				public int getSalesID () {
-					return this.SalesID;
-				}
-				
-			    public Float ProductPrice;
-
-				public Float getProductPrice () {
-					return this.ProductPrice;
-				}
-				
-			    public Integer CalculatedPrice;
-
-				public Integer getCalculatedPrice () {
-					return this.CalculatedPrice;
-				}
-				
-			    public Integer QuantitySold;
-
-				public Integer getQuantitySold () {
-					return this.QuantitySold;
-				}
-				
-			    public Float TotalAmount;
-
-				public Float getTotalAmount () {
-					return this.TotalAmount;
-				}
-				
-			    public Float DiscountAmount;
-
-				public Float getDiscountAmount () {
-					return this.DiscountAmount;
-				}
-				
-			    public Float NetAmount;
-
-				public Float getNetAmount () {
-					return this.NetAmount;
-				}
-				
-			    public java.util.Date Date;
-
-				public java.util.Date getDate () {
-					return this.Date;
-				}
-				
-			    public int ProductID;
-
-				public int getProductID () {
-					return this.ProductID;
-				}
-				
-			    public int ShipperID;
-
-				public int getShipperID () {
-					return this.ShipperID;
-				}
-				
-			    public Integer CustomerID;
-
-				public Integer getCustomerID () {
-					return this.CustomerID;
-				}
-				
-
-
-	@Override
-	public int hashCode() {
-		if (this.hashCodeDirty) {
-			final int prime = PRIME;
-			int result = DEFAULT_HASHCODE;
-	
-							result = prime * result + (int) this.SalesID;
-						
-    		this.hashCode = result;
-    		this.hashCodeDirty = false;
-		}
-		return this.hashCode;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
-		final row1Struct other = (row1Struct) obj;
-		
-						if (this.SalesID != other.SalesID)
-							return false;
-					
-
-		return true;
-    }
-
-	public void copyDataTo(row1Struct other) {
-
-		other.SalesID = this.SalesID;
-	            other.ProductPrice = this.ProductPrice;
-	            other.CalculatedPrice = this.CalculatedPrice;
-	            other.QuantitySold = this.QuantitySold;
-	            other.TotalAmount = this.TotalAmount;
-	            other.DiscountAmount = this.DiscountAmount;
-	            other.NetAmount = this.NetAmount;
-	            other.Date = this.Date;
-	            other.ProductID = this.ProductID;
-	            other.ShipperID = this.ShipperID;
-	            other.CustomerID = this.CustomerID;
-	            
-	}
-
-	public void copyKeysDataTo(row1Struct other) {
-
-		other.SalesID = this.SalesID;
-	            	
-	}
-
-
-
-	private Integer readInteger(ObjectInputStream dis) throws IOException{
-		Integer intReturn;
-        int length = 0;
-        length = dis.readByte();
-		if (length == -1) {
-			intReturn = null;
-		} else {
-	    	intReturn = dis.readInt();
-		}
-		return intReturn;
-	}
-	
-	private Integer readInteger(org.jboss.marshalling.Unmarshaller dis) throws IOException{
-		Integer intReturn;
-        int length = 0;
-        length = dis.readByte();
-		if (length == -1) {
-			intReturn = null;
-		} else {
-	    	intReturn = dis.readInt();
-		}
-		return intReturn;
-	}
-
-	private void writeInteger(Integer intNum, ObjectOutputStream dos) throws IOException{
-		if(intNum == null) {
-            dos.writeByte(-1);
-		} else {
-			dos.writeByte(0);
-	    	dos.writeInt(intNum);
-    	}
-	}
-	
-	private void writeInteger(Integer intNum, org.jboss.marshalling.Marshaller marshaller) throws IOException{
-		if(intNum == null) {
-			marshaller.writeByte(-1);
-		} else {
-			marshaller.writeByte(0);
-			marshaller.writeInt(intNum);
-    	}
-	}
-
-	private java.util.Date readDate(ObjectInputStream dis) throws IOException{
-		java.util.Date dateReturn = null;
-        int length = 0;
-        length = dis.readByte();
-		if (length == -1) {
-			dateReturn = null;
-		} else {
-	    	dateReturn = new Date(dis.readLong());
-		}
-		return dateReturn;
-	}
-	
-	private java.util.Date readDate(org.jboss.marshalling.Unmarshaller unmarshaller) throws IOException{
-		java.util.Date dateReturn = null;
-        int length = 0;
-        length = unmarshaller.readByte();
-		if (length == -1) {
-			dateReturn = null;
-		} else {
-	    	dateReturn = new Date(unmarshaller.readLong());
-		}
-		return dateReturn;
-	}
-
-    private void writeDate(java.util.Date date1, ObjectOutputStream dos) throws IOException{
-		if(date1 == null) {
-            dos.writeByte(-1);
-		} else {
-			dos.writeByte(0);
-	    	dos.writeLong(date1.getTime());
-    	}
-    }
-    
-    private void writeDate(java.util.Date date1, org.jboss.marshalling.Marshaller marshaller) throws IOException{
-		if(date1 == null) {
-			marshaller.writeByte(-1);
-		} else {
-			marshaller.writeByte(0);
-			marshaller.writeLong(date1.getTime());
-    	}
-    }
-
-    public void readData(ObjectInputStream dis) {
-
-		synchronized(commonByteArrayLock_ECOMEVALUATION_sales_DM) {
-
-        	try {
-
-        		int length = 0;
-		
-			        this.SalesID = dis.readInt();
-					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.ProductPrice = null;
-           				} else {
-           			    	this.ProductPrice = dis.readFloat();
-           				}
-					
-						this.CalculatedPrice = readInteger(dis);
-					
-						this.QuantitySold = readInteger(dis);
-					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.TotalAmount = null;
-           				} else {
-           			    	this.TotalAmount = dis.readFloat();
-           				}
-					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.DiscountAmount = null;
-           				} else {
-           			    	this.DiscountAmount = dis.readFloat();
-           				}
-					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.NetAmount = null;
-           				} else {
-           			    	this.NetAmount = dis.readFloat();
-           				}
-					
-					this.Date = readDate(dis);
-					
-			        this.ProductID = dis.readInt();
-					
-			        this.ShipperID = dis.readInt();
-					
-						this.CustomerID = readInteger(dis);
-					
-        	} catch (IOException e) {
-	            throw new RuntimeException(e);
-
-		
-
-        }
-
-		
-
-      }
-
-
-    }
-    
-    public void readData(org.jboss.marshalling.Unmarshaller dis) {
-
-		synchronized(commonByteArrayLock_ECOMEVALUATION_sales_DM) {
-
-        	try {
-
-        		int length = 0;
-		
-			        this.SalesID = dis.readInt();
-					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.ProductPrice = null;
-           				} else {
-           			    	this.ProductPrice = dis.readFloat();
-           				}
-					
-						this.CalculatedPrice = readInteger(dis);
-					
-						this.QuantitySold = readInteger(dis);
-					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.TotalAmount = null;
-           				} else {
-           			    	this.TotalAmount = dis.readFloat();
-           				}
-					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.DiscountAmount = null;
-           				} else {
-           			    	this.DiscountAmount = dis.readFloat();
-           				}
-					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.NetAmount = null;
-           				} else {
-           			    	this.NetAmount = dis.readFloat();
-           				}
-					
-					this.Date = readDate(dis);
-					
-			        this.ProductID = dis.readInt();
-					
-			        this.ShipperID = dis.readInt();
-					
-						this.CustomerID = readInteger(dis);
-					
-        	} catch (IOException e) {
-	            throw new RuntimeException(e);
-
-		
-
-        }
-
-		
-
-      }
-
-
-    }
-
-    public void writeData(ObjectOutputStream dos) {
-        try {
-
-		
-					// int
-				
-		            	dos.writeInt(this.SalesID);
-					
-					// Float
-				
-						if(this.ProductPrice == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeFloat(this.ProductPrice);
-		            	}
-					
-					// Integer
-				
-						writeInteger(this.CalculatedPrice,dos);
-					
-					// Integer
-				
-						writeInteger(this.QuantitySold,dos);
-					
-					// Float
-				
-						if(this.TotalAmount == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeFloat(this.TotalAmount);
-		            	}
-					
-					// Float
-				
-						if(this.DiscountAmount == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeFloat(this.DiscountAmount);
-		            	}
-					
-					// Float
-				
-						if(this.NetAmount == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeFloat(this.NetAmount);
-		            	}
-					
-					// java.util.Date
-				
-						writeDate(this.Date,dos);
-					
-					// int
-				
-		            	dos.writeInt(this.ProductID);
-					
-					// int
-				
-		            	dos.writeInt(this.ShipperID);
-					
-					// Integer
-				
-						writeInteger(this.CustomerID,dos);
-					
-        	} catch (IOException e) {
-	            throw new RuntimeException(e);
-        }
-
-
-    }
-    
-    public void writeData(org.jboss.marshalling.Marshaller dos) {
-        try {
-
-		
-					// int
-				
-		            	dos.writeInt(this.SalesID);
-					
-					// Float
-				
-						if(this.ProductPrice == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeFloat(this.ProductPrice);
-		            	}
-					
-					// Integer
-				
-						writeInteger(this.CalculatedPrice,dos);
-					
-					// Integer
-				
-						writeInteger(this.QuantitySold,dos);
-					
-					// Float
-				
-						if(this.TotalAmount == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeFloat(this.TotalAmount);
-		            	}
-					
-					// Float
-				
-						if(this.DiscountAmount == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeFloat(this.DiscountAmount);
-		            	}
-					
-					// Float
-				
-						if(this.NetAmount == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeFloat(this.NetAmount);
-		            	}
-					
-					// java.util.Date
-				
-						writeDate(this.Date,dos);
-					
-					// int
-				
-		            	dos.writeInt(this.ProductID);
-					
-					// int
-				
-		            	dos.writeInt(this.ShipperID);
-					
-					// Integer
-				
-						writeInteger(this.CustomerID,dos);
-					
-        	} catch (IOException e) {
-	            throw new RuntimeException(e);
-        }
-
-
-    }
-
-
-    public String toString() {
-
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.toString());
-		sb.append("[");
-		sb.append("SalesID="+String.valueOf(SalesID));
-		sb.append(",ProductPrice="+String.valueOf(ProductPrice));
-		sb.append(",CalculatedPrice="+String.valueOf(CalculatedPrice));
-		sb.append(",QuantitySold="+String.valueOf(QuantitySold));
-		sb.append(",TotalAmount="+String.valueOf(TotalAmount));
-		sb.append(",DiscountAmount="+String.valueOf(DiscountAmount));
-		sb.append(",NetAmount="+String.valueOf(NetAmount));
-		sb.append(",Date="+String.valueOf(Date));
-		sb.append(",ProductID="+String.valueOf(ProductID));
-		sb.append(",ShipperID="+String.valueOf(ShipperID));
-		sb.append(",CustomerID="+String.valueOf(CustomerID));
-	    sb.append("]");
-
-	    return sb.toString();
-    }
-
-    /**
-     * Compare keys
-     */
-    public int compareTo(row1Struct other) {
-
-		int returnValue = -1;
-		
-						returnValue = checkNullsAndCompare(this.SalesID, other.SalesID);
-						if(returnValue != 0) {
-							return returnValue;
-						}
-
-					
-	    return returnValue;
-    }
-
-
-    private int checkNullsAndCompare(Object object1, Object object2) {
-        int returnValue = 0;
-		if (object1 instanceof Comparable && object2 instanceof Comparable) {
-            returnValue = ((Comparable) object1).compareTo(object2);
-        } else if (object1 != null && object2 != null) {
-            returnValue = compareStrings(object1.toString(), object2.toString());
-        } else if (object1 == null && object2 != null) {
-            returnValue = 1;
-        } else if (object1 != null && object2 == null) {
-            returnValue = -1;
-        } else {
-            returnValue = 0;
-        }
-
-        return returnValue;
-    }
-
-    private int compareStrings(String string1, String string2) {
-        return string1.compareTo(string2);
-    }
-
-
-}
-public void tDBInput_1Process(final java.util.Map<String, Object> globalMap) throws TalendException {
-	globalMap.put("tDBInput_1_SUBPROCESS_STATE", 0);
-
- final boolean execStat = this.execStat;
-	
-		String iterateId = "";
-	
-	
-	String currentComponent = "";
-	java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
-
-	try {
-			// TDI-39566 avoid throwing an useless Exception
-			boolean resumeIt = true;
-			if (globalResumeTicket == false && resumeEntryMethodName != null) {
-				String currentMethodName = new java.lang.Exception().getStackTrace()[0].getMethodName();
-				resumeIt = resumeEntryMethodName.equals(currentMethodName);
-			}
-			if (resumeIt || globalResumeTicket) { //start the resume
-				globalResumeTicket = true;
-
-
-
-		row1Struct row1 = new row1Struct();
-
-
-
-
-	
-	/**
-	 * [tDBOutput_1 begin ] start
-	 */
-
-	
-
-	
-		
-		ok_Hash.put("tDBOutput_1", false);
-		start_Hash.put("tDBOutput_1", System.currentTimeMillis());
-		
-	
-	currentComponent="tDBOutput_1";
-
-	
-					if(execStat) {
-						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row1");
-					}
-				
-		int tos_count_tDBOutput_1 = 0;
-		
-
-
-
-int nb_line_tDBOutput_1 = 0;
-int nb_line_update_tDBOutput_1 = 0;
-int nb_line_inserted_tDBOutput_1 = 0;
-int nb_line_deleted_tDBOutput_1 = 0;
-int nb_line_rejected_tDBOutput_1 = 0;
-
-int deletedCount_tDBOutput_1=0;
-int updatedCount_tDBOutput_1=0;
-int insertedCount_tDBOutput_1=0;
-int rowsToCommitCount_tDBOutput_1=0;
-int rejectedCount_tDBOutput_1=0;
-String dbschema_tDBOutput_1 = null;
-String tableName_tDBOutput_1 = null;
-boolean whetherReject_tDBOutput_1 = false;
-
-java.util.Calendar calendar_tDBOutput_1 = java.util.Calendar.getInstance();
-long year1_tDBOutput_1 = TalendDate.parseDate("yyyy-MM-dd","0001-01-01").getTime();
-long year2_tDBOutput_1 = TalendDate.parseDate("yyyy-MM-dd","1753-01-01").getTime();
-long year10000_tDBOutput_1 = TalendDate.parseDate("yyyy-MM-dd HH:mm:ss","9999-12-31 24:00:00").getTime();
-long date_tDBOutput_1;
-
-java.util.Calendar calendar_datetimeoffset_tDBOutput_1 = java.util.Calendar.getInstance(java.util.TimeZone.getTimeZone("UTC"));
-
-
-        int updateKeyCount_tDBOutput_1 = 1;
-        if(updateKeyCount_tDBOutput_1 < 1) {
-            throw new RuntimeException("For update, Schema must have a key");
-        } else if (updateKeyCount_tDBOutput_1 == 11 && true) {
-                    System.err.println("For update, every Schema column can not be a key");
-        }
-
-	
-java.sql.Connection conn_tDBOutput_1 = null;
-String dbUser_tDBOutput_1 = null;
-	dbschema_tDBOutput_1 = (String)globalMap.get("dbschema_tDBConnection_1");
-	
-	conn_tDBOutput_1 = (java.sql.Connection)globalMap.get("conn_tDBConnection_1");
-	
-
-if(dbschema_tDBOutput_1 == null || dbschema_tDBOutput_1.trim().length() == 0) {
-    tableName_tDBOutput_1 = "FactSales";
-} else {
-    tableName_tDBOutput_1 = dbschema_tDBOutput_1 + "].[" + "FactSales";
-}
-	int count_tDBOutput_1=0;
-
-                                boolean whetherExist_tDBOutput_1 = false;
-                                try (java.sql.Statement isExistStmt_tDBOutput_1 = conn_tDBOutput_1.createStatement()) {
-                                    try {
-                                        isExistStmt_tDBOutput_1.execute("SELECT TOP 1 1 FROM [" + tableName_tDBOutput_1 + "]" );
-                                        whetherExist_tDBOutput_1 = true;
-                                    } catch (java.lang.Exception e){
-globalMap.put("tDBOutput_1_ERROR_MESSAGE",e.getMessage());
-                                        whetherExist_tDBOutput_1 = false;
-                                    }
-                                }
-                                if(!whetherExist_tDBOutput_1) {
-                                    try (java.sql.Statement stmtCreate_tDBOutput_1 = conn_tDBOutput_1.createStatement()) {
-                                        stmtCreate_tDBOutput_1.execute("CREATE TABLE [" + tableName_tDBOutput_1 + "]([SalesID] INT  not null ,[ProductPrice] REAL ,[CalculatedPrice] INT ,[QuantitySold] INT ,[TotalAmount] REAL ,[DiscountAmount] REAL ,[NetAmount] REAL ,[Date] DATE ,[ProductID] INT  not null ,[ShipperID] INT  not null ,[CustomerID] INT ,primary key([SalesID]))");
-                                    }
-                                }
-        String update_tDBOutput_1 = "UPDATE [" + tableName_tDBOutput_1 + "] SET [ProductPrice] = ?,[CalculatedPrice] = ?,[QuantitySold] = ?,[TotalAmount] = ?,[DiscountAmount] = ?,[NetAmount] = ?,[Date] = ?,[ProductID] = ?,[ShipperID] = ?,[CustomerID] = ? WHERE [SalesID] = ?";
-        java.sql.PreparedStatement pstmtUpdate_tDBOutput_1 = conn_tDBOutput_1.prepareStatement(update_tDBOutput_1);
-        resourceMap.put("pstmtUpdate_tDBOutput_1", pstmtUpdate_tDBOutput_1);
-        String insert_tDBOutput_1 = "INSERT INTO [" + tableName_tDBOutput_1 + "] ([SalesID],[ProductPrice],[CalculatedPrice],[QuantitySold],[TotalAmount],[DiscountAmount],[NetAmount],[Date],[ProductID],[ShipperID],[CustomerID]) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-        java.sql.PreparedStatement pstmtInsert_tDBOutput_1 = conn_tDBOutput_1.prepareStatement(insert_tDBOutput_1);
-        resourceMap.put("pstmtInsert_tDBOutput_1", pstmtInsert_tDBOutput_1);
- 	boolean isShareIdentity_tDBOutput_1 = globalMap.get("shareIdentitySetting_tDBConnection_1") != null && (Boolean)globalMap.get("shareIdentitySetting_tDBConnection_1") == true;
-
- 
-
-
-
-/**
- * [tDBOutput_1 begin ] stop
- */
-
-
-
-	
-	/**
-	 * [tDBInput_1 begin ] start
-	 */
-
-	
-
-	
-		
-		ok_Hash.put("tDBInput_1", false);
-		start_Hash.put("tDBInput_1", System.currentTimeMillis());
-		
-	
-	currentComponent="tDBInput_1";
-
-	
-		int tos_count_tDBInput_1 = 0;
-		
-	
-    
-	
-			org.talend.designer.components.util.mssql.MSSqlGenerateTimestampUtil mssqlGTU_tDBInput_1 = org.talend.designer.components.util.mssql.MSSqlUtilFactory.getMSSqlGenerateTimestampUtil();
-			
-			java.util.List<String> talendToDBList_tDBInput_1 = new java.util.ArrayList();
-			String[] talendToDBArray_tDBInput_1  = new String[]{"FLOAT","NUMERIC","NUMERIC IDENTITY","DECIMAL","DECIMAL IDENTITY","REAL"}; 
-			java.util.Collections.addAll(talendToDBList_tDBInput_1, talendToDBArray_tDBInput_1); 
-		    int nb_line_tDBInput_1 = 0;
-		    java.sql.Connection conn_tDBInput_1 = null;
-				conn_tDBInput_1 = (java.sql.Connection)globalMap.get("conn_tDBConnection_2");
-				
-			String dbschema_tDBInput_1 = (String)globalMap.get("dbschema_tDBConnection_2");
-		    
-			java.sql.Statement stmt_tDBInput_1 = conn_tDBInput_1.createStatement();
-
-		    String dbquery_tDBInput_1 = "SELECT \""+context.ecom_eval_dw_Schema+"\".FactSales.SalesID,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.ProductPrice,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.CalculatedPrice,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.QuantitySold,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.TotalAmount,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.DiscountAmount,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.NetAmount,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.Date,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.ProductID,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.ShipperID,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.CustomerID"
-+"\nFROM	\""+context.ecom_eval_dw_Schema+"\".FactSales";
-		    
-
-            	globalMap.put("tDBInput_1_QUERY",dbquery_tDBInput_1);
-		    java.sql.ResultSet rs_tDBInput_1 = null;
-
-		    try {
-		    	rs_tDBInput_1 = stmt_tDBInput_1.executeQuery(dbquery_tDBInput_1);
-		    	java.sql.ResultSetMetaData rsmd_tDBInput_1 = rs_tDBInput_1.getMetaData();
-		    	int colQtyInRs_tDBInput_1 = rsmd_tDBInput_1.getColumnCount();
-
-		    String tmpContent_tDBInput_1 = null;
-		    
-		    
-		    while (rs_tDBInput_1.next()) {
-		        nb_line_tDBInput_1++;
-		        
-							if(colQtyInRs_tDBInput_1 < 1) {
-								row1.SalesID = 0;
-							} else {
-		                          
-            row1.SalesID = rs_tDBInput_1.getInt(1);
-            if(rs_tDBInput_1.wasNull()){
-                    throw new RuntimeException("Null value in non-Nullable column");
-            }
-		                    }
-							if(colQtyInRs_tDBInput_1 < 2) {
-								row1.ProductPrice = null;
-							} else {
-		                          
-            row1.ProductPrice = rs_tDBInput_1.getFloat(2);
-            if(rs_tDBInput_1.wasNull()){
-                    row1.ProductPrice = null;
-            }
-		                    }
-							if(colQtyInRs_tDBInput_1 < 3) {
-								row1.CalculatedPrice = null;
-							} else {
-		                          
-            row1.CalculatedPrice = rs_tDBInput_1.getInt(3);
-            if(rs_tDBInput_1.wasNull()){
-                    row1.CalculatedPrice = null;
-            }
-		                    }
-							if(colQtyInRs_tDBInput_1 < 4) {
-								row1.QuantitySold = null;
-							} else {
-		                          
-            row1.QuantitySold = rs_tDBInput_1.getInt(4);
-            if(rs_tDBInput_1.wasNull()){
-                    row1.QuantitySold = null;
-            }
-		                    }
-							if(colQtyInRs_tDBInput_1 < 5) {
-								row1.TotalAmount = null;
-							} else {
-		                          
-            row1.TotalAmount = rs_tDBInput_1.getFloat(5);
-            if(rs_tDBInput_1.wasNull()){
-                    row1.TotalAmount = null;
-            }
-		                    }
-							if(colQtyInRs_tDBInput_1 < 6) {
-								row1.DiscountAmount = null;
-							} else {
-		                          
-            row1.DiscountAmount = rs_tDBInput_1.getFloat(6);
-            if(rs_tDBInput_1.wasNull()){
-                    row1.DiscountAmount = null;
-            }
-		                    }
-							if(colQtyInRs_tDBInput_1 < 7) {
-								row1.NetAmount = null;
-							} else {
-		                          
-            row1.NetAmount = rs_tDBInput_1.getFloat(7);
-            if(rs_tDBInput_1.wasNull()){
-                    row1.NetAmount = null;
-            }
-		                    }
-							if(colQtyInRs_tDBInput_1 < 8) {
-								row1.Date = null;
-							} else {
-										
-			row1.Date = mssqlGTU_tDBInput_1.getDate(rsmd_tDBInput_1, rs_tDBInput_1, 8);
-			
-		                    }
-							if(colQtyInRs_tDBInput_1 < 9) {
-								row1.ProductID = 0;
-							} else {
-		                          
-            row1.ProductID = rs_tDBInput_1.getInt(9);
-            if(rs_tDBInput_1.wasNull()){
-                    throw new RuntimeException("Null value in non-Nullable column");
-            }
-		                    }
-							if(colQtyInRs_tDBInput_1 < 10) {
-								row1.ShipperID = 0;
-							} else {
-		                          
-            row1.ShipperID = rs_tDBInput_1.getInt(10);
-            if(rs_tDBInput_1.wasNull()){
-                    throw new RuntimeException("Null value in non-Nullable column");
-            }
-		                    }
-							if(colQtyInRs_tDBInput_1 < 11) {
-								row1.CustomerID = null;
-							} else {
-		                          
-            row1.CustomerID = rs_tDBInput_1.getInt(11);
-            if(rs_tDBInput_1.wasNull()){
-                    row1.CustomerID = null;
-            }
-		                    }
-					
-
-
-
-
-
- 
-
-
-
-/**
- * [tDBInput_1 begin ] stop
- */
-	
-	/**
-	 * [tDBInput_1 main ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tDBInput_1";
-
-	
-
- 
-
-
-	tos_count_tDBInput_1++;
-
-/**
- * [tDBInput_1 main ] stop
- */
-	
-	/**
-	 * [tDBInput_1 process_data_begin ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tDBInput_1";
-
-	
-
- 
-
-
-
-/**
- * [tDBInput_1 process_data_begin ] stop
- */
-
-	
-	/**
-	 * [tDBOutput_1 main ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tDBOutput_1";
-
-	
-					if(execStat){
-						runStat.updateStatOnConnection(iterateId,1,1
-						
-							,"row1"
-						
-						);
-					}
-					
-
-
-
-        whetherReject_tDBOutput_1 = false;
-            int updateFlag_tDBOutput_1=0;
-                    if(row1.ProductPrice == null) {
-pstmtUpdate_tDBOutput_1.setNull(1, java.sql.Types.FLOAT);
-} else {pstmtUpdate_tDBOutput_1.setFloat(1, row1.ProductPrice);
-}
-
-                    if(row1.CalculatedPrice == null) {
-pstmtUpdate_tDBOutput_1.setNull(2, java.sql.Types.INTEGER);
-} else {pstmtUpdate_tDBOutput_1.setInt(2, row1.CalculatedPrice);
-}
-
-                    if(row1.QuantitySold == null) {
-pstmtUpdate_tDBOutput_1.setNull(3, java.sql.Types.INTEGER);
-} else {pstmtUpdate_tDBOutput_1.setInt(3, row1.QuantitySold);
-}
-
-                    if(row1.TotalAmount == null) {
-pstmtUpdate_tDBOutput_1.setNull(4, java.sql.Types.FLOAT);
-} else {pstmtUpdate_tDBOutput_1.setFloat(4, row1.TotalAmount);
-}
-
-                    if(row1.DiscountAmount == null) {
-pstmtUpdate_tDBOutput_1.setNull(5, java.sql.Types.FLOAT);
-} else {pstmtUpdate_tDBOutput_1.setFloat(5, row1.DiscountAmount);
-}
-
-                    if(row1.NetAmount == null) {
-pstmtUpdate_tDBOutput_1.setNull(6, java.sql.Types.FLOAT);
-} else {pstmtUpdate_tDBOutput_1.setFloat(6, row1.NetAmount);
-}
-
-                    if(row1.Date != null) {
-pstmtUpdate_tDBOutput_1.setTimestamp(7, new java.sql.Timestamp(row1.Date.getTime()));
-} else {
-pstmtUpdate_tDBOutput_1.setNull(7, java.sql.Types.TIMESTAMP);
-}
-
-                    pstmtUpdate_tDBOutput_1.setInt(8, row1.ProductID);
-
-                    pstmtUpdate_tDBOutput_1.setInt(9, row1.ShipperID);
-
-                    if(row1.CustomerID == null) {
-pstmtUpdate_tDBOutput_1.setNull(10, java.sql.Types.INTEGER);
-} else {pstmtUpdate_tDBOutput_1.setInt(10, row1.CustomerID);
-}
-
-
-                    pstmtUpdate_tDBOutput_1.setInt(11 + count_tDBOutput_1, row1.SalesID);
-
-            try {
-                updateFlag_tDBOutput_1=pstmtUpdate_tDBOutput_1.executeUpdate();
-                updatedCount_tDBOutput_1 = updatedCount_tDBOutput_1+updateFlag_tDBOutput_1;
-                rowsToCommitCount_tDBOutput_1 += updateFlag_tDBOutput_1;
-            if(updateFlag_tDBOutput_1 == 0) {
-            	
-                        pstmtInsert_tDBOutput_1.setInt(1, row1.SalesID);
-
-                        if(row1.ProductPrice == null) {
-pstmtInsert_tDBOutput_1.setNull(2, java.sql.Types.FLOAT);
-} else {pstmtInsert_tDBOutput_1.setFloat(2, row1.ProductPrice);
-}
-
-                        if(row1.CalculatedPrice == null) {
-pstmtInsert_tDBOutput_1.setNull(3, java.sql.Types.INTEGER);
-} else {pstmtInsert_tDBOutput_1.setInt(3, row1.CalculatedPrice);
-}
-
-                        if(row1.QuantitySold == null) {
-pstmtInsert_tDBOutput_1.setNull(4, java.sql.Types.INTEGER);
-} else {pstmtInsert_tDBOutput_1.setInt(4, row1.QuantitySold);
-}
-
-                        if(row1.TotalAmount == null) {
-pstmtInsert_tDBOutput_1.setNull(5, java.sql.Types.FLOAT);
-} else {pstmtInsert_tDBOutput_1.setFloat(5, row1.TotalAmount);
-}
-
-                        if(row1.DiscountAmount == null) {
-pstmtInsert_tDBOutput_1.setNull(6, java.sql.Types.FLOAT);
-} else {pstmtInsert_tDBOutput_1.setFloat(6, row1.DiscountAmount);
-}
-
-                        if(row1.NetAmount == null) {
-pstmtInsert_tDBOutput_1.setNull(7, java.sql.Types.FLOAT);
-} else {pstmtInsert_tDBOutput_1.setFloat(7, row1.NetAmount);
-}
-
-                        if(row1.Date != null) {
-pstmtInsert_tDBOutput_1.setTimestamp(8, new java.sql.Timestamp(row1.Date.getTime()));
-} else {
-pstmtInsert_tDBOutput_1.setNull(8, java.sql.Types.TIMESTAMP);
-}
-
-                        pstmtInsert_tDBOutput_1.setInt(9, row1.ProductID);
-
-                        pstmtInsert_tDBOutput_1.setInt(10, row1.ShipperID);
-
-                        if(row1.CustomerID == null) {
-pstmtInsert_tDBOutput_1.setNull(11, java.sql.Types.INTEGER);
-} else {pstmtInsert_tDBOutput_1.setInt(11, row1.CustomerID);
-}
-
-                    int processedCount_tDBOutput_1 = pstmtInsert_tDBOutput_1.executeUpdate();
-                    insertedCount_tDBOutput_1 += processedCount_tDBOutput_1;
-                    rowsToCommitCount_tDBOutput_1 += processedCount_tDBOutput_1;
-                    nb_line_tDBOutput_1++;
-    			}else{
-    				nb_line_tDBOutput_1++;
-    				
-    			}
-                } catch(java.lang.Exception e) {
-globalMap.put("tDBOutput_1_ERROR_MESSAGE",e.getMessage());
-                    whetherReject_tDBOutput_1 = true;
-                    	nb_line_tDBOutput_1++;
-                    	
-                            System.err.println(e.getMessage());
-                } finally {
-				    
-				}
-            if(!whetherReject_tDBOutput_1) {
-            }
-            	//////////batch execute by batch size///////
-            	class LimitBytesHelper_tDBOutput_1{
-            		public int limitBytePart1(int counter,java.sql.PreparedStatement pstmt_tDBOutput_1) throws Exception {
-                try {
-						
-						for(int countEach_tDBOutput_1: pstmt_tDBOutput_1.executeBatch()) {
-							if(countEach_tDBOutput_1 == -2 || countEach_tDBOutput_1 == -3) {
-								break;
-							}
-							counter += countEach_tDBOutput_1;
-						}
-						
-                }catch (java.sql.BatchUpdateException e){
-globalMap.put("tDBOutput_1_ERROR_MESSAGE",e.getMessage());
-                	
-                	int countSum_tDBOutput_1 = 0;
-					for(int countEach_tDBOutput_1: e.getUpdateCounts()) {
-						counter += (countEach_tDBOutput_1 < 0 ? 0 : countEach_tDBOutput_1);
-					}
-				
-            	    	
-                		System.err.println(e.getMessage());
-                	
-               			 }
-    				return counter;
-            	}
-            	
-            	public int limitBytePart2(int counter,java.sql.PreparedStatement pstmt_tDBOutput_1) throws Exception {
-                try {
-                		
-						for(int countEach_tDBOutput_1: pstmt_tDBOutput_1.executeBatch()) {
-							if(countEach_tDBOutput_1 == -2 || countEach_tDBOutput_1 == -3) {
-								break;
-							}
-							counter += countEach_tDBOutput_1;
-						}
-						
-                }catch (java.sql.BatchUpdateException e){
-globalMap.put("tDBOutput_1_ERROR_MESSAGE",e.getMessage());
-                	
-                	
-					for(int countEach_tDBOutput_1: e.getUpdateCounts()) {
-						counter += (countEach_tDBOutput_1 < 0 ? 0 : countEach_tDBOutput_1);
-					}
-					
-            	    	
-                        System.err.println(e.getMessage());
-                	
-                		}	
-                	return counter;	
-            	}
-            }
-
-    	////////////commit every////////////
-    			
-
- 
-
-
-	tos_count_tDBOutput_1++;
-
-/**
- * [tDBOutput_1 main ] stop
- */
-	
-	/**
-	 * [tDBOutput_1 process_data_begin ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tDBOutput_1";
-
-	
-
- 
-
-
-
-/**
- * [tDBOutput_1 process_data_begin ] stop
- */
-	
-	/**
-	 * [tDBOutput_1 process_data_end ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tDBOutput_1";
-
-	
-
- 
-
-
-
-/**
- * [tDBOutput_1 process_data_end ] stop
- */
-
-
-
-	
-	/**
-	 * [tDBInput_1 process_data_end ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tDBInput_1";
-
-	
-
- 
-
-
-
-/**
- * [tDBInput_1 process_data_end ] stop
- */
-	
-	/**
-	 * [tDBInput_1 end ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tDBInput_1";
-
-	
-
-	}
-}finally{
-	if (rs_tDBInput_1 != null) {
-		rs_tDBInput_1.close();
-	}
-	if (stmt_tDBInput_1 != null) {
-		stmt_tDBInput_1.close();
-	}
-}
-globalMap.put("tDBInput_1_NB_LINE",nb_line_tDBInput_1);
-
- 
-
-ok_Hash.put("tDBInput_1", true);
-end_Hash.put("tDBInput_1", System.currentTimeMillis());
-
-
-
-
-/**
- * [tDBInput_1 end ] stop
- */
-
-	
-	/**
-	 * [tDBOutput_1 end ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tDBOutput_1";
-
-	
-
-
-
-        if(pstmtUpdate_tDBOutput_1 != null){
-            pstmtUpdate_tDBOutput_1.close();
-            resourceMap.remove("pstmtUpdate_tDBOutput_1");
-        }
-        if(pstmtInsert_tDBOutput_1 != null){
-            pstmtInsert_tDBOutput_1.close();
-            resourceMap.remove("pstmtInsert_tDBOutput_1");
-        }
-    resourceMap.put("statementClosed_tDBOutput_1", true);
-
-	nb_line_deleted_tDBOutput_1=nb_line_deleted_tDBOutput_1+ deletedCount_tDBOutput_1;
-	nb_line_update_tDBOutput_1=nb_line_update_tDBOutput_1 + updatedCount_tDBOutput_1;
-	nb_line_inserted_tDBOutput_1=nb_line_inserted_tDBOutput_1 + insertedCount_tDBOutput_1;
-	nb_line_rejected_tDBOutput_1=nb_line_rejected_tDBOutput_1 + rejectedCount_tDBOutput_1;
-	
-        globalMap.put("tDBOutput_1_NB_LINE",nb_line_tDBOutput_1);
-        globalMap.put("tDBOutput_1_NB_LINE_UPDATED",nb_line_update_tDBOutput_1);
-        globalMap.put("tDBOutput_1_NB_LINE_INSERTED",nb_line_inserted_tDBOutput_1);
-        globalMap.put("tDBOutput_1_NB_LINE_DELETED",nb_line_deleted_tDBOutput_1);
-        globalMap.put("tDBOutput_1_NB_LINE_REJECTED", nb_line_rejected_tDBOutput_1);
-    
-
-	
-
-				if(execStat){
-			  		runStat.updateStat(resourceMap,iterateId,2,0,"row1");
-			  	}
-			  	
- 
-
-ok_Hash.put("tDBOutput_1", true);
-end_Hash.put("tDBOutput_1", System.currentTimeMillis());
-
-
-
-
-/**
- * [tDBOutput_1 end ] stop
- */
-
-
-
-				}//end the resume
-
-				
-
-
-
-	
-			}catch(java.lang.Exception e){	
-				
-				TalendException te = new TalendException(e, currentComponent, globalMap);
-				
-				throw te;
-			}catch(java.lang.Error error){	
-				
-					runStat.stopThreadStat();
-				
-				throw error;
-			}finally{
-				
-				try{
-					
-	
-	/**
-	 * [tDBInput_1 finally ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tDBInput_1";
-
-	
-
- 
-
-
-
-/**
- * [tDBInput_1 finally ] stop
- */
-
-	
-	/**
-	 * [tDBOutput_1 finally ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tDBOutput_1";
-
-	
-
-
-
-    if (resourceMap.get("statementClosed_tDBOutput_1") == null) {
-                java.sql.PreparedStatement pstmtUpdateToClose_tDBOutput_1 = null;
-                if ((pstmtUpdateToClose_tDBOutput_1 = (java.sql.PreparedStatement) resourceMap.remove("pstmtUpdate_tDBOutput_1")) != null) {
-                    pstmtUpdateToClose_tDBOutput_1.close();
-                }
-                java.sql.PreparedStatement pstmtInsertToClose_tDBOutput_1 = null;
-                if ((pstmtInsertToClose_tDBOutput_1 = (java.sql.PreparedStatement) resourceMap.remove("pstmtInsert_tDBOutput_1")) != null) {
-                    pstmtInsertToClose_tDBOutput_1.close();
-                }
-    }
- 
-
-
-
-/**
- * [tDBOutput_1 finally ] stop
- */
-
-
-
-				}catch(java.lang.Exception e){	
-					//ignore
-				}catch(java.lang.Error error){
-					//ignore
-				}
-				resourceMap = null;
-			}
-		
-
-		globalMap.put("tDBInput_1_SUBPROCESS_STATE", 1);
-	}
-	
-
-
 public static class row3Struct implements routines.system.IPersistableRow<row3Struct> {
     final static byte[] commonByteArrayLock_ECOMEVALUATION_sales_DM = new byte[0];
     static byte[] commonByteArray_ECOMEVALUATION_sales_DM = new byte[0];
@@ -8568,6 +7264,1296 @@ end_Hash.put("tDBOutput_3", System.currentTimeMillis());
 		globalMap.put("tDBInput_3_SUBPROCESS_STATE", 1);
 	}
 	
+
+
+public static class row1Struct implements routines.system.IPersistableRow<row1Struct> {
+    final static byte[] commonByteArrayLock_ECOMEVALUATION_sales_DM = new byte[0];
+    static byte[] commonByteArray_ECOMEVALUATION_sales_DM = new byte[0];
+	protected static final int DEFAULT_HASHCODE = 1;
+    protected static final int PRIME = 31;
+    protected int hashCode = DEFAULT_HASHCODE;
+    public boolean hashCodeDirty = true;
+
+    public String loopKey;
+
+
+
+	
+			    public int SalesID;
+
+				public int getSalesID () {
+					return this.SalesID;
+				}
+				
+			    public Integer ProductPrice;
+
+				public Integer getProductPrice () {
+					return this.ProductPrice;
+				}
+				
+			    public Integer QuantitySold;
+
+				public Integer getQuantitySold () {
+					return this.QuantitySold;
+				}
+				
+			    public Float TotalAmount;
+
+				public Float getTotalAmount () {
+					return this.TotalAmount;
+				}
+				
+			    public Float DiscountAmount;
+
+				public Float getDiscountAmount () {
+					return this.DiscountAmount;
+				}
+				
+			    public Float NetAmount;
+
+				public Float getNetAmount () {
+					return this.NetAmount;
+				}
+				
+			    public java.util.Date Date;
+
+				public java.util.Date getDate () {
+					return this.Date;
+				}
+				
+			    public int ProductID;
+
+				public int getProductID () {
+					return this.ProductID;
+				}
+				
+			    public int ShipperID;
+
+				public int getShipperID () {
+					return this.ShipperID;
+				}
+				
+			    public Integer CustomerID;
+
+				public Integer getCustomerID () {
+					return this.CustomerID;
+				}
+				
+
+
+	@Override
+	public int hashCode() {
+		if (this.hashCodeDirty) {
+			final int prime = PRIME;
+			int result = DEFAULT_HASHCODE;
+	
+							result = prime * result + (int) this.SalesID;
+						
+    		this.hashCode = result;
+    		this.hashCodeDirty = false;
+		}
+		return this.hashCode;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		final row1Struct other = (row1Struct) obj;
+		
+						if (this.SalesID != other.SalesID)
+							return false;
+					
+
+		return true;
+    }
+
+	public void copyDataTo(row1Struct other) {
+
+		other.SalesID = this.SalesID;
+	            other.ProductPrice = this.ProductPrice;
+	            other.QuantitySold = this.QuantitySold;
+	            other.TotalAmount = this.TotalAmount;
+	            other.DiscountAmount = this.DiscountAmount;
+	            other.NetAmount = this.NetAmount;
+	            other.Date = this.Date;
+	            other.ProductID = this.ProductID;
+	            other.ShipperID = this.ShipperID;
+	            other.CustomerID = this.CustomerID;
+	            
+	}
+
+	public void copyKeysDataTo(row1Struct other) {
+
+		other.SalesID = this.SalesID;
+	            	
+	}
+
+
+
+	private Integer readInteger(ObjectInputStream dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+	
+	private Integer readInteger(org.jboss.marshalling.Unmarshaller dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+
+	private void writeInteger(Integer intNum, ObjectOutputStream dos) throws IOException{
+		if(intNum == null) {
+            dos.writeByte(-1);
+		} else {
+			dos.writeByte(0);
+	    	dos.writeInt(intNum);
+    	}
+	}
+	
+	private void writeInteger(Integer intNum, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(intNum == null) {
+			marshaller.writeByte(-1);
+		} else {
+			marshaller.writeByte(0);
+			marshaller.writeInt(intNum);
+    	}
+	}
+
+	private java.util.Date readDate(ObjectInputStream dis) throws IOException{
+		java.util.Date dateReturn = null;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			dateReturn = null;
+		} else {
+	    	dateReturn = new Date(dis.readLong());
+		}
+		return dateReturn;
+	}
+	
+	private java.util.Date readDate(org.jboss.marshalling.Unmarshaller unmarshaller) throws IOException{
+		java.util.Date dateReturn = null;
+        int length = 0;
+        length = unmarshaller.readByte();
+		if (length == -1) {
+			dateReturn = null;
+		} else {
+	    	dateReturn = new Date(unmarshaller.readLong());
+		}
+		return dateReturn;
+	}
+
+    private void writeDate(java.util.Date date1, ObjectOutputStream dos) throws IOException{
+		if(date1 == null) {
+            dos.writeByte(-1);
+		} else {
+			dos.writeByte(0);
+	    	dos.writeLong(date1.getTime());
+    	}
+    }
+    
+    private void writeDate(java.util.Date date1, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(date1 == null) {
+			marshaller.writeByte(-1);
+		} else {
+			marshaller.writeByte(0);
+			marshaller.writeLong(date1.getTime());
+    	}
+    }
+
+    public void readData(ObjectInputStream dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_sales_DM) {
+
+        	try {
+
+        		int length = 0;
+		
+			        this.SalesID = dis.readInt();
+					
+						this.ProductPrice = readInteger(dis);
+					
+						this.QuantitySold = readInteger(dis);
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.TotalAmount = null;
+           				} else {
+           			    	this.TotalAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.DiscountAmount = null;
+           				} else {
+           			    	this.DiscountAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.NetAmount = null;
+           				} else {
+           			    	this.NetAmount = dis.readFloat();
+           				}
+					
+					this.Date = readDate(dis);
+					
+			        this.ProductID = dis.readInt();
+					
+			        this.ShipperID = dis.readInt();
+					
+						this.CustomerID = readInteger(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+    
+    public void readData(org.jboss.marshalling.Unmarshaller dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_sales_DM) {
+
+        	try {
+
+        		int length = 0;
+		
+			        this.SalesID = dis.readInt();
+					
+						this.ProductPrice = readInteger(dis);
+					
+						this.QuantitySold = readInteger(dis);
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.TotalAmount = null;
+           				} else {
+           			    	this.TotalAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.DiscountAmount = null;
+           				} else {
+           			    	this.DiscountAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.NetAmount = null;
+           				} else {
+           			    	this.NetAmount = dis.readFloat();
+           				}
+					
+					this.Date = readDate(dis);
+					
+			        this.ProductID = dis.readInt();
+					
+			        this.ShipperID = dis.readInt();
+					
+						this.CustomerID = readInteger(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+
+    public void writeData(ObjectOutputStream dos) {
+        try {
+
+		
+					// int
+				
+		            	dos.writeInt(this.SalesID);
+					
+					// Integer
+				
+						writeInteger(this.ProductPrice,dos);
+					
+					// Integer
+				
+						writeInteger(this.QuantitySold,dos);
+					
+					// Float
+				
+						if(this.TotalAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.TotalAmount);
+		            	}
+					
+					// Float
+				
+						if(this.DiscountAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.DiscountAmount);
+		            	}
+					
+					// Float
+				
+						if(this.NetAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.NetAmount);
+		            	}
+					
+					// java.util.Date
+				
+						writeDate(this.Date,dos);
+					
+					// int
+				
+		            	dos.writeInt(this.ProductID);
+					
+					// int
+				
+		            	dos.writeInt(this.ShipperID);
+					
+					// Integer
+				
+						writeInteger(this.CustomerID,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+    
+    public void writeData(org.jboss.marshalling.Marshaller dos) {
+        try {
+
+		
+					// int
+				
+		            	dos.writeInt(this.SalesID);
+					
+					// Integer
+				
+						writeInteger(this.ProductPrice,dos);
+					
+					// Integer
+				
+						writeInteger(this.QuantitySold,dos);
+					
+					// Float
+				
+						if(this.TotalAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.TotalAmount);
+		            	}
+					
+					// Float
+				
+						if(this.DiscountAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.DiscountAmount);
+		            	}
+					
+					// Float
+				
+						if(this.NetAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.NetAmount);
+		            	}
+					
+					// java.util.Date
+				
+						writeDate(this.Date,dos);
+					
+					// int
+				
+		            	dos.writeInt(this.ProductID);
+					
+					// int
+				
+		            	dos.writeInt(this.ShipperID);
+					
+					// Integer
+				
+						writeInteger(this.CustomerID,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		sb.append("[");
+		sb.append("SalesID="+String.valueOf(SalesID));
+		sb.append(",ProductPrice="+String.valueOf(ProductPrice));
+		sb.append(",QuantitySold="+String.valueOf(QuantitySold));
+		sb.append(",TotalAmount="+String.valueOf(TotalAmount));
+		sb.append(",DiscountAmount="+String.valueOf(DiscountAmount));
+		sb.append(",NetAmount="+String.valueOf(NetAmount));
+		sb.append(",Date="+String.valueOf(Date));
+		sb.append(",ProductID="+String.valueOf(ProductID));
+		sb.append(",ShipperID="+String.valueOf(ShipperID));
+		sb.append(",CustomerID="+String.valueOf(CustomerID));
+	    sb.append("]");
+
+	    return sb.toString();
+    }
+
+    /**
+     * Compare keys
+     */
+    public int compareTo(row1Struct other) {
+
+		int returnValue = -1;
+		
+						returnValue = checkNullsAndCompare(this.SalesID, other.SalesID);
+						if(returnValue != 0) {
+							return returnValue;
+						}
+
+					
+	    return returnValue;
+    }
+
+
+    private int checkNullsAndCompare(Object object1, Object object2) {
+        int returnValue = 0;
+		if (object1 instanceof Comparable && object2 instanceof Comparable) {
+            returnValue = ((Comparable) object1).compareTo(object2);
+        } else if (object1 != null && object2 != null) {
+            returnValue = compareStrings(object1.toString(), object2.toString());
+        } else if (object1 == null && object2 != null) {
+            returnValue = 1;
+        } else if (object1 != null && object2 == null) {
+            returnValue = -1;
+        } else {
+            returnValue = 0;
+        }
+
+        return returnValue;
+    }
+
+    private int compareStrings(String string1, String string2) {
+        return string1.compareTo(string2);
+    }
+
+
+}
+public void tDBInput_1Process(final java.util.Map<String, Object> globalMap) throws TalendException {
+	globalMap.put("tDBInput_1_SUBPROCESS_STATE", 0);
+
+ final boolean execStat = this.execStat;
+	
+		String iterateId = "";
+	
+	
+	String currentComponent = "";
+	java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
+
+	try {
+			// TDI-39566 avoid throwing an useless Exception
+			boolean resumeIt = true;
+			if (globalResumeTicket == false && resumeEntryMethodName != null) {
+				String currentMethodName = new java.lang.Exception().getStackTrace()[0].getMethodName();
+				resumeIt = resumeEntryMethodName.equals(currentMethodName);
+			}
+			if (resumeIt || globalResumeTicket) { //start the resume
+				globalResumeTicket = true;
+
+
+
+		row1Struct row1 = new row1Struct();
+
+
+
+
+	
+	/**
+	 * [tDBOutput_1 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tDBOutput_1", false);
+		start_Hash.put("tDBOutput_1", System.currentTimeMillis());
+		
+	
+	currentComponent="tDBOutput_1";
+
+	
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row1");
+					}
+				
+		int tos_count_tDBOutput_1 = 0;
+		
+
+
+
+int nb_line_tDBOutput_1 = 0;
+int nb_line_update_tDBOutput_1 = 0;
+int nb_line_inserted_tDBOutput_1 = 0;
+int nb_line_deleted_tDBOutput_1 = 0;
+int nb_line_rejected_tDBOutput_1 = 0;
+
+int deletedCount_tDBOutput_1=0;
+int updatedCount_tDBOutput_1=0;
+int insertedCount_tDBOutput_1=0;
+int rowsToCommitCount_tDBOutput_1=0;
+int rejectedCount_tDBOutput_1=0;
+String dbschema_tDBOutput_1 = null;
+String tableName_tDBOutput_1 = null;
+boolean whetherReject_tDBOutput_1 = false;
+
+java.util.Calendar calendar_tDBOutput_1 = java.util.Calendar.getInstance();
+long year1_tDBOutput_1 = TalendDate.parseDate("yyyy-MM-dd","0001-01-01").getTime();
+long year2_tDBOutput_1 = TalendDate.parseDate("yyyy-MM-dd","1753-01-01").getTime();
+long year10000_tDBOutput_1 = TalendDate.parseDate("yyyy-MM-dd HH:mm:ss","9999-12-31 24:00:00").getTime();
+long date_tDBOutput_1;
+
+java.util.Calendar calendar_datetimeoffset_tDBOutput_1 = java.util.Calendar.getInstance(java.util.TimeZone.getTimeZone("UTC"));
+
+
+        int updateKeyCount_tDBOutput_1 = 1;
+        if(updateKeyCount_tDBOutput_1 < 1) {
+            throw new RuntimeException("For update, Schema must have a key");
+        } else if (updateKeyCount_tDBOutput_1 == 10 && true) {
+                    System.err.println("For update, every Schema column can not be a key");
+        }
+
+	
+java.sql.Connection conn_tDBOutput_1 = null;
+String dbUser_tDBOutput_1 = null;
+	dbschema_tDBOutput_1 = (String)globalMap.get("dbschema_tDBConnection_1");
+	
+	conn_tDBOutput_1 = (java.sql.Connection)globalMap.get("conn_tDBConnection_1");
+	
+
+if(dbschema_tDBOutput_1 == null || dbschema_tDBOutput_1.trim().length() == 0) {
+    tableName_tDBOutput_1 = "FactSales";
+} else {
+    tableName_tDBOutput_1 = dbschema_tDBOutput_1 + "].[" + "FactSales";
+}
+	int count_tDBOutput_1=0;
+
+                                boolean whetherExist_tDBOutput_1 = false;
+                                try (java.sql.Statement isExistStmt_tDBOutput_1 = conn_tDBOutput_1.createStatement()) {
+                                    try {
+                                        isExistStmt_tDBOutput_1.execute("SELECT TOP 1 1 FROM [" + tableName_tDBOutput_1 + "]" );
+                                        whetherExist_tDBOutput_1 = true;
+                                    } catch (java.lang.Exception e){
+globalMap.put("tDBOutput_1_ERROR_MESSAGE",e.getMessage());
+                                        whetherExist_tDBOutput_1 = false;
+                                    }
+                                }
+                                if(!whetherExist_tDBOutput_1) {
+                                    try (java.sql.Statement stmtCreate_tDBOutput_1 = conn_tDBOutput_1.createStatement()) {
+                                        stmtCreate_tDBOutput_1.execute("CREATE TABLE [" + tableName_tDBOutput_1 + "]([SalesID] INT  not null ,[ProductPrice] INT ,[QuantitySold] INT ,[TotalAmount] REAL ,[DiscountAmount] REAL ,[NetAmount] REAL ,[Date] DATE ,[ProductID] INT  not null ,[ShipperID] INT  not null ,[CustomerID] INT ,primary key([SalesID]))");
+                                    }
+                                }
+        String update_tDBOutput_1 = "UPDATE [" + tableName_tDBOutput_1 + "] SET [ProductPrice] = ?,[QuantitySold] = ?,[TotalAmount] = ?,[DiscountAmount] = ?,[NetAmount] = ?,[Date] = ?,[ProductID] = ?,[ShipperID] = ?,[CustomerID] = ? WHERE [SalesID] = ?";
+        java.sql.PreparedStatement pstmtUpdate_tDBOutput_1 = conn_tDBOutput_1.prepareStatement(update_tDBOutput_1);
+        resourceMap.put("pstmtUpdate_tDBOutput_1", pstmtUpdate_tDBOutput_1);
+        String insert_tDBOutput_1 = "INSERT INTO [" + tableName_tDBOutput_1 + "] ([SalesID],[ProductPrice],[QuantitySold],[TotalAmount],[DiscountAmount],[NetAmount],[Date],[ProductID],[ShipperID],[CustomerID]) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        java.sql.PreparedStatement pstmtInsert_tDBOutput_1 = conn_tDBOutput_1.prepareStatement(insert_tDBOutput_1);
+        resourceMap.put("pstmtInsert_tDBOutput_1", pstmtInsert_tDBOutput_1);
+ 	boolean isShareIdentity_tDBOutput_1 = globalMap.get("shareIdentitySetting_tDBConnection_1") != null && (Boolean)globalMap.get("shareIdentitySetting_tDBConnection_1") == true;
+
+ 
+
+
+
+/**
+ * [tDBOutput_1 begin ] stop
+ */
+
+
+
+	
+	/**
+	 * [tDBInput_1 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tDBInput_1", false);
+		start_Hash.put("tDBInput_1", System.currentTimeMillis());
+		
+	
+	currentComponent="tDBInput_1";
+
+	
+		int tos_count_tDBInput_1 = 0;
+		
+	
+    
+	
+			org.talend.designer.components.util.mssql.MSSqlGenerateTimestampUtil mssqlGTU_tDBInput_1 = org.talend.designer.components.util.mssql.MSSqlUtilFactory.getMSSqlGenerateTimestampUtil();
+			
+			java.util.List<String> talendToDBList_tDBInput_1 = new java.util.ArrayList();
+			String[] talendToDBArray_tDBInput_1  = new String[]{"FLOAT","NUMERIC","NUMERIC IDENTITY","DECIMAL","DECIMAL IDENTITY","REAL"}; 
+			java.util.Collections.addAll(talendToDBList_tDBInput_1, talendToDBArray_tDBInput_1); 
+		    int nb_line_tDBInput_1 = 0;
+		    java.sql.Connection conn_tDBInput_1 = null;
+				conn_tDBInput_1 = (java.sql.Connection)globalMap.get("conn_tDBConnection_2");
+				
+			String dbschema_tDBInput_1 = (String)globalMap.get("dbschema_tDBConnection_2");
+		    
+			java.sql.Statement stmt_tDBInput_1 = conn_tDBInput_1.createStatement();
+
+		    String dbquery_tDBInput_1 = "SELECT \""+context.ecom_eval_dw_Schema+"\".FactSales.SalesID,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.ProductPrice,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.QuantitySold,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.TotalAmount,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.DiscountAmount,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.NetAmount,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.Date,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.ProductID,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.ShipperID,\n		\""+context.ecom_eval_dw_Schema+"\".FactSales.CustomerID"
++"\nFROM	\""+context.ecom_eval_dw_Schema+"\".FactSales";
+		    
+
+            	globalMap.put("tDBInput_1_QUERY",dbquery_tDBInput_1);
+		    java.sql.ResultSet rs_tDBInput_1 = null;
+
+		    try {
+		    	rs_tDBInput_1 = stmt_tDBInput_1.executeQuery(dbquery_tDBInput_1);
+		    	java.sql.ResultSetMetaData rsmd_tDBInput_1 = rs_tDBInput_1.getMetaData();
+		    	int colQtyInRs_tDBInput_1 = rsmd_tDBInput_1.getColumnCount();
+
+		    String tmpContent_tDBInput_1 = null;
+		    
+		    
+		    while (rs_tDBInput_1.next()) {
+		        nb_line_tDBInput_1++;
+		        
+							if(colQtyInRs_tDBInput_1 < 1) {
+								row1.SalesID = 0;
+							} else {
+		                          
+            row1.SalesID = rs_tDBInput_1.getInt(1);
+            if(rs_tDBInput_1.wasNull()){
+                    throw new RuntimeException("Null value in non-Nullable column");
+            }
+		                    }
+							if(colQtyInRs_tDBInput_1 < 2) {
+								row1.ProductPrice = null;
+							} else {
+		                          
+            row1.ProductPrice = rs_tDBInput_1.getInt(2);
+            if(rs_tDBInput_1.wasNull()){
+                    row1.ProductPrice = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_1 < 3) {
+								row1.QuantitySold = null;
+							} else {
+		                          
+            row1.QuantitySold = rs_tDBInput_1.getInt(3);
+            if(rs_tDBInput_1.wasNull()){
+                    row1.QuantitySold = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_1 < 4) {
+								row1.TotalAmount = null;
+							} else {
+		                          
+            row1.TotalAmount = rs_tDBInput_1.getFloat(4);
+            if(rs_tDBInput_1.wasNull()){
+                    row1.TotalAmount = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_1 < 5) {
+								row1.DiscountAmount = null;
+							} else {
+		                          
+            row1.DiscountAmount = rs_tDBInput_1.getFloat(5);
+            if(rs_tDBInput_1.wasNull()){
+                    row1.DiscountAmount = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_1 < 6) {
+								row1.NetAmount = null;
+							} else {
+		                          
+            row1.NetAmount = rs_tDBInput_1.getFloat(6);
+            if(rs_tDBInput_1.wasNull()){
+                    row1.NetAmount = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_1 < 7) {
+								row1.Date = null;
+							} else {
+										
+			row1.Date = mssqlGTU_tDBInput_1.getDate(rsmd_tDBInput_1, rs_tDBInput_1, 7);
+			
+		                    }
+							if(colQtyInRs_tDBInput_1 < 8) {
+								row1.ProductID = 0;
+							} else {
+		                          
+            row1.ProductID = rs_tDBInput_1.getInt(8);
+            if(rs_tDBInput_1.wasNull()){
+                    throw new RuntimeException("Null value in non-Nullable column");
+            }
+		                    }
+							if(colQtyInRs_tDBInput_1 < 9) {
+								row1.ShipperID = 0;
+							} else {
+		                          
+            row1.ShipperID = rs_tDBInput_1.getInt(9);
+            if(rs_tDBInput_1.wasNull()){
+                    throw new RuntimeException("Null value in non-Nullable column");
+            }
+		                    }
+							if(colQtyInRs_tDBInput_1 < 10) {
+								row1.CustomerID = null;
+							} else {
+		                          
+            row1.CustomerID = rs_tDBInput_1.getInt(10);
+            if(rs_tDBInput_1.wasNull()){
+                    row1.CustomerID = null;
+            }
+		                    }
+					
+
+
+
+
+
+ 
+
+
+
+/**
+ * [tDBInput_1 begin ] stop
+ */
+	
+	/**
+	 * [tDBInput_1 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBInput_1";
+
+	
+
+ 
+
+
+	tos_count_tDBInput_1++;
+
+/**
+ * [tDBInput_1 main ] stop
+ */
+	
+	/**
+	 * [tDBInput_1 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBInput_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tDBInput_1 process_data_begin ] stop
+ */
+
+	
+	/**
+	 * [tDBOutput_1 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBOutput_1";
+
+	
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1
+						
+							,"row1"
+						
+						);
+					}
+					
+
+
+
+        whetherReject_tDBOutput_1 = false;
+            int updateFlag_tDBOutput_1=0;
+                    if(row1.ProductPrice == null) {
+pstmtUpdate_tDBOutput_1.setNull(1, java.sql.Types.INTEGER);
+} else {pstmtUpdate_tDBOutput_1.setInt(1, row1.ProductPrice);
+}
+
+                    if(row1.QuantitySold == null) {
+pstmtUpdate_tDBOutput_1.setNull(2, java.sql.Types.INTEGER);
+} else {pstmtUpdate_tDBOutput_1.setInt(2, row1.QuantitySold);
+}
+
+                    if(row1.TotalAmount == null) {
+pstmtUpdate_tDBOutput_1.setNull(3, java.sql.Types.FLOAT);
+} else {pstmtUpdate_tDBOutput_1.setFloat(3, row1.TotalAmount);
+}
+
+                    if(row1.DiscountAmount == null) {
+pstmtUpdate_tDBOutput_1.setNull(4, java.sql.Types.FLOAT);
+} else {pstmtUpdate_tDBOutput_1.setFloat(4, row1.DiscountAmount);
+}
+
+                    if(row1.NetAmount == null) {
+pstmtUpdate_tDBOutput_1.setNull(5, java.sql.Types.FLOAT);
+} else {pstmtUpdate_tDBOutput_1.setFloat(5, row1.NetAmount);
+}
+
+                    if(row1.Date != null) {
+pstmtUpdate_tDBOutput_1.setTimestamp(6, new java.sql.Timestamp(row1.Date.getTime()));
+} else {
+pstmtUpdate_tDBOutput_1.setNull(6, java.sql.Types.TIMESTAMP);
+}
+
+                    pstmtUpdate_tDBOutput_1.setInt(7, row1.ProductID);
+
+                    pstmtUpdate_tDBOutput_1.setInt(8, row1.ShipperID);
+
+                    if(row1.CustomerID == null) {
+pstmtUpdate_tDBOutput_1.setNull(9, java.sql.Types.INTEGER);
+} else {pstmtUpdate_tDBOutput_1.setInt(9, row1.CustomerID);
+}
+
+
+                    pstmtUpdate_tDBOutput_1.setInt(10 + count_tDBOutput_1, row1.SalesID);
+
+            try {
+                updateFlag_tDBOutput_1=pstmtUpdate_tDBOutput_1.executeUpdate();
+                updatedCount_tDBOutput_1 = updatedCount_tDBOutput_1+updateFlag_tDBOutput_1;
+                rowsToCommitCount_tDBOutput_1 += updateFlag_tDBOutput_1;
+            if(updateFlag_tDBOutput_1 == 0) {
+            	
+                        pstmtInsert_tDBOutput_1.setInt(1, row1.SalesID);
+
+                        if(row1.ProductPrice == null) {
+pstmtInsert_tDBOutput_1.setNull(2, java.sql.Types.INTEGER);
+} else {pstmtInsert_tDBOutput_1.setInt(2, row1.ProductPrice);
+}
+
+                        if(row1.QuantitySold == null) {
+pstmtInsert_tDBOutput_1.setNull(3, java.sql.Types.INTEGER);
+} else {pstmtInsert_tDBOutput_1.setInt(3, row1.QuantitySold);
+}
+
+                        if(row1.TotalAmount == null) {
+pstmtInsert_tDBOutput_1.setNull(4, java.sql.Types.FLOAT);
+} else {pstmtInsert_tDBOutput_1.setFloat(4, row1.TotalAmount);
+}
+
+                        if(row1.DiscountAmount == null) {
+pstmtInsert_tDBOutput_1.setNull(5, java.sql.Types.FLOAT);
+} else {pstmtInsert_tDBOutput_1.setFloat(5, row1.DiscountAmount);
+}
+
+                        if(row1.NetAmount == null) {
+pstmtInsert_tDBOutput_1.setNull(6, java.sql.Types.FLOAT);
+} else {pstmtInsert_tDBOutput_1.setFloat(6, row1.NetAmount);
+}
+
+                        if(row1.Date != null) {
+pstmtInsert_tDBOutput_1.setTimestamp(7, new java.sql.Timestamp(row1.Date.getTime()));
+} else {
+pstmtInsert_tDBOutput_1.setNull(7, java.sql.Types.TIMESTAMP);
+}
+
+                        pstmtInsert_tDBOutput_1.setInt(8, row1.ProductID);
+
+                        pstmtInsert_tDBOutput_1.setInt(9, row1.ShipperID);
+
+                        if(row1.CustomerID == null) {
+pstmtInsert_tDBOutput_1.setNull(10, java.sql.Types.INTEGER);
+} else {pstmtInsert_tDBOutput_1.setInt(10, row1.CustomerID);
+}
+
+                    int processedCount_tDBOutput_1 = pstmtInsert_tDBOutput_1.executeUpdate();
+                    insertedCount_tDBOutput_1 += processedCount_tDBOutput_1;
+                    rowsToCommitCount_tDBOutput_1 += processedCount_tDBOutput_1;
+                    nb_line_tDBOutput_1++;
+    			}else{
+    				nb_line_tDBOutput_1++;
+    				
+    			}
+                } catch(java.lang.Exception e) {
+globalMap.put("tDBOutput_1_ERROR_MESSAGE",e.getMessage());
+                    whetherReject_tDBOutput_1 = true;
+                    	nb_line_tDBOutput_1++;
+                    	
+                            System.err.println(e.getMessage());
+                } finally {
+				    
+				}
+            if(!whetherReject_tDBOutput_1) {
+            }
+            	//////////batch execute by batch size///////
+            	class LimitBytesHelper_tDBOutput_1{
+            		public int limitBytePart1(int counter,java.sql.PreparedStatement pstmt_tDBOutput_1) throws Exception {
+                try {
+						
+						for(int countEach_tDBOutput_1: pstmt_tDBOutput_1.executeBatch()) {
+							if(countEach_tDBOutput_1 == -2 || countEach_tDBOutput_1 == -3) {
+								break;
+							}
+							counter += countEach_tDBOutput_1;
+						}
+						
+                }catch (java.sql.BatchUpdateException e){
+globalMap.put("tDBOutput_1_ERROR_MESSAGE",e.getMessage());
+                	
+                	int countSum_tDBOutput_1 = 0;
+					for(int countEach_tDBOutput_1: e.getUpdateCounts()) {
+						counter += (countEach_tDBOutput_1 < 0 ? 0 : countEach_tDBOutput_1);
+					}
+				
+            	    	
+                		System.err.println(e.getMessage());
+                	
+               			 }
+    				return counter;
+            	}
+            	
+            	public int limitBytePart2(int counter,java.sql.PreparedStatement pstmt_tDBOutput_1) throws Exception {
+                try {
+                		
+						for(int countEach_tDBOutput_1: pstmt_tDBOutput_1.executeBatch()) {
+							if(countEach_tDBOutput_1 == -2 || countEach_tDBOutput_1 == -3) {
+								break;
+							}
+							counter += countEach_tDBOutput_1;
+						}
+						
+                }catch (java.sql.BatchUpdateException e){
+globalMap.put("tDBOutput_1_ERROR_MESSAGE",e.getMessage());
+                	
+                	
+					for(int countEach_tDBOutput_1: e.getUpdateCounts()) {
+						counter += (countEach_tDBOutput_1 < 0 ? 0 : countEach_tDBOutput_1);
+					}
+					
+            	    	
+                        System.err.println(e.getMessage());
+                	
+                		}	
+                	return counter;	
+            	}
+            }
+
+    	////////////commit every////////////
+    			
+
+ 
+
+
+	tos_count_tDBOutput_1++;
+
+/**
+ * [tDBOutput_1 main ] stop
+ */
+	
+	/**
+	 * [tDBOutput_1 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBOutput_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tDBOutput_1 process_data_begin ] stop
+ */
+	
+	/**
+	 * [tDBOutput_1 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBOutput_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tDBOutput_1 process_data_end ] stop
+ */
+
+
+
+	
+	/**
+	 * [tDBInput_1 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBInput_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tDBInput_1 process_data_end ] stop
+ */
+	
+	/**
+	 * [tDBInput_1 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBInput_1";
+
+	
+
+	}
+}finally{
+	if (rs_tDBInput_1 != null) {
+		rs_tDBInput_1.close();
+	}
+	if (stmt_tDBInput_1 != null) {
+		stmt_tDBInput_1.close();
+	}
+}
+globalMap.put("tDBInput_1_NB_LINE",nb_line_tDBInput_1);
+
+ 
+
+ok_Hash.put("tDBInput_1", true);
+end_Hash.put("tDBInput_1", System.currentTimeMillis());
+
+
+
+
+/**
+ * [tDBInput_1 end ] stop
+ */
+
+	
+	/**
+	 * [tDBOutput_1 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBOutput_1";
+
+	
+
+
+
+        if(pstmtUpdate_tDBOutput_1 != null){
+            pstmtUpdate_tDBOutput_1.close();
+            resourceMap.remove("pstmtUpdate_tDBOutput_1");
+        }
+        if(pstmtInsert_tDBOutput_1 != null){
+            pstmtInsert_tDBOutput_1.close();
+            resourceMap.remove("pstmtInsert_tDBOutput_1");
+        }
+    resourceMap.put("statementClosed_tDBOutput_1", true);
+
+	nb_line_deleted_tDBOutput_1=nb_line_deleted_tDBOutput_1+ deletedCount_tDBOutput_1;
+	nb_line_update_tDBOutput_1=nb_line_update_tDBOutput_1 + updatedCount_tDBOutput_1;
+	nb_line_inserted_tDBOutput_1=nb_line_inserted_tDBOutput_1 + insertedCount_tDBOutput_1;
+	nb_line_rejected_tDBOutput_1=nb_line_rejected_tDBOutput_1 + rejectedCount_tDBOutput_1;
+	
+        globalMap.put("tDBOutput_1_NB_LINE",nb_line_tDBOutput_1);
+        globalMap.put("tDBOutput_1_NB_LINE_UPDATED",nb_line_update_tDBOutput_1);
+        globalMap.put("tDBOutput_1_NB_LINE_INSERTED",nb_line_inserted_tDBOutput_1);
+        globalMap.put("tDBOutput_1_NB_LINE_DELETED",nb_line_deleted_tDBOutput_1);
+        globalMap.put("tDBOutput_1_NB_LINE_REJECTED", nb_line_rejected_tDBOutput_1);
+    
+
+	
+
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row1");
+			  	}
+			  	
+ 
+
+ok_Hash.put("tDBOutput_1", true);
+end_Hash.put("tDBOutput_1", System.currentTimeMillis());
+
+
+
+
+/**
+ * [tDBOutput_1 end ] stop
+ */
+
+
+
+				}//end the resume
+
+				
+
+
+
+	
+			}catch(java.lang.Exception e){	
+				
+				TalendException te = new TalendException(e, currentComponent, globalMap);
+				
+				throw te;
+			}catch(java.lang.Error error){	
+				
+					runStat.stopThreadStat();
+				
+				throw error;
+			}finally{
+				
+				try{
+					
+	
+	/**
+	 * [tDBInput_1 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBInput_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tDBInput_1 finally ] stop
+ */
+
+	
+	/**
+	 * [tDBOutput_1 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBOutput_1";
+
+	
+
+
+
+    if (resourceMap.get("statementClosed_tDBOutput_1") == null) {
+                java.sql.PreparedStatement pstmtUpdateToClose_tDBOutput_1 = null;
+                if ((pstmtUpdateToClose_tDBOutput_1 = (java.sql.PreparedStatement) resourceMap.remove("pstmtUpdate_tDBOutput_1")) != null) {
+                    pstmtUpdateToClose_tDBOutput_1.close();
+                }
+                java.sql.PreparedStatement pstmtInsertToClose_tDBOutput_1 = null;
+                if ((pstmtInsertToClose_tDBOutput_1 = (java.sql.PreparedStatement) resourceMap.remove("pstmtInsert_tDBOutput_1")) != null) {
+                    pstmtInsertToClose_tDBOutput_1.close();
+                }
+    }
+ 
+
+
+
+/**
+ * [tDBOutput_1 finally ] stop
+ */
+
+
+
+				}catch(java.lang.Exception e){	
+					//ignore
+				}catch(java.lang.Error error){
+					//ignore
+				}
+				resourceMap = null;
+			}
+		
+
+		globalMap.put("tDBInput_1_SUBPROCESS_STATE", 1);
+	}
+	
     public String resuming_logs_dir_path = null;
     public String resuming_checkpoint_path = null;
     public String parent_part_launcher = null;
@@ -9028,21 +9014,21 @@ e_tDBInput_11.printStackTrace();
 
 }
 try {
-errorCode = null;tDBInput_1Process(globalMap);
-if(!"failure".equals(status)) { status = "end"; }
-}catch (TalendException e_tDBInput_1) {
-globalMap.put("tDBInput_1_SUBPROCESS_STATE", -1);
-
-e_tDBInput_1.printStackTrace();
-
-}
-try {
 errorCode = null;tDBInput_3Process(globalMap);
 if(!"failure".equals(status)) { status = "end"; }
 }catch (TalendException e_tDBInput_3) {
 globalMap.put("tDBInput_3_SUBPROCESS_STATE", -1);
 
 e_tDBInput_3.printStackTrace();
+
+}
+try {
+errorCode = null;tDBInput_1Process(globalMap);
+if(!"failure".equals(status)) { status = "end"; }
+}catch (TalendException e_tDBInput_1) {
+globalMap.put("tDBInput_1_SUBPROCESS_STATE", -1);
+
+e_tDBInput_1.printStackTrace();
 
 }
 
@@ -9246,6 +9232,6 @@ if (execStat) {
     ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- *     235088 characters generated by Talend Open Studio for Data Integration 
- *     on the October 6, 2023 at 11:10:26 AM WEST
+ *     234715 characters generated by Talend Open Studio for Data Integration 
+ *     on the October 7, 2023 at 10:40:11 PM WEST
  ************************************************************************************************/

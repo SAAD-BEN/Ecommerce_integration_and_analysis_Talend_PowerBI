@@ -68,6 +68,37 @@
     "version" : "Latest",
     "type" : "routine"
   }, {
+    "id" : "StateFinder",
+    "version" : "Latest",
+    "type" : "routine"
+  }, {
+    "id" : "_7_nx8F7pEe6fj-7pc4XMIg - ecom-csv",
+    "version" : "Latest",
+    "type" : "schema"
+  }, {
+    "id" : "_Es5OoF7rEe6fj-7pc4XMIg - ecom-json",
+    "version" : "Latest",
+    "type" : "schema"
+  } ]
+}, {
+  "baseItem" : {
+    "id" : "_bvkZkGVNEe6vGpc2rUfpyQ",
+    "version" : "0.1",
+    "type" : "job"
+  },
+  "relatedItems" : [ {
+    "id" : "_7_nx8F7pEe6fj-7pc4XMIg",
+    "version" : "Latest",
+    "type" : "property"
+  }, {
+    "id" : "_Es5OoF7rEe6fj-7pc4XMIg",
+    "version" : "Latest",
+    "type" : "property"
+  }, {
+    "id" : "StateFinder",
+    "version" : "Latest",
+    "type" : "routine"
+  }, {
     "id" : "_7_nx8F7pEe6fj-7pc4XMIg - ecom-csv",
     "version" : "Latest",
     "type" : "schema"
@@ -152,10 +183,6 @@
     "id" : "_YhyAAGK9Ee695vpjMfTxsA",
     "version" : "Latest",
     "type" : "property"
-  }, {
-    "id" : "_OkiG8GEAEe6DWNjYcNz39A - CustomerDim",
-    "version" : "Latest",
-    "type" : "schema"
   }, {
     "id" : "_OkiG8GEAEe6DWNjYcNz39A - ProductDim",
     "version" : "Latest",

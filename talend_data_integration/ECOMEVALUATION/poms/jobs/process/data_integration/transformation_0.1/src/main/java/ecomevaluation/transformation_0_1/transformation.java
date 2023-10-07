@@ -419,6 +419,15 @@ private class TalendException extends Exception {
 					tDBInput_1_onSubJobError(exception, errorComponent, globalMap);
 			}
 			
+			public void tMap_3_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+				
+				end_Hash.put(errorComponent, System.currentTimeMillis());
+				
+				status = "failure";
+				
+					tDBInput_1_onSubJobError(exception, errorComponent, globalMap);
+			}
+			
 			public void tBufferOutput_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 				
 				end_Hash.put(errorComponent, System.currentTimeMillis());
@@ -426,6 +435,42 @@ private class TalendException extends Exception {
 				status = "failure";
 				
 					tDBInput_1_onSubJobError(exception, errorComponent, globalMap);
+			}
+			
+			public void tDBInput_2_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+				
+				end_Hash.put(errorComponent, System.currentTimeMillis());
+				
+				status = "failure";
+				
+					tDBInput_2_onSubJobError(exception, errorComponent, globalMap);
+			}
+			
+			public void tMap_2_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+				
+				end_Hash.put(errorComponent, System.currentTimeMillis());
+				
+				status = "failure";
+				
+					tDBInput_2_onSubJobError(exception, errorComponent, globalMap);
+			}
+			
+			public void tUniqRow_2_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+				
+				end_Hash.put(errorComponent, System.currentTimeMillis());
+				
+				status = "failure";
+				
+					tDBInput_2_onSubJobError(exception, errorComponent, globalMap);
+			}
+			
+			public void tAdvancedHash_row4_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+				
+				end_Hash.put(errorComponent, System.currentTimeMillis());
+				
+				status = "failure";
+				
+					tDBInput_2_onSubJobError(exception, errorComponent, globalMap);
 			}
 			
 			public void tPrejob_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
@@ -449,6 +494,11 @@ resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThrea
 
 			}
 			public void tDBInput_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+
+resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
+
+			}
+			public void tDBInput_2_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 
 resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
 
@@ -1283,7 +1333,7 @@ end_Hash.put("tDBClose_1", System.currentTimeMillis());
 	
 
 
-public static class row2Struct implements routines.system.IPersistableRow<row2Struct> {
+public static class FixedProductStruct implements routines.system.IPersistableRow<FixedProductStruct> {
     final static byte[] commonByteArrayLock_ECOMEVALUATION_transformation = new byte[0];
     static byte[] commonByteArray_ECOMEVALUATION_transformation = new byte[0];
 
@@ -1312,16 +1362,22 @@ public static class row2Struct implements routines.system.IPersistableRow<row2St
 					return this.ProductSubCategory;
 				}
 				
-			    public Double ProductPrice;
+			    public Integer ProductPrice;
 
-				public Double getProductPrice () {
+				public Integer getProductPrice () {
 					return this.ProductPrice;
 				}
 				
-			    public String CustomerID;
+			    public String HashedPI;
 
-				public String getCustomerID () {
-					return this.CustomerID;
+				public String getHashedPI () {
+					return this.HashedPI;
+				}
+				
+			    public String CustomerState;
+
+				public String getCustomerState () {
+					return this.CustomerState;
 				}
 				
 			    public String CustomerSegment;
@@ -1558,14 +1614,11 @@ public static class row2Struct implements routines.system.IPersistableRow<row2St
 					
 					this.ProductSubCategory = readString(dis);
 					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.ProductPrice = null;
-           				} else {
-           			    	this.ProductPrice = dis.readDouble();
-           				}
+						this.ProductPrice = readInteger(dis);
 					
-					this.CustomerID = readString(dis);
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
 					
 					this.CustomerSegment = readString(dis);
 					
@@ -1636,14 +1689,11 @@ public static class row2Struct implements routines.system.IPersistableRow<row2St
 					
 					this.ProductSubCategory = readString(dis);
 					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.ProductPrice = null;
-           				} else {
-           			    	this.ProductPrice = dis.readDouble();
-           				}
+						this.ProductPrice = readInteger(dis);
 					
-					this.CustomerID = readString(dis);
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
 					
 					this.CustomerSegment = readString(dis);
 					
@@ -1718,18 +1768,17 @@ public static class row2Struct implements routines.system.IPersistableRow<row2St
 				
 						writeString(this.ProductSubCategory,dos);
 					
-					// Double
+					// Integer
 				
-						if(this.ProductPrice == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeDouble(this.ProductPrice);
-		            	}
+						writeInteger(this.ProductPrice,dos);
 					
 					// String
 				
-						writeString(this.CustomerID,dos);
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
 					
 					// String
 				
@@ -1821,18 +1870,17 @@ public static class row2Struct implements routines.system.IPersistableRow<row2St
 				
 						writeString(this.ProductSubCategory,dos);
 					
-					// Double
+					// Integer
 				
-						if(this.ProductPrice == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeDouble(this.ProductPrice);
-		            	}
+						writeInteger(this.ProductPrice,dos);
 					
 					// String
 				
-						writeString(this.CustomerID,dos);
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
 					
 					// String
 				
@@ -1915,7 +1963,692 @@ public static class row2Struct implements routines.system.IPersistableRow<row2St
 		sb.append(",ProductCategory="+ProductCategory);
 		sb.append(",ProductSubCategory="+ProductSubCategory);
 		sb.append(",ProductPrice="+String.valueOf(ProductPrice));
-		sb.append(",CustomerID="+CustomerID);
+		sb.append(",HashedPI="+HashedPI);
+		sb.append(",CustomerState="+CustomerState);
+		sb.append(",CustomerSegment="+CustomerSegment);
+		sb.append(",SupplierName="+SupplierName);
+		sb.append(",SupplierLocation="+SupplierLocation);
+		sb.append(",ShipperName="+ShipperName);
+		sb.append(",ShippingMethod="+ShippingMethod);
+		sb.append(",QuantitySold="+String.valueOf(QuantitySold));
+		sb.append(",TotalAmount="+String.valueOf(TotalAmount));
+		sb.append(",DiscountAmount="+String.valueOf(DiscountAmount));
+		sb.append(",NetAmount="+String.valueOf(NetAmount));
+		sb.append(",StockReceived="+String.valueOf(StockReceived));
+		sb.append(",StockSold="+String.valueOf(StockSold));
+		sb.append(",StockOnHand="+String.valueOf(StockOnHand));
+	    sb.append("]");
+
+	    return sb.toString();
+    }
+
+    /**
+     * Compare keys
+     */
+    public int compareTo(FixedProductStruct other) {
+
+		int returnValue = -1;
+		
+	    return returnValue;
+    }
+
+
+    private int checkNullsAndCompare(Object object1, Object object2) {
+        int returnValue = 0;
+		if (object1 instanceof Comparable && object2 instanceof Comparable) {
+            returnValue = ((Comparable) object1).compareTo(object2);
+        } else if (object1 != null && object2 != null) {
+            returnValue = compareStrings(object1.toString(), object2.toString());
+        } else if (object1 == null && object2 != null) {
+            returnValue = 1;
+        } else if (object1 != null && object2 == null) {
+            returnValue = -1;
+        } else {
+            returnValue = 0;
+        }
+
+        return returnValue;
+    }
+
+    private int compareStrings(String string1, String string2) {
+        return string1.compareTo(string2);
+    }
+
+
+}
+
+public static class row2Struct implements routines.system.IPersistableRow<row2Struct> {
+    final static byte[] commonByteArrayLock_ECOMEVALUATION_transformation = new byte[0];
+    static byte[] commonByteArray_ECOMEVALUATION_transformation = new byte[0];
+
+	
+			    public java.util.Date Date;
+
+				public java.util.Date getDate () {
+					return this.Date;
+				}
+				
+			    public String ProductName;
+
+				public String getProductName () {
+					return this.ProductName;
+				}
+				
+			    public String ProductCategory;
+
+				public String getProductCategory () {
+					return this.ProductCategory;
+				}
+				
+			    public String ProductSubCategory;
+
+				public String getProductSubCategory () {
+					return this.ProductSubCategory;
+				}
+				
+			    public Integer ProductPrice;
+
+				public Integer getProductPrice () {
+					return this.ProductPrice;
+				}
+				
+			    public String HashedPI;
+
+				public String getHashedPI () {
+					return this.HashedPI;
+				}
+				
+			    public String CustomerState;
+
+				public String getCustomerState () {
+					return this.CustomerState;
+				}
+				
+			    public String CustomerSegment;
+
+				public String getCustomerSegment () {
+					return this.CustomerSegment;
+				}
+				
+			    public String SupplierName;
+
+				public String getSupplierName () {
+					return this.SupplierName;
+				}
+				
+			    public String SupplierLocation;
+
+				public String getSupplierLocation () {
+					return this.SupplierLocation;
+				}
+				
+			    public String ShipperName;
+
+				public String getShipperName () {
+					return this.ShipperName;
+				}
+				
+			    public String ShippingMethod;
+
+				public String getShippingMethod () {
+					return this.ShippingMethod;
+				}
+				
+			    public Integer QuantitySold;
+
+				public Integer getQuantitySold () {
+					return this.QuantitySold;
+				}
+				
+			    public Float TotalAmount;
+
+				public Float getTotalAmount () {
+					return this.TotalAmount;
+				}
+				
+			    public Float DiscountAmount;
+
+				public Float getDiscountAmount () {
+					return this.DiscountAmount;
+				}
+				
+			    public Float NetAmount;
+
+				public Float getNetAmount () {
+					return this.NetAmount;
+				}
+				
+			    public Integer StockReceived;
+
+				public Integer getStockReceived () {
+					return this.StockReceived;
+				}
+				
+			    public Integer StockSold;
+
+				public Integer getStockSold () {
+					return this.StockSold;
+				}
+				
+			    public Integer StockOnHand;
+
+				public Integer getStockOnHand () {
+					return this.StockOnHand;
+				}
+				
+
+
+
+	private java.util.Date readDate(ObjectInputStream dis) throws IOException{
+		java.util.Date dateReturn = null;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			dateReturn = null;
+		} else {
+	    	dateReturn = new Date(dis.readLong());
+		}
+		return dateReturn;
+	}
+	
+	private java.util.Date readDate(org.jboss.marshalling.Unmarshaller unmarshaller) throws IOException{
+		java.util.Date dateReturn = null;
+        int length = 0;
+        length = unmarshaller.readByte();
+		if (length == -1) {
+			dateReturn = null;
+		} else {
+	    	dateReturn = new Date(unmarshaller.readLong());
+		}
+		return dateReturn;
+	}
+
+    private void writeDate(java.util.Date date1, ObjectOutputStream dos) throws IOException{
+		if(date1 == null) {
+            dos.writeByte(-1);
+		} else {
+			dos.writeByte(0);
+	    	dos.writeLong(date1.getTime());
+    	}
+    }
+    
+    private void writeDate(java.util.Date date1, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(date1 == null) {
+			marshaller.writeByte(-1);
+		} else {
+			marshaller.writeByte(0);
+			marshaller.writeLong(date1.getTime());
+    	}
+    }
+
+	private String readString(ObjectInputStream dis) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = dis.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_ECOMEVALUATION_transformation.length) {
+				if(length < 1024 && commonByteArray_ECOMEVALUATION_transformation.length == 0) {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[1024];
+				} else {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[2 * length];
+   				}
+			}
+			dis.readFully(commonByteArray_ECOMEVALUATION_transformation, 0, length);
+			strReturn = new String(commonByteArray_ECOMEVALUATION_transformation, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+	
+	private String readString(org.jboss.marshalling.Unmarshaller unmarshaller) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = unmarshaller.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_ECOMEVALUATION_transformation.length) {
+				if(length < 1024 && commonByteArray_ECOMEVALUATION_transformation.length == 0) {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[1024];
+				} else {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[2 * length];
+   				}
+			}
+			unmarshaller.readFully(commonByteArray_ECOMEVALUATION_transformation, 0, length);
+			strReturn = new String(commonByteArray_ECOMEVALUATION_transformation, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+
+    private void writeString(String str, ObjectOutputStream dos) throws IOException{
+		if(str == null) {
+            dos.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+	    	dos.writeInt(byteArray.length);
+			dos.write(byteArray);
+    	}
+    }
+    
+    private void writeString(String str, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(str == null) {
+			marshaller.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+            marshaller.writeInt(byteArray.length);
+            marshaller.write(byteArray);
+    	}
+    }
+	private Integer readInteger(ObjectInputStream dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+	
+	private Integer readInteger(org.jboss.marshalling.Unmarshaller dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+
+	private void writeInteger(Integer intNum, ObjectOutputStream dos) throws IOException{
+		if(intNum == null) {
+            dos.writeByte(-1);
+		} else {
+			dos.writeByte(0);
+	    	dos.writeInt(intNum);
+    	}
+	}
+	
+	private void writeInteger(Integer intNum, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(intNum == null) {
+			marshaller.writeByte(-1);
+		} else {
+			marshaller.writeByte(0);
+			marshaller.writeInt(intNum);
+    	}
+	}
+
+    public void readData(ObjectInputStream dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_transformation) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.Date = readDate(dis);
+					
+					this.ProductName = readString(dis);
+					
+					this.ProductCategory = readString(dis);
+					
+					this.ProductSubCategory = readString(dis);
+					
+						this.ProductPrice = readInteger(dis);
+					
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
+					
+					this.CustomerSegment = readString(dis);
+					
+					this.SupplierName = readString(dis);
+					
+					this.SupplierLocation = readString(dis);
+					
+					this.ShipperName = readString(dis);
+					
+					this.ShippingMethod = readString(dis);
+					
+						this.QuantitySold = readInteger(dis);
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.TotalAmount = null;
+           				} else {
+           			    	this.TotalAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.DiscountAmount = null;
+           				} else {
+           			    	this.DiscountAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.NetAmount = null;
+           				} else {
+           			    	this.NetAmount = dis.readFloat();
+           				}
+					
+						this.StockReceived = readInteger(dis);
+					
+						this.StockSold = readInteger(dis);
+					
+						this.StockOnHand = readInteger(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+    
+    public void readData(org.jboss.marshalling.Unmarshaller dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_transformation) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.Date = readDate(dis);
+					
+					this.ProductName = readString(dis);
+					
+					this.ProductCategory = readString(dis);
+					
+					this.ProductSubCategory = readString(dis);
+					
+						this.ProductPrice = readInteger(dis);
+					
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
+					
+					this.CustomerSegment = readString(dis);
+					
+					this.SupplierName = readString(dis);
+					
+					this.SupplierLocation = readString(dis);
+					
+					this.ShipperName = readString(dis);
+					
+					this.ShippingMethod = readString(dis);
+					
+						this.QuantitySold = readInteger(dis);
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.TotalAmount = null;
+           				} else {
+           			    	this.TotalAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.DiscountAmount = null;
+           				} else {
+           			    	this.DiscountAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.NetAmount = null;
+           				} else {
+           			    	this.NetAmount = dis.readFloat();
+           				}
+					
+						this.StockReceived = readInteger(dis);
+					
+						this.StockSold = readInteger(dis);
+					
+						this.StockOnHand = readInteger(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+
+    public void writeData(ObjectOutputStream dos) {
+        try {
+
+		
+					// java.util.Date
+				
+						writeDate(this.Date,dos);
+					
+					// String
+				
+						writeString(this.ProductName,dos);
+					
+					// String
+				
+						writeString(this.ProductCategory,dos);
+					
+					// String
+				
+						writeString(this.ProductSubCategory,dos);
+					
+					// Integer
+				
+						writeInteger(this.ProductPrice,dos);
+					
+					// String
+				
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
+					
+					// String
+				
+						writeString(this.CustomerSegment,dos);
+					
+					// String
+				
+						writeString(this.SupplierName,dos);
+					
+					// String
+				
+						writeString(this.SupplierLocation,dos);
+					
+					// String
+				
+						writeString(this.ShipperName,dos);
+					
+					// String
+				
+						writeString(this.ShippingMethod,dos);
+					
+					// Integer
+				
+						writeInteger(this.QuantitySold,dos);
+					
+					// Float
+				
+						if(this.TotalAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.TotalAmount);
+		            	}
+					
+					// Float
+				
+						if(this.DiscountAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.DiscountAmount);
+		            	}
+					
+					// Float
+				
+						if(this.NetAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.NetAmount);
+		            	}
+					
+					// Integer
+				
+						writeInteger(this.StockReceived,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockSold,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockOnHand,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+    
+    public void writeData(org.jboss.marshalling.Marshaller dos) {
+        try {
+
+		
+					// java.util.Date
+				
+						writeDate(this.Date,dos);
+					
+					// String
+				
+						writeString(this.ProductName,dos);
+					
+					// String
+				
+						writeString(this.ProductCategory,dos);
+					
+					// String
+				
+						writeString(this.ProductSubCategory,dos);
+					
+					// Integer
+				
+						writeInteger(this.ProductPrice,dos);
+					
+					// String
+				
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
+					
+					// String
+				
+						writeString(this.CustomerSegment,dos);
+					
+					// String
+				
+						writeString(this.SupplierName,dos);
+					
+					// String
+				
+						writeString(this.SupplierLocation,dos);
+					
+					// String
+				
+						writeString(this.ShipperName,dos);
+					
+					// String
+				
+						writeString(this.ShippingMethod,dos);
+					
+					// Integer
+				
+						writeInteger(this.QuantitySold,dos);
+					
+					// Float
+				
+						if(this.TotalAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.TotalAmount);
+		            	}
+					
+					// Float
+				
+						if(this.DiscountAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.DiscountAmount);
+		            	}
+					
+					// Float
+				
+						if(this.NetAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.NetAmount);
+		            	}
+					
+					// Integer
+				
+						writeInteger(this.StockReceived,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockSold,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockOnHand,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		sb.append("[");
+		sb.append("Date="+String.valueOf(Date));
+		sb.append(",ProductName="+ProductName);
+		sb.append(",ProductCategory="+ProductCategory);
+		sb.append(",ProductSubCategory="+ProductSubCategory);
+		sb.append(",ProductPrice="+String.valueOf(ProductPrice));
+		sb.append(",HashedPI="+HashedPI);
+		sb.append(",CustomerState="+CustomerState);
 		sb.append(",CustomerSegment="+CustomerSegment);
 		sb.append(",SupplierName="+SupplierName);
 		sb.append(",SupplierLocation="+SupplierLocation);
@@ -1997,16 +2730,22 @@ public static class transformedStruct implements routines.system.IPersistableRow
 					return this.ProductSubCategory;
 				}
 				
-			    public Double ProductPrice;
+			    public Integer ProductPrice;
 
-				public Double getProductPrice () {
+				public Integer getProductPrice () {
 					return this.ProductPrice;
 				}
 				
-			    public String CustomerID;
+			    public String HashedPI;
 
-				public String getCustomerID () {
-					return this.CustomerID;
+				public String getHashedPI () {
+					return this.HashedPI;
+				}
+				
+			    public String CustomerState;
+
+				public String getCustomerState () {
+					return this.CustomerState;
 				}
 				
 			    public String CustomerSegment;
@@ -2243,14 +2982,11 @@ public static class transformedStruct implements routines.system.IPersistableRow
 					
 					this.ProductSubCategory = readString(dis);
 					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.ProductPrice = null;
-           				} else {
-           			    	this.ProductPrice = dis.readDouble();
-           				}
+						this.ProductPrice = readInteger(dis);
 					
-					this.CustomerID = readString(dis);
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
 					
 					this.CustomerSegment = readString(dis);
 					
@@ -2321,14 +3057,11 @@ public static class transformedStruct implements routines.system.IPersistableRow
 					
 					this.ProductSubCategory = readString(dis);
 					
-			            length = dis.readByte();
-           				if (length == -1) {
-           	    			this.ProductPrice = null;
-           				} else {
-           			    	this.ProductPrice = dis.readDouble();
-           				}
+						this.ProductPrice = readInteger(dis);
 					
-					this.CustomerID = readString(dis);
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
 					
 					this.CustomerSegment = readString(dis);
 					
@@ -2403,18 +3136,17 @@ public static class transformedStruct implements routines.system.IPersistableRow
 				
 						writeString(this.ProductSubCategory,dos);
 					
-					// Double
+					// Integer
 				
-						if(this.ProductPrice == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeDouble(this.ProductPrice);
-		            	}
+						writeInteger(this.ProductPrice,dos);
 					
 					// String
 				
-						writeString(this.CustomerID,dos);
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
 					
 					// String
 				
@@ -2506,18 +3238,17 @@ public static class transformedStruct implements routines.system.IPersistableRow
 				
 						writeString(this.ProductSubCategory,dos);
 					
-					// Double
+					// Integer
 				
-						if(this.ProductPrice == null) {
-			                dos.writeByte(-1);
-						} else {
-               				dos.writeByte(0);
-           			    	dos.writeDouble(this.ProductPrice);
-		            	}
+						writeInteger(this.ProductPrice,dos);
 					
 					// String
 				
-						writeString(this.CustomerID,dos);
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
 					
 					// String
 				
@@ -2600,7 +3331,8 @@ public static class transformedStruct implements routines.system.IPersistableRow
 		sb.append(",ProductCategory="+ProductCategory);
 		sb.append(",ProductSubCategory="+ProductSubCategory);
 		sb.append(",ProductPrice="+String.valueOf(ProductPrice));
-		sb.append(",CustomerID="+CustomerID);
+		sb.append(",HashedPI="+HashedPI);
+		sb.append(",CustomerState="+CustomerState);
 		sb.append(",CustomerSegment="+CustomerSegment);
 		sb.append(",SupplierName="+SupplierName);
 		sb.append(",SupplierLocation="+SupplierLocation);
@@ -2688,10 +3420,16 @@ public static class row1Struct implements routines.system.IPersistableRow<row1St
 					return this.ProductPrice;
 				}
 				
-			    public String CustomerID;
+			    public String HashedPI;
 
-				public String getCustomerID () {
-					return this.CustomerID;
+				public String getHashedPI () {
+					return this.HashedPI;
+				}
+				
+			    public String CustomerState;
+
+				public String getCustomerState () {
+					return this.CustomerState;
 				}
 				
 			    public String CustomerSegment;
@@ -2894,7 +3632,9 @@ public static class row1Struct implements routines.system.IPersistableRow<row1St
 					
 					this.ProductPrice = readString(dis);
 					
-					this.CustomerID = readString(dis);
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
 					
 					this.CustomerSegment = readString(dis);
 					
@@ -2969,7 +3709,9 @@ public static class row1Struct implements routines.system.IPersistableRow<row1St
 					
 					this.ProductPrice = readString(dis);
 					
-					this.CustomerID = readString(dis);
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
 					
 					this.CustomerSegment = readString(dis);
 					
@@ -3052,7 +3794,11 @@ public static class row1Struct implements routines.system.IPersistableRow<row1St
 					
 					// String
 				
-						writeString(this.CustomerID,dos);
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
 					
 					// String
 				
@@ -3154,7 +3900,11 @@ public static class row1Struct implements routines.system.IPersistableRow<row1St
 					
 					// String
 				
-						writeString(this.CustomerID,dos);
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
 					
 					// String
 				
@@ -3241,7 +3991,8 @@ public static class row1Struct implements routines.system.IPersistableRow<row1St
 		sb.append(",ProductCategory="+ProductCategory);
 		sb.append(",ProductSubCategory="+ProductSubCategory);
 		sb.append(",ProductPrice="+ProductPrice);
-		sb.append(",CustomerID="+CustomerID);
+		sb.append(",HashedPI="+HashedPI);
+		sb.append(",CustomerState="+CustomerState);
 		sb.append(",CustomerSegment="+CustomerSegment);
 		sb.append(",SupplierName="+SupplierName);
 		sb.append(",SupplierLocation="+SupplierLocation);
@@ -3294,6 +4045,667 @@ public static class row1Struct implements routines.system.IPersistableRow<row1St
 
 
 }
+
+public static class after_tDBInput_1Struct implements routines.system.IPersistableRow<after_tDBInput_1Struct> {
+    final static byte[] commonByteArrayLock_ECOMEVALUATION_transformation = new byte[0];
+    static byte[] commonByteArray_ECOMEVALUATION_transformation = new byte[0];
+
+	
+			    public String Date;
+
+				public String getDate () {
+					return this.Date;
+				}
+				
+			    public String ProductName;
+
+				public String getProductName () {
+					return this.ProductName;
+				}
+				
+			    public String ProductCategory;
+
+				public String getProductCategory () {
+					return this.ProductCategory;
+				}
+				
+			    public String ProductSubCategory;
+
+				public String getProductSubCategory () {
+					return this.ProductSubCategory;
+				}
+				
+			    public String ProductPrice;
+
+				public String getProductPrice () {
+					return this.ProductPrice;
+				}
+				
+			    public String HashedPI;
+
+				public String getHashedPI () {
+					return this.HashedPI;
+				}
+				
+			    public String CustomerState;
+
+				public String getCustomerState () {
+					return this.CustomerState;
+				}
+				
+			    public String CustomerSegment;
+
+				public String getCustomerSegment () {
+					return this.CustomerSegment;
+				}
+				
+			    public String SupplierName;
+
+				public String getSupplierName () {
+					return this.SupplierName;
+				}
+				
+			    public String SupplierLocation;
+
+				public String getSupplierLocation () {
+					return this.SupplierLocation;
+				}
+				
+			    public String SupplierContact;
+
+				public String getSupplierContact () {
+					return this.SupplierContact;
+				}
+				
+			    public String ShipperName;
+
+				public String getShipperName () {
+					return this.ShipperName;
+				}
+				
+			    public String ShippingMethod;
+
+				public String getShippingMethod () {
+					return this.ShippingMethod;
+				}
+				
+			    public Integer QuantitySold;
+
+				public Integer getQuantitySold () {
+					return this.QuantitySold;
+				}
+				
+			    public Float TotalAmount;
+
+				public Float getTotalAmount () {
+					return this.TotalAmount;
+				}
+				
+			    public Float DiscountAmount;
+
+				public Float getDiscountAmount () {
+					return this.DiscountAmount;
+				}
+				
+			    public Float NetAmount;
+
+				public Float getNetAmount () {
+					return this.NetAmount;
+				}
+				
+			    public Integer StockReceived;
+
+				public Integer getStockReceived () {
+					return this.StockReceived;
+				}
+				
+			    public Integer StockSold;
+
+				public Integer getStockSold () {
+					return this.StockSold;
+				}
+				
+			    public Integer StockOnHand;
+
+				public Integer getStockOnHand () {
+					return this.StockOnHand;
+				}
+				
+
+
+
+	private String readString(ObjectInputStream dis) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = dis.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_ECOMEVALUATION_transformation.length) {
+				if(length < 1024 && commonByteArray_ECOMEVALUATION_transformation.length == 0) {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[1024];
+				} else {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[2 * length];
+   				}
+			}
+			dis.readFully(commonByteArray_ECOMEVALUATION_transformation, 0, length);
+			strReturn = new String(commonByteArray_ECOMEVALUATION_transformation, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+	
+	private String readString(org.jboss.marshalling.Unmarshaller unmarshaller) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = unmarshaller.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_ECOMEVALUATION_transformation.length) {
+				if(length < 1024 && commonByteArray_ECOMEVALUATION_transformation.length == 0) {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[1024];
+				} else {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[2 * length];
+   				}
+			}
+			unmarshaller.readFully(commonByteArray_ECOMEVALUATION_transformation, 0, length);
+			strReturn = new String(commonByteArray_ECOMEVALUATION_transformation, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+
+    private void writeString(String str, ObjectOutputStream dos) throws IOException{
+		if(str == null) {
+            dos.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+	    	dos.writeInt(byteArray.length);
+			dos.write(byteArray);
+    	}
+    }
+    
+    private void writeString(String str, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(str == null) {
+			marshaller.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+            marshaller.writeInt(byteArray.length);
+            marshaller.write(byteArray);
+    	}
+    }
+	private Integer readInteger(ObjectInputStream dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+	
+	private Integer readInteger(org.jboss.marshalling.Unmarshaller dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+
+	private void writeInteger(Integer intNum, ObjectOutputStream dos) throws IOException{
+		if(intNum == null) {
+            dos.writeByte(-1);
+		} else {
+			dos.writeByte(0);
+	    	dos.writeInt(intNum);
+    	}
+	}
+	
+	private void writeInteger(Integer intNum, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(intNum == null) {
+			marshaller.writeByte(-1);
+		} else {
+			marshaller.writeByte(0);
+			marshaller.writeInt(intNum);
+    	}
+	}
+
+    public void readData(ObjectInputStream dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_transformation) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.Date = readString(dis);
+					
+					this.ProductName = readString(dis);
+					
+					this.ProductCategory = readString(dis);
+					
+					this.ProductSubCategory = readString(dis);
+					
+					this.ProductPrice = readString(dis);
+					
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
+					
+					this.CustomerSegment = readString(dis);
+					
+					this.SupplierName = readString(dis);
+					
+					this.SupplierLocation = readString(dis);
+					
+					this.SupplierContact = readString(dis);
+					
+					this.ShipperName = readString(dis);
+					
+					this.ShippingMethod = readString(dis);
+					
+						this.QuantitySold = readInteger(dis);
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.TotalAmount = null;
+           				} else {
+           			    	this.TotalAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.DiscountAmount = null;
+           				} else {
+           			    	this.DiscountAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.NetAmount = null;
+           				} else {
+           			    	this.NetAmount = dis.readFloat();
+           				}
+					
+						this.StockReceived = readInteger(dis);
+					
+						this.StockSold = readInteger(dis);
+					
+						this.StockOnHand = readInteger(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+    
+    public void readData(org.jboss.marshalling.Unmarshaller dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_transformation) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.Date = readString(dis);
+					
+					this.ProductName = readString(dis);
+					
+					this.ProductCategory = readString(dis);
+					
+					this.ProductSubCategory = readString(dis);
+					
+					this.ProductPrice = readString(dis);
+					
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
+					
+					this.CustomerSegment = readString(dis);
+					
+					this.SupplierName = readString(dis);
+					
+					this.SupplierLocation = readString(dis);
+					
+					this.SupplierContact = readString(dis);
+					
+					this.ShipperName = readString(dis);
+					
+					this.ShippingMethod = readString(dis);
+					
+						this.QuantitySold = readInteger(dis);
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.TotalAmount = null;
+           				} else {
+           			    	this.TotalAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.DiscountAmount = null;
+           				} else {
+           			    	this.DiscountAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.NetAmount = null;
+           				} else {
+           			    	this.NetAmount = dis.readFloat();
+           				}
+					
+						this.StockReceived = readInteger(dis);
+					
+						this.StockSold = readInteger(dis);
+					
+						this.StockOnHand = readInteger(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+
+    public void writeData(ObjectOutputStream dos) {
+        try {
+
+		
+					// String
+				
+						writeString(this.Date,dos);
+					
+					// String
+				
+						writeString(this.ProductName,dos);
+					
+					// String
+				
+						writeString(this.ProductCategory,dos);
+					
+					// String
+				
+						writeString(this.ProductSubCategory,dos);
+					
+					// String
+				
+						writeString(this.ProductPrice,dos);
+					
+					// String
+				
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
+					
+					// String
+				
+						writeString(this.CustomerSegment,dos);
+					
+					// String
+				
+						writeString(this.SupplierName,dos);
+					
+					// String
+				
+						writeString(this.SupplierLocation,dos);
+					
+					// String
+				
+						writeString(this.SupplierContact,dos);
+					
+					// String
+				
+						writeString(this.ShipperName,dos);
+					
+					// String
+				
+						writeString(this.ShippingMethod,dos);
+					
+					// Integer
+				
+						writeInteger(this.QuantitySold,dos);
+					
+					// Float
+				
+						if(this.TotalAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.TotalAmount);
+		            	}
+					
+					// Float
+				
+						if(this.DiscountAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.DiscountAmount);
+		            	}
+					
+					// Float
+				
+						if(this.NetAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.NetAmount);
+		            	}
+					
+					// Integer
+				
+						writeInteger(this.StockReceived,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockSold,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockOnHand,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+    
+    public void writeData(org.jboss.marshalling.Marshaller dos) {
+        try {
+
+		
+					// String
+				
+						writeString(this.Date,dos);
+					
+					// String
+				
+						writeString(this.ProductName,dos);
+					
+					// String
+				
+						writeString(this.ProductCategory,dos);
+					
+					// String
+				
+						writeString(this.ProductSubCategory,dos);
+					
+					// String
+				
+						writeString(this.ProductPrice,dos);
+					
+					// String
+				
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
+					
+					// String
+				
+						writeString(this.CustomerSegment,dos);
+					
+					// String
+				
+						writeString(this.SupplierName,dos);
+					
+					// String
+				
+						writeString(this.SupplierLocation,dos);
+					
+					// String
+				
+						writeString(this.SupplierContact,dos);
+					
+					// String
+				
+						writeString(this.ShipperName,dos);
+					
+					// String
+				
+						writeString(this.ShippingMethod,dos);
+					
+					// Integer
+				
+						writeInteger(this.QuantitySold,dos);
+					
+					// Float
+				
+						if(this.TotalAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.TotalAmount);
+		            	}
+					
+					// Float
+				
+						if(this.DiscountAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.DiscountAmount);
+		            	}
+					
+					// Float
+				
+						if(this.NetAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.NetAmount);
+		            	}
+					
+					// Integer
+				
+						writeInteger(this.StockReceived,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockSold,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockOnHand,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		sb.append("[");
+		sb.append("Date="+Date);
+		sb.append(",ProductName="+ProductName);
+		sb.append(",ProductCategory="+ProductCategory);
+		sb.append(",ProductSubCategory="+ProductSubCategory);
+		sb.append(",ProductPrice="+ProductPrice);
+		sb.append(",HashedPI="+HashedPI);
+		sb.append(",CustomerState="+CustomerState);
+		sb.append(",CustomerSegment="+CustomerSegment);
+		sb.append(",SupplierName="+SupplierName);
+		sb.append(",SupplierLocation="+SupplierLocation);
+		sb.append(",SupplierContact="+SupplierContact);
+		sb.append(",ShipperName="+ShipperName);
+		sb.append(",ShippingMethod="+ShippingMethod);
+		sb.append(",QuantitySold="+String.valueOf(QuantitySold));
+		sb.append(",TotalAmount="+String.valueOf(TotalAmount));
+		sb.append(",DiscountAmount="+String.valueOf(DiscountAmount));
+		sb.append(",NetAmount="+String.valueOf(NetAmount));
+		sb.append(",StockReceived="+String.valueOf(StockReceived));
+		sb.append(",StockSold="+String.valueOf(StockSold));
+		sb.append(",StockOnHand="+String.valueOf(StockOnHand));
+	    sb.append("]");
+
+	    return sb.toString();
+    }
+
+    /**
+     * Compare keys
+     */
+    public int compareTo(after_tDBInput_1Struct other) {
+
+		int returnValue = -1;
+		
+	    return returnValue;
+    }
+
+
+    private int checkNullsAndCompare(Object object1, Object object2) {
+        int returnValue = 0;
+		if (object1 instanceof Comparable && object2 instanceof Comparable) {
+            returnValue = ((Comparable) object1).compareTo(object2);
+        } else if (object1 != null && object2 != null) {
+            returnValue = compareStrings(object1.toString(), object2.toString());
+        } else if (object1 == null && object2 != null) {
+            returnValue = 1;
+        } else if (object1 != null && object2 == null) {
+            returnValue = -1;
+        } else {
+            returnValue = 0;
+        }
+
+        return returnValue;
+    }
+
+    private int compareStrings(String string1, String string2) {
+        return string1.compareTo(string2);
+    }
+
+
+}
 public void tDBInput_1Process(final java.util.Map<String, Object> globalMap) throws TalendException {
 	globalMap.put("tDBInput_1_SUBPROCESS_STATE", 0);
 
@@ -3316,10 +4728,13 @@ public void tDBInput_1Process(final java.util.Map<String, Object> globalMap) thr
 				globalResumeTicket = true;
 
 
+		tDBInput_2Process(globalMap);
 
 		row1Struct row1 = new row1Struct();
 transformedStruct transformed = new transformedStruct();
 row2Struct row2 = new row2Struct();
+FixedProductStruct FixedProduct = new FixedProductStruct();
+
 
 
 
@@ -3343,7 +4758,7 @@ row2Struct row2 = new row2Struct();
 
 	
 					if(execStat) {
-						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row2");
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"FixedProduct");
 					}
 				
 		int tos_count_tBufferOutput_1 = 0;
@@ -3355,6 +4770,83 @@ row2Struct row2 = new row2Struct();
 
 /**
  * [tBufferOutput_1 begin ] stop
+ */
+
+
+
+	
+	/**
+	 * [tMap_3 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tMap_3", false);
+		start_Hash.put("tMap_3", System.currentTimeMillis());
+		
+	
+	currentComponent="tMap_3";
+
+	
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row2");
+					}
+				
+		int tos_count_tMap_3 = 0;
+		
+
+
+
+
+// ###############################
+// # Lookup's keys initialization
+	
+		org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row4Struct> tHash_Lookup_row4 = (org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row4Struct>) 
+				((org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row4Struct>) 
+					globalMap.get( "tHash_Lookup_row4" ))
+					;					
+					
+	
+
+row4Struct row4HashKey = new row4Struct();
+row4Struct row4Default = new row4Struct();
+// ###############################        
+
+// ###############################
+// # Vars initialization
+class  Var__tMap_3__Struct  {
+}
+Var__tMap_3__Struct Var__tMap_3 = new Var__tMap_3__Struct();
+// ###############################
+
+// ###############################
+// # Outputs initialization
+FixedProductStruct FixedProduct_tmp = new FixedProductStruct();
+// ###############################
+
+        
+        
+
+
+
+        
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+/**
+ * [tMap_3 begin ] stop
  */
 
 
@@ -3395,8 +4887,7 @@ row2Struct row2 = new row2Struct();
 					String ProductName;
 					String ProductCategory;
 					String ProductSubCategory;
-					Double ProductPrice;
-					String CustomerID;
+					Integer ProductPrice;
 					String CustomerSegment;
 					String SupplierName;
 					String SupplierLocation;
@@ -3425,8 +4916,6 @@ row2Struct row2 = new row2Struct();
 								result = prime * result + ((this.ProductSubCategory == null) ? 0 : this.ProductSubCategory.hashCode());
 								
 								result = prime * result + ((this.ProductPrice == null) ? 0 : this.ProductPrice.hashCode());
-								
-								result = prime * result + ((this.CustomerID == null) ? 0 : this.CustomerID.hashCode());
 								
 								result = prime * result + ((this.CustomerSegment == null) ? 0 : this.CustomerSegment.hashCode());
 								
@@ -3502,14 +4991,6 @@ row2Struct row2 = new row2Struct();
 											return false;
 								
 									} else if (!this.ProductPrice.equals(other.ProductPrice))
-								 
-										return false;
-								
-									if (this.CustomerID == null) {
-										if (other.CustomerID != null) 
-											return false;
-								
-									} else if (!this.CustomerID.equals(other.CustomerID))
 								 
 										return false;
 								
@@ -3827,27 +5308,42 @@ transformedStruct transformed_tmp = new transformedStruct();
             }
 		                    }
 							if(colQtyInRs_tDBInput_1 < 6) {
-								row1.CustomerID = null;
+								row1.HashedPI = null;
 							} else {
 	                         		
            		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(6);
             if(tmpContent_tDBInput_1 != null) {
             	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(6).toUpperCase(java.util.Locale.ENGLISH))) {
-            		row1.CustomerID = FormatterUtils.formatUnwithE(tmpContent_tDBInput_1);
+            		row1.HashedPI = FormatterUtils.formatUnwithE(tmpContent_tDBInput_1);
             	} else {
-                	row1.CustomerID = tmpContent_tDBInput_1;
+                	row1.HashedPI = tmpContent_tDBInput_1;
                 }
             } else {
-                row1.CustomerID = null;
+                row1.HashedPI = null;
             }
 		                    }
 							if(colQtyInRs_tDBInput_1 < 7) {
-								row1.CustomerSegment = null;
+								row1.CustomerState = null;
 							} else {
 	                         		
            		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(7);
             if(tmpContent_tDBInput_1 != null) {
             	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(7).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row1.CustomerState = FormatterUtils.formatUnwithE(tmpContent_tDBInput_1);
+            	} else {
+                	row1.CustomerState = tmpContent_tDBInput_1;
+                }
+            } else {
+                row1.CustomerState = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_1 < 8) {
+								row1.CustomerSegment = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(8);
+            if(tmpContent_tDBInput_1 != null) {
+            	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(8).toUpperCase(java.util.Locale.ENGLISH))) {
             		row1.CustomerSegment = FormatterUtils.formatUnwithE(tmpContent_tDBInput_1);
             	} else {
                 	row1.CustomerSegment = tmpContent_tDBInput_1;
@@ -3856,13 +5352,13 @@ transformedStruct transformed_tmp = new transformedStruct();
                 row1.CustomerSegment = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 8) {
+							if(colQtyInRs_tDBInput_1 < 9) {
 								row1.SupplierName = null;
 							} else {
 	                         		
-           		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(8);
+           		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(9);
             if(tmpContent_tDBInput_1 != null) {
-            	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(8).toUpperCase(java.util.Locale.ENGLISH))) {
+            	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(9).toUpperCase(java.util.Locale.ENGLISH))) {
             		row1.SupplierName = FormatterUtils.formatUnwithE(tmpContent_tDBInput_1);
             	} else {
                 	row1.SupplierName = tmpContent_tDBInput_1;
@@ -3871,13 +5367,13 @@ transformedStruct transformed_tmp = new transformedStruct();
                 row1.SupplierName = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 9) {
+							if(colQtyInRs_tDBInput_1 < 10) {
 								row1.SupplierLocation = null;
 							} else {
 	                         		
-           		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(9);
+           		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(10);
             if(tmpContent_tDBInput_1 != null) {
-            	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(9).toUpperCase(java.util.Locale.ENGLISH))) {
+            	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(10).toUpperCase(java.util.Locale.ENGLISH))) {
             		row1.SupplierLocation = FormatterUtils.formatUnwithE(tmpContent_tDBInput_1);
             	} else {
                 	row1.SupplierLocation = tmpContent_tDBInput_1;
@@ -3886,13 +5382,13 @@ transformedStruct transformed_tmp = new transformedStruct();
                 row1.SupplierLocation = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 10) {
+							if(colQtyInRs_tDBInput_1 < 11) {
 								row1.SupplierContact = null;
 							} else {
 	                         		
-           		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(10);
+           		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(11);
             if(tmpContent_tDBInput_1 != null) {
-            	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(10).toUpperCase(java.util.Locale.ENGLISH))) {
+            	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(11).toUpperCase(java.util.Locale.ENGLISH))) {
             		row1.SupplierContact = FormatterUtils.formatUnwithE(tmpContent_tDBInput_1);
             	} else {
                 	row1.SupplierContact = tmpContent_tDBInput_1;
@@ -3901,13 +5397,13 @@ transformedStruct transformed_tmp = new transformedStruct();
                 row1.SupplierContact = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 11) {
+							if(colQtyInRs_tDBInput_1 < 12) {
 								row1.ShipperName = null;
 							} else {
 	                         		
-           		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(11);
+           		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(12);
             if(tmpContent_tDBInput_1 != null) {
-            	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(11).toUpperCase(java.util.Locale.ENGLISH))) {
+            	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(12).toUpperCase(java.util.Locale.ENGLISH))) {
             		row1.ShipperName = FormatterUtils.formatUnwithE(tmpContent_tDBInput_1);
             	} else {
                 	row1.ShipperName = tmpContent_tDBInput_1;
@@ -3916,13 +5412,13 @@ transformedStruct transformed_tmp = new transformedStruct();
                 row1.ShipperName = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 12) {
+							if(colQtyInRs_tDBInput_1 < 13) {
 								row1.ShippingMethod = null;
 							} else {
 	                         		
-           		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(12);
+           		tmpContent_tDBInput_1 = rs_tDBInput_1.getString(13);
             if(tmpContent_tDBInput_1 != null) {
-            	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(12).toUpperCase(java.util.Locale.ENGLISH))) {
+            	if (talendToDBList_tDBInput_1 .contains(rsmd_tDBInput_1.getColumnTypeName(13).toUpperCase(java.util.Locale.ENGLISH))) {
             		row1.ShippingMethod = FormatterUtils.formatUnwithE(tmpContent_tDBInput_1);
             	} else {
                 	row1.ShippingMethod = tmpContent_tDBInput_1;
@@ -3931,65 +5427,65 @@ transformedStruct transformed_tmp = new transformedStruct();
                 row1.ShippingMethod = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 13) {
+							if(colQtyInRs_tDBInput_1 < 14) {
 								row1.QuantitySold = null;
 							} else {
 		                          
-            row1.QuantitySold = rs_tDBInput_1.getInt(13);
+            row1.QuantitySold = rs_tDBInput_1.getInt(14);
             if(rs_tDBInput_1.wasNull()){
                     row1.QuantitySold = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 14) {
+							if(colQtyInRs_tDBInput_1 < 15) {
 								row1.TotalAmount = null;
 							} else {
 		                          
-            row1.TotalAmount = rs_tDBInput_1.getFloat(14);
+            row1.TotalAmount = rs_tDBInput_1.getFloat(15);
             if(rs_tDBInput_1.wasNull()){
                     row1.TotalAmount = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 15) {
+							if(colQtyInRs_tDBInput_1 < 16) {
 								row1.DiscountAmount = null;
 							} else {
 		                          
-            row1.DiscountAmount = rs_tDBInput_1.getFloat(15);
+            row1.DiscountAmount = rs_tDBInput_1.getFloat(16);
             if(rs_tDBInput_1.wasNull()){
                     row1.DiscountAmount = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 16) {
+							if(colQtyInRs_tDBInput_1 < 17) {
 								row1.NetAmount = null;
 							} else {
 		                          
-            row1.NetAmount = rs_tDBInput_1.getFloat(16);
+            row1.NetAmount = rs_tDBInput_1.getFloat(17);
             if(rs_tDBInput_1.wasNull()){
                     row1.NetAmount = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 17) {
+							if(colQtyInRs_tDBInput_1 < 18) {
 								row1.StockReceived = null;
 							} else {
 		                          
-            row1.StockReceived = rs_tDBInput_1.getInt(17);
+            row1.StockReceived = rs_tDBInput_1.getInt(18);
             if(rs_tDBInput_1.wasNull()){
                     row1.StockReceived = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 18) {
+							if(colQtyInRs_tDBInput_1 < 19) {
 								row1.StockSold = null;
 							} else {
 		                          
-            row1.StockSold = rs_tDBInput_1.getInt(18);
+            row1.StockSold = rs_tDBInput_1.getInt(19);
             if(rs_tDBInput_1.wasNull()){
                     row1.StockSold = null;
             }
 		                    }
-							if(colQtyInRs_tDBInput_1 < 19) {
+							if(colQtyInRs_tDBInput_1 < 20) {
 								row1.StockOnHand = null;
 							} else {
 		                          
-            row1.StockOnHand = rs_tDBInput_1.getInt(19);
+            row1.StockOnHand = rs_tDBInput_1.getInt(20);
             if(rs_tDBInput_1.wasNull()){
                     row1.StockOnHand = null;
             }
@@ -4099,8 +5595,9 @@ transformed_tmp.Date = Var.Date ;
 transformed_tmp.ProductName = row1.ProductName ;
 transformed_tmp.ProductCategory = row1.ProductCategory ;
 transformed_tmp.ProductSubCategory = row1.ProductSubCategory ;
-transformed_tmp.ProductPrice = row1.ProductPrice.contains("InvalidPrice")  ? 0.0 : Double.parseDouble(row1.ProductPrice) ;
-transformed_tmp.CustomerID = row1.CustomerID;
+transformed_tmp.ProductPrice = Math.round(row1.TotalAmount/row1.QuantitySold)  ;
+transformed_tmp.HashedPI = row1.HashedPI ;
+transformed_tmp.CustomerState = row1.CustomerState ;
 transformed_tmp.CustomerSegment = row1.CustomerSegment ;
 transformed_tmp.SupplierName = row1.SupplierName ;
 transformed_tmp.SupplierLocation = row1.SupplierLocation ;
@@ -4200,11 +5697,6 @@ if(transformed.ProductSubCategory == null){
 	finder_tUniqRow_1.ProductSubCategory = transformed.ProductSubCategory.toLowerCase();
 }
 finder_tUniqRow_1.ProductPrice = transformed.ProductPrice;
-if(transformed.CustomerID == null){
-	finder_tUniqRow_1.CustomerID = null;
-}else{
-	finder_tUniqRow_1.CustomerID = transformed.CustomerID.toLowerCase();
-}
 if(transformed.CustomerSegment == null){
 	finder_tUniqRow_1.CustomerSegment = null;
 }else{
@@ -4259,11 +5751,6 @@ if(transformed.ProductSubCategory == null){
 	new_tUniqRow_1.ProductSubCategory = transformed.ProductSubCategory.toLowerCase();
 }
 new_tUniqRow_1.ProductPrice = transformed.ProductPrice;
-if(transformed.CustomerID == null){
-	new_tUniqRow_1.CustomerID = null;
-}else{
-	new_tUniqRow_1.CustomerID = transformed.CustomerID.toLowerCase();
-}
 if(transformed.CustomerSegment == null){
 	new_tUniqRow_1.CustomerSegment = null;
 }else{
@@ -4300,7 +5787,7 @@ new_tUniqRow_1.StockOnHand = transformed.StockOnHand;
 		keystUniqRow_1.add(new_tUniqRow_1);if(row2 == null){ 
 	
 	row2 = new row2Struct();
-}row2.Date = transformed.Date;			row2.ProductName = transformed.ProductName;			row2.ProductCategory = transformed.ProductCategory;			row2.ProductSubCategory = transformed.ProductSubCategory;			row2.ProductPrice = transformed.ProductPrice;			row2.CustomerID = transformed.CustomerID;			row2.CustomerSegment = transformed.CustomerSegment;			row2.SupplierName = transformed.SupplierName;			row2.SupplierLocation = transformed.SupplierLocation;			row2.ShipperName = transformed.ShipperName;			row2.ShippingMethod = transformed.ShippingMethod;			row2.QuantitySold = transformed.QuantitySold;			row2.TotalAmount = transformed.TotalAmount;			row2.DiscountAmount = transformed.DiscountAmount;			row2.NetAmount = transformed.NetAmount;			row2.StockReceived = transformed.StockReceived;			row2.StockSold = transformed.StockSold;			row2.StockOnHand = transformed.StockOnHand;					
+}row2.Date = transformed.Date;			row2.ProductName = transformed.ProductName;			row2.ProductCategory = transformed.ProductCategory;			row2.ProductSubCategory = transformed.ProductSubCategory;			row2.ProductPrice = transformed.ProductPrice;			row2.HashedPI = transformed.HashedPI;			row2.CustomerState = transformed.CustomerState;			row2.CustomerSegment = transformed.CustomerSegment;			row2.SupplierName = transformed.SupplierName;			row2.SupplierLocation = transformed.SupplierLocation;			row2.ShipperName = transformed.ShipperName;			row2.ShippingMethod = transformed.ShippingMethod;			row2.QuantitySold = transformed.QuantitySold;			row2.TotalAmount = transformed.TotalAmount;			row2.DiscountAmount = transformed.DiscountAmount;			row2.NetAmount = transformed.NetAmount;			row2.StockReceived = transformed.StockReceived;			row2.StockSold = transformed.StockSold;			row2.StockOnHand = transformed.StockOnHand;					
 		nb_uniques_tUniqRow_1++;
 	} else {
 	  nb_duplicates_tUniqRow_1++;
@@ -4341,6 +5828,226 @@ if(row2 != null) {
 
 	
 	/**
+	 * [tMap_3 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tMap_3";
+
+	
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1
+						
+							,"row2"
+						
+						);
+					}
+					
+
+		
+		
+		boolean hasCasePrimitiveKeyWithNull_tMap_3 = false;
+		
+
+        // ###############################
+        // # Input tables (lookups)
+		  boolean rejectedInnerJoin_tMap_3 = false;
+		  boolean mainRowRejected_tMap_3 = false;
+            				    								  
+		
+
+				///////////////////////////////////////////////
+				// Starting Lookup Table "row4" 
+				///////////////////////////////////////////////
+
+
+				
+				
+                            
+ 					    boolean forceLooprow4 = false;
+       		  	    	
+       		  	    	
+ 							row4Struct row4ObjectFromLookup = null;
+                          
+		           		  	if(!rejectedInnerJoin_tMap_3) { // G_TM_M_020
+
+								
+								hasCasePrimitiveKeyWithNull_tMap_3 = false;
+								
+                        		    		    row4HashKey.ProductSubCategory = row2.ProductSubCategory;
+                        		    		
+                        		    		    row4HashKey.CalculatedPrice = row2.ProductPrice;
+                        		    		
+
+								
+		                        	row4HashKey.hashCodeDirty = true;
+                        		
+	  					
+	  							
+			  					
+			  					
+	  					
+		  							tHash_Lookup_row4.lookup( row4HashKey );
+
+	  							
+
+	  							
+
+ 								
+								  
+								  if(!tHash_Lookup_row4.hasNext()) { // G_TM_M_090
+
+  								
+		  				
+	  								
+			  							rejectedInnerJoin_tMap_3 = true;
+	  								
+						
+									
+  									  		
+ 								
+								  
+								  } // G_TM_M_090
+
+  								
+
+
+
+							} // G_TM_M_020
+			           		  	  
+							
+				           		if(tHash_Lookup_row4 != null && tHash_Lookup_row4.getCount(row4HashKey) > 1) { // G 071
+			  							
+			  						
+									 		
+									//System.out.println("WARNING: UNIQUE MATCH is configured for the lookup 'row4' and it contains more one result from keys :  row4.ProductSubCategory = '" + row4HashKey.ProductSubCategory + "', row4.CalculatedPrice = '" + row4HashKey.CalculatedPrice + "'");
+								} // G 071
+							
+
+							row4Struct row4 = null;
+                    		  	 
+							   
+                    		  	 
+	       		  	    	row4Struct fromLookup_row4 = null;
+							row4 = row4Default;
+										 
+							
+								 
+							
+							
+								if (tHash_Lookup_row4 !=null && tHash_Lookup_row4.hasNext()) { // G 099
+								
+							
+								
+								fromLookup_row4 = tHash_Lookup_row4.next();
+
+							
+							
+								} // G 099
+							
+							
+
+							if(fromLookup_row4 != null) {
+								row4 = fromLookup_row4;
+							}
+							
+							
+							
+			  							
+								
+	                    		  	
+		                    
+	            	
+	            	
+	            // ###############################
+        { // start of Var scope
+        
+	        // ###############################
+        	// # Vars tables
+        
+Var__tMap_3__Struct Var = Var__tMap_3;// ###############################
+        // ###############################
+        // # Output tables
+
+FixedProduct = null;
+
+if(!rejectedInnerJoin_tMap_3 ) {
+
+// # Output table : 'FixedProduct'
+FixedProduct_tmp.Date = row2.Date ;
+FixedProduct_tmp.ProductName = row4.ProductName ;
+FixedProduct_tmp.ProductCategory = row4.ProductCategory ;
+FixedProduct_tmp.ProductSubCategory = row2.ProductSubCategory ;
+FixedProduct_tmp.ProductPrice = row2.ProductPrice ;
+FixedProduct_tmp.HashedPI = row2.HashedPI ;
+FixedProduct_tmp.CustomerState = row2.CustomerState ;
+FixedProduct_tmp.CustomerSegment = row2.CustomerSegment ;
+FixedProduct_tmp.SupplierName = row2.SupplierName ;
+FixedProduct_tmp.SupplierLocation = row2.SupplierLocation ;
+FixedProduct_tmp.ShipperName = row2.ShipperName ;
+FixedProduct_tmp.ShippingMethod = row2.ShippingMethod ;
+FixedProduct_tmp.QuantitySold = row2.QuantitySold ;
+FixedProduct_tmp.TotalAmount = row2.TotalAmount ;
+FixedProduct_tmp.DiscountAmount = row2.DiscountAmount ;
+FixedProduct_tmp.NetAmount = row2.NetAmount ;
+FixedProduct_tmp.StockReceived = row2.StockReceived ;
+FixedProduct_tmp.StockSold = row2.StockSold ;
+FixedProduct_tmp.StockOnHand = row2.StockOnHand ;
+FixedProduct = FixedProduct_tmp;
+}  // closing inner join bracket (2)
+// ###############################
+
+} // end of Var scope
+
+rejectedInnerJoin_tMap_3 = false;
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+	tos_count_tMap_3++;
+
+/**
+ * [tMap_3 main ] stop
+ */
+	
+	/**
+	 * [tMap_3 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tMap_3";
+
+	
+
+ 
+
+
+
+/**
+ * [tMap_3 process_data_begin ] stop
+ */
+// Start of branch "FixedProduct"
+if(FixedProduct != null) { 
+
+
+
+	
+	/**
 	 * [tBufferOutput_1 main ] start
 	 */
 
@@ -4354,7 +6061,7 @@ if(row2 != null) {
 					if(execStat){
 						runStat.updateStatOnConnection(iterateId,1,1
 						
-							,"row2"
+							,"FixedProduct"
 						
 						);
 					}
@@ -4362,132 +6069,139 @@ if(row2 != null) {
 
 
 
-String[] row_tBufferOutput_1=new String[]{"","","","","","","","","","","","","","","","","","",};		
-	    if(row2.Date != null){
+String[] row_tBufferOutput_1=new String[]{"","","","","","","","","","","","","","","","","","","",};		
+	    if(FixedProduct.Date != null){
 	        
-	            row_tBufferOutput_1[0] = FormatterUtils.format_Date(row2.Date, "dd-MM-yyyy");
+	            row_tBufferOutput_1[0] = FormatterUtils.format_Date(FixedProduct.Date, "dd-MM-yyyy");
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[0] = null;
 	    }
-	    if(row2.ProductName != null){
+	    if(FixedProduct.ProductName != null){
 	        
-	            row_tBufferOutput_1[1] = row2.ProductName;
+	            row_tBufferOutput_1[1] = FixedProduct.ProductName;
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[1] = null;
 	    }
-	    if(row2.ProductCategory != null){
+	    if(FixedProduct.ProductCategory != null){
 	        
-	            row_tBufferOutput_1[2] = row2.ProductCategory;
+	            row_tBufferOutput_1[2] = FixedProduct.ProductCategory;
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[2] = null;
 	    }
-	    if(row2.ProductSubCategory != null){
+	    if(FixedProduct.ProductSubCategory != null){
 	        
-	            row_tBufferOutput_1[3] = row2.ProductSubCategory;
+	            row_tBufferOutput_1[3] = FixedProduct.ProductSubCategory;
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[3] = null;
 	    }
-	    if(row2.ProductPrice != null){
+	    if(FixedProduct.ProductPrice != null){
 	        
-	            row_tBufferOutput_1[4] = String.valueOf(row2.ProductPrice);
+	            row_tBufferOutput_1[4] = String.valueOf(FixedProduct.ProductPrice);
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[4] = null;
 	    }
-	    if(row2.CustomerID != null){
+	    if(FixedProduct.HashedPI != null){
 	        
-	            row_tBufferOutput_1[5] = row2.CustomerID;
+	            row_tBufferOutput_1[5] = FixedProduct.HashedPI;
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[5] = null;
 	    }
-	    if(row2.CustomerSegment != null){
+	    if(FixedProduct.CustomerState != null){
 	        
-	            row_tBufferOutput_1[6] = row2.CustomerSegment;
+	            row_tBufferOutput_1[6] = FixedProduct.CustomerState;
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[6] = null;
 	    }
-	    if(row2.SupplierName != null){
+	    if(FixedProduct.CustomerSegment != null){
 	        
-	            row_tBufferOutput_1[7] = row2.SupplierName;
+	            row_tBufferOutput_1[7] = FixedProduct.CustomerSegment;
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[7] = null;
 	    }
-	    if(row2.SupplierLocation != null){
+	    if(FixedProduct.SupplierName != null){
 	        
-	            row_tBufferOutput_1[8] = row2.SupplierLocation;
+	            row_tBufferOutput_1[8] = FixedProduct.SupplierName;
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[8] = null;
 	    }
-	    if(row2.ShipperName != null){
+	    if(FixedProduct.SupplierLocation != null){
 	        
-	            row_tBufferOutput_1[9] = row2.ShipperName;
+	            row_tBufferOutput_1[9] = FixedProduct.SupplierLocation;
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[9] = null;
 	    }
-	    if(row2.ShippingMethod != null){
+	    if(FixedProduct.ShipperName != null){
 	        
-	            row_tBufferOutput_1[10] = row2.ShippingMethod;
+	            row_tBufferOutput_1[10] = FixedProduct.ShipperName;
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[10] = null;
 	    }
-	    if(row2.QuantitySold != null){
+	    if(FixedProduct.ShippingMethod != null){
 	        
-	            row_tBufferOutput_1[11] = String.valueOf(row2.QuantitySold);
+	            row_tBufferOutput_1[11] = FixedProduct.ShippingMethod;
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[11] = null;
 	    }
-	    if(row2.TotalAmount != null){
+	    if(FixedProduct.QuantitySold != null){
 	        
-	            row_tBufferOutput_1[12] = String.valueOf(row2.TotalAmount);
+	            row_tBufferOutput_1[12] = String.valueOf(FixedProduct.QuantitySold);
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[12] = null;
 	    }
-	    if(row2.DiscountAmount != null){
+	    if(FixedProduct.TotalAmount != null){
 	        
-	            row_tBufferOutput_1[13] = String.valueOf(row2.DiscountAmount);
+	            row_tBufferOutput_1[13] = String.valueOf(FixedProduct.TotalAmount);
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[13] = null;
 	    }
-	    if(row2.NetAmount != null){
+	    if(FixedProduct.DiscountAmount != null){
 	        
-	            row_tBufferOutput_1[14] = String.valueOf(row2.NetAmount);
+	            row_tBufferOutput_1[14] = String.valueOf(FixedProduct.DiscountAmount);
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[14] = null;
 	    }
-	    if(row2.StockReceived != null){
+	    if(FixedProduct.NetAmount != null){
 	        
-	            row_tBufferOutput_1[15] = String.valueOf(row2.StockReceived);
+	            row_tBufferOutput_1[15] = String.valueOf(FixedProduct.NetAmount);
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[15] = null;
 	    }
-	    if(row2.StockSold != null){
+	    if(FixedProduct.StockReceived != null){
 	        
-	            row_tBufferOutput_1[16] = String.valueOf(row2.StockSold);
+	            row_tBufferOutput_1[16] = String.valueOf(FixedProduct.StockReceived);
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[16] = null;
 	    }
-	    if(row2.StockOnHand != null){
+	    if(FixedProduct.StockSold != null){
 	        
-	            row_tBufferOutput_1[17] = String.valueOf(row2.StockOnHand);
+	            row_tBufferOutput_1[17] = String.valueOf(FixedProduct.StockSold);
 	                        			    
 	    }else{
 	    	row_tBufferOutput_1[17] = null;
+	    }
+	    if(FixedProduct.StockOnHand != null){
+	        
+	            row_tBufferOutput_1[18] = String.valueOf(FixedProduct.StockOnHand);
+	                        			    
+	    }else{
+	    	row_tBufferOutput_1[18] = null;
 	    }
 	globalBuffer.add(row_tBufferOutput_1);	
 	
@@ -4538,6 +6252,32 @@ String[] row_tBufferOutput_1=new String[]{"","","","","","","","","","","","",""
 
 /**
  * [tBufferOutput_1 process_data_end ] stop
+ */
+
+} // End of branch "FixedProduct"
+
+
+
+
+	
+	/**
+	 * [tMap_3 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tMap_3";
+
+	
+
+ 
+
+
+
+/**
+ * [tMap_3 process_data_end ] stop
  */
 
 } // End of branch "row2"
@@ -4722,6 +6462,52 @@ end_Hash.put("tUniqRow_1", System.currentTimeMillis());
 
 	
 	/**
+	 * [tMap_3 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tMap_3";
+
+	
+
+
+// ###############################
+// # Lookup hashes releasing
+					if(tHash_Lookup_row4 != null) {
+						tHash_Lookup_row4.endGet();
+					}
+					globalMap.remove( "tHash_Lookup_row4" );
+
+					
+					
+				
+// ###############################      
+
+
+
+
+
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row2");
+			  	}
+			  	
+ 
+
+ok_Hash.put("tMap_3", true);
+end_Hash.put("tMap_3", System.currentTimeMillis());
+
+
+
+
+/**
+ * [tMap_3 end ] stop
+ */
+
+	
+	/**
 	 * [tBufferOutput_1 end ] start
 	 */
 
@@ -4734,7 +6520,7 @@ end_Hash.put("tUniqRow_1", System.currentTimeMillis());
 	
 
 				if(execStat){
-			  		runStat.updateStat(resourceMap,iterateId,2,0,"row2");
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"FixedProduct");
 			  	}
 			  	
  
@@ -4748,6 +6534,9 @@ end_Hash.put("tBufferOutput_1", System.currentTimeMillis());
 /**
  * [tBufferOutput_1 end ] stop
  */
+
+
+
 
 
 
@@ -4776,6 +6565,9 @@ end_Hash.put("tBufferOutput_1", System.currentTimeMillis());
 				throw error;
 			}finally{
 				
+					     			//free memory for "tMap_3"
+					     			globalMap.remove("tHash_Lookup_row4"); 
+				     			
 				try{
 					
 	
@@ -4843,6 +6635,27 @@ end_Hash.put("tBufferOutput_1", System.currentTimeMillis());
 
 	
 	/**
+	 * [tMap_3 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tMap_3";
+
+	
+
+ 
+
+
+
+/**
+ * [tMap_3 finally ] stop
+ */
+
+	
+	/**
 	 * [tBufferOutput_1 finally ] start
 	 */
 
@@ -4870,6 +6683,9 @@ end_Hash.put("tBufferOutput_1", System.currentTimeMillis());
 
 
 
+
+
+
 				}catch(java.lang.Exception e){	
 					//ignore
 				}catch(java.lang.Error error){
@@ -4880,6 +6696,2681 @@ end_Hash.put("tBufferOutput_1", System.currentTimeMillis());
 		
 
 		globalMap.put("tDBInput_1_SUBPROCESS_STATE", 1);
+	}
+	
+
+
+public static class row4Struct implements routines.system.IPersistableComparableLookupRow<row4Struct> {
+    final static byte[] commonByteArrayLock_ECOMEVALUATION_transformation = new byte[0];
+    static byte[] commonByteArray_ECOMEVALUATION_transformation = new byte[0];
+	protected static final int DEFAULT_HASHCODE = 1;
+    protected static final int PRIME = 31;
+    protected int hashCode = DEFAULT_HASHCODE;
+    public boolean hashCodeDirty = true;
+
+    public String loopKey;
+
+
+
+	
+			    public String ProductName;
+
+				public String getProductName () {
+					return this.ProductName;
+				}
+				
+			    public String ProductSubCategory;
+
+				public String getProductSubCategory () {
+					return this.ProductSubCategory;
+				}
+				
+			    public Integer CalculatedPrice;
+
+				public Integer getCalculatedPrice () {
+					return this.CalculatedPrice;
+				}
+				
+			    public String ProductCategory;
+
+				public String getProductCategory () {
+					return this.ProductCategory;
+				}
+				
+
+
+	@Override
+	public int hashCode() {
+		if (this.hashCodeDirty) {
+			final int prime = PRIME;
+			int result = DEFAULT_HASHCODE;
+	
+						result = prime * result + ((this.ProductSubCategory == null) ? 0 : this.ProductSubCategory.hashCode());
+					
+						result = prime * result + ((this.CalculatedPrice == null) ? 0 : this.CalculatedPrice.hashCode());
+					
+    		this.hashCode = result;
+    		this.hashCodeDirty = false;
+		}
+		return this.hashCode;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		final row4Struct other = (row4Struct) obj;
+		
+						if (this.ProductSubCategory == null) {
+							if (other.ProductSubCategory != null)
+								return false;
+						
+						} else if (!this.ProductSubCategory.equals(other.ProductSubCategory))
+						
+							return false;
+					
+						if (this.CalculatedPrice == null) {
+							if (other.CalculatedPrice != null)
+								return false;
+						
+						} else if (!this.CalculatedPrice.equals(other.CalculatedPrice))
+						
+							return false;
+					
+
+		return true;
+    }
+
+	public void copyDataTo(row4Struct other) {
+
+		other.ProductName = this.ProductName;
+	            other.ProductSubCategory = this.ProductSubCategory;
+	            other.CalculatedPrice = this.CalculatedPrice;
+	            other.ProductCategory = this.ProductCategory;
+	            
+	}
+
+	public void copyKeysDataTo(row4Struct other) {
+
+		other.ProductSubCategory = this.ProductSubCategory;
+	            	other.CalculatedPrice = this.CalculatedPrice;
+	            	
+	}
+
+
+
+	
+	private String readString(DataInputStream dis, ObjectInputStream ois) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = dis.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			byte[] byteArray = new byte[length];
+			dis.read(byteArray);
+			strReturn = new String(byteArray, utf8Charset);
+		}
+		return strReturn;
+	}
+	
+	private String readString(DataInputStream dis, org.jboss.marshalling.Unmarshaller unmarshaller) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = unmarshaller.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			byte[] byteArray = new byte[length];
+			unmarshaller.read(byteArray);
+			strReturn = new String(byteArray, utf8Charset);
+		}
+		return strReturn;
+	}
+	
+	private void writeString(String str, DataOutputStream dos, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(str == null) {
+			marshaller.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+            marshaller.writeInt(byteArray.length);
+            marshaller.write(byteArray);
+    	}
+	}
+
+	private void writeString(String str, DataOutputStream dos, ObjectOutputStream oos) throws IOException{
+		if(str == null) {
+            dos.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+	    	dos.writeInt(byteArray.length);
+			dos.write(byteArray);
+    	}
+	}
+
+	private String readString(ObjectInputStream dis) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = dis.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_ECOMEVALUATION_transformation.length) {
+				if(length < 1024 && commonByteArray_ECOMEVALUATION_transformation.length == 0) {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[1024];
+				} else {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[2 * length];
+   				}
+			}
+			dis.readFully(commonByteArray_ECOMEVALUATION_transformation, 0, length);
+			strReturn = new String(commonByteArray_ECOMEVALUATION_transformation, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+	
+	private String readString(org.jboss.marshalling.Unmarshaller unmarshaller) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = unmarshaller.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_ECOMEVALUATION_transformation.length) {
+				if(length < 1024 && commonByteArray_ECOMEVALUATION_transformation.length == 0) {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[1024];
+				} else {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[2 * length];
+   				}
+			}
+			unmarshaller.readFully(commonByteArray_ECOMEVALUATION_transformation, 0, length);
+			strReturn = new String(commonByteArray_ECOMEVALUATION_transformation, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+
+    private void writeString(String str, ObjectOutputStream dos) throws IOException{
+		if(str == null) {
+            dos.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+	    	dos.writeInt(byteArray.length);
+			dos.write(byteArray);
+    	}
+    }
+    
+    private void writeString(String str, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(str == null) {
+			marshaller.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+            marshaller.writeInt(byteArray.length);
+            marshaller.write(byteArray);
+    	}
+    }
+	private Integer readInteger(ObjectInputStream dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+	
+	private Integer readInteger(org.jboss.marshalling.Unmarshaller dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+
+	private void writeInteger(Integer intNum, ObjectOutputStream dos) throws IOException{
+		if(intNum == null) {
+            dos.writeByte(-1);
+		} else {
+			dos.writeByte(0);
+	    	dos.writeInt(intNum);
+    	}
+	}
+	
+	private void writeInteger(Integer intNum, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(intNum == null) {
+			marshaller.writeByte(-1);
+		} else {
+			marshaller.writeByte(0);
+			marshaller.writeInt(intNum);
+    	}
+	}
+
+    public void readKeysData(ObjectInputStream dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_transformation) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.ProductSubCategory = readString(dis);
+					
+						this.CalculatedPrice = readInteger(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+    
+    public void readKeysData(org.jboss.marshalling.Unmarshaller dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_transformation) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.ProductSubCategory = readString(dis);
+					
+						this.CalculatedPrice = readInteger(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+
+    public void writeKeysData(ObjectOutputStream dos) {
+        try {
+
+		
+					// String
+				
+						writeString(this.ProductSubCategory,dos);
+					
+					// Integer
+				
+						writeInteger(this.CalculatedPrice,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+    
+    public void writeKeysData(org.jboss.marshalling.Marshaller dos) {
+        try {
+
+		
+					// String
+				
+						writeString(this.ProductSubCategory,dos);
+					
+					// Integer
+				
+						writeInteger(this.CalculatedPrice,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+
+    /**
+     * Fill Values data by reading ObjectInputStream.
+     */
+    public void readValuesData(DataInputStream dis, ObjectInputStream ois) {
+        try {
+
+			int length = 0;
+		
+						this.ProductName = readString(dis,ois);
+					
+						this.ProductCategory = readString(dis,ois);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+    }
+    
+    public void readValuesData(DataInputStream dis, org.jboss.marshalling.Unmarshaller objectIn) {
+        try {
+			int length = 0;
+		
+						this.ProductName = readString(dis,objectIn);
+					
+						this.ProductCategory = readString(dis,objectIn);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+    }
+
+    /**
+     * Return a byte array which represents Values data.
+     */
+    public void writeValuesData(DataOutputStream dos, ObjectOutputStream oos) {
+        try {
+
+		
+						writeString(this.ProductName, dos, oos);
+					
+						writeString(this.ProductCategory, dos, oos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        	}
+
+    }
+    
+    public void writeValuesData(DataOutputStream dos, org.jboss.marshalling.Marshaller objectOut){
+                try {
+
+		
+						writeString(this.ProductName, dos, objectOut);
+					
+						writeString(this.ProductCategory, dos, objectOut);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        	}
+    }
+
+
+    
+    public boolean supportMarshaller(){
+        return true;
+    }
+
+
+    public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		sb.append("[");
+		sb.append("ProductName="+ProductName);
+		sb.append(",ProductSubCategory="+ProductSubCategory);
+		sb.append(",CalculatedPrice="+String.valueOf(CalculatedPrice));
+		sb.append(",ProductCategory="+ProductCategory);
+	    sb.append("]");
+
+	    return sb.toString();
+    }
+
+    /**
+     * Compare keys
+     */
+    public int compareTo(row4Struct other) {
+
+		int returnValue = -1;
+		
+						returnValue = checkNullsAndCompare(this.ProductSubCategory, other.ProductSubCategory);
+						if(returnValue != 0) {
+							return returnValue;
+						}
+
+					
+						returnValue = checkNullsAndCompare(this.CalculatedPrice, other.CalculatedPrice);
+						if(returnValue != 0) {
+							return returnValue;
+						}
+
+					
+	    return returnValue;
+    }
+
+
+    private int checkNullsAndCompare(Object object1, Object object2) {
+        int returnValue = 0;
+		if (object1 instanceof Comparable && object2 instanceof Comparable) {
+            returnValue = ((Comparable) object1).compareTo(object2);
+        } else if (object1 != null && object2 != null) {
+            returnValue = compareStrings(object1.toString(), object2.toString());
+        } else if (object1 == null && object2 != null) {
+            returnValue = 1;
+        } else if (object1 != null && object2 == null) {
+            returnValue = -1;
+        } else {
+            returnValue = 0;
+        }
+
+        return returnValue;
+    }
+
+    private int compareStrings(String string1, String string2) {
+        return string1.compareTo(string2);
+    }
+
+
+}
+
+public static class copyOftransformedStruct implements routines.system.IPersistableRow<copyOftransformedStruct> {
+    final static byte[] commonByteArrayLock_ECOMEVALUATION_transformation = new byte[0];
+    static byte[] commonByteArray_ECOMEVALUATION_transformation = new byte[0];
+
+	
+			    public String ProductName;
+
+				public String getProductName () {
+					return this.ProductName;
+				}
+				
+			    public String ProductSubCategory;
+
+				public String getProductSubCategory () {
+					return this.ProductSubCategory;
+				}
+				
+			    public Integer CalculatedPrice;
+
+				public Integer getCalculatedPrice () {
+					return this.CalculatedPrice;
+				}
+				
+			    public String ProductCategory;
+
+				public String getProductCategory () {
+					return this.ProductCategory;
+				}
+				
+
+
+
+	private String readString(ObjectInputStream dis) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = dis.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_ECOMEVALUATION_transformation.length) {
+				if(length < 1024 && commonByteArray_ECOMEVALUATION_transformation.length == 0) {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[1024];
+				} else {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[2 * length];
+   				}
+			}
+			dis.readFully(commonByteArray_ECOMEVALUATION_transformation, 0, length);
+			strReturn = new String(commonByteArray_ECOMEVALUATION_transformation, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+	
+	private String readString(org.jboss.marshalling.Unmarshaller unmarshaller) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = unmarshaller.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_ECOMEVALUATION_transformation.length) {
+				if(length < 1024 && commonByteArray_ECOMEVALUATION_transformation.length == 0) {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[1024];
+				} else {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[2 * length];
+   				}
+			}
+			unmarshaller.readFully(commonByteArray_ECOMEVALUATION_transformation, 0, length);
+			strReturn = new String(commonByteArray_ECOMEVALUATION_transformation, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+
+    private void writeString(String str, ObjectOutputStream dos) throws IOException{
+		if(str == null) {
+            dos.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+	    	dos.writeInt(byteArray.length);
+			dos.write(byteArray);
+    	}
+    }
+    
+    private void writeString(String str, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(str == null) {
+			marshaller.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+            marshaller.writeInt(byteArray.length);
+            marshaller.write(byteArray);
+    	}
+    }
+	private Integer readInteger(ObjectInputStream dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+	
+	private Integer readInteger(org.jboss.marshalling.Unmarshaller dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+
+	private void writeInteger(Integer intNum, ObjectOutputStream dos) throws IOException{
+		if(intNum == null) {
+            dos.writeByte(-1);
+		} else {
+			dos.writeByte(0);
+	    	dos.writeInt(intNum);
+    	}
+	}
+	
+	private void writeInteger(Integer intNum, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(intNum == null) {
+			marshaller.writeByte(-1);
+		} else {
+			marshaller.writeByte(0);
+			marshaller.writeInt(intNum);
+    	}
+	}
+
+    public void readData(ObjectInputStream dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_transformation) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.ProductName = readString(dis);
+					
+					this.ProductSubCategory = readString(dis);
+					
+						this.CalculatedPrice = readInteger(dis);
+					
+					this.ProductCategory = readString(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+    
+    public void readData(org.jboss.marshalling.Unmarshaller dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_transformation) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.ProductName = readString(dis);
+					
+					this.ProductSubCategory = readString(dis);
+					
+						this.CalculatedPrice = readInteger(dis);
+					
+					this.ProductCategory = readString(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+
+    public void writeData(ObjectOutputStream dos) {
+        try {
+
+		
+					// String
+				
+						writeString(this.ProductName,dos);
+					
+					// String
+				
+						writeString(this.ProductSubCategory,dos);
+					
+					// Integer
+				
+						writeInteger(this.CalculatedPrice,dos);
+					
+					// String
+				
+						writeString(this.ProductCategory,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+    
+    public void writeData(org.jboss.marshalling.Marshaller dos) {
+        try {
+
+		
+					// String
+				
+						writeString(this.ProductName,dos);
+					
+					// String
+				
+						writeString(this.ProductSubCategory,dos);
+					
+					// Integer
+				
+						writeInteger(this.CalculatedPrice,dos);
+					
+					// String
+				
+						writeString(this.ProductCategory,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		sb.append("[");
+		sb.append("ProductName="+ProductName);
+		sb.append(",ProductSubCategory="+ProductSubCategory);
+		sb.append(",CalculatedPrice="+String.valueOf(CalculatedPrice));
+		sb.append(",ProductCategory="+ProductCategory);
+	    sb.append("]");
+
+	    return sb.toString();
+    }
+
+    /**
+     * Compare keys
+     */
+    public int compareTo(copyOftransformedStruct other) {
+
+		int returnValue = -1;
+		
+	    return returnValue;
+    }
+
+
+    private int checkNullsAndCompare(Object object1, Object object2) {
+        int returnValue = 0;
+		if (object1 instanceof Comparable && object2 instanceof Comparable) {
+            returnValue = ((Comparable) object1).compareTo(object2);
+        } else if (object1 != null && object2 != null) {
+            returnValue = compareStrings(object1.toString(), object2.toString());
+        } else if (object1 == null && object2 != null) {
+            returnValue = 1;
+        } else if (object1 != null && object2 == null) {
+            returnValue = -1;
+        } else {
+            returnValue = 0;
+        }
+
+        return returnValue;
+    }
+
+    private int compareStrings(String string1, String string2) {
+        return string1.compareTo(string2);
+    }
+
+
+}
+
+public static class row5Struct implements routines.system.IPersistableRow<row5Struct> {
+    final static byte[] commonByteArrayLock_ECOMEVALUATION_transformation = new byte[0];
+    static byte[] commonByteArray_ECOMEVALUATION_transformation = new byte[0];
+
+	
+			    public String Date;
+
+				public String getDate () {
+					return this.Date;
+				}
+				
+			    public String ProductName;
+
+				public String getProductName () {
+					return this.ProductName;
+				}
+				
+			    public String ProductCategory;
+
+				public String getProductCategory () {
+					return this.ProductCategory;
+				}
+				
+			    public String ProductSubCategory;
+
+				public String getProductSubCategory () {
+					return this.ProductSubCategory;
+				}
+				
+			    public String ProductPrice;
+
+				public String getProductPrice () {
+					return this.ProductPrice;
+				}
+				
+			    public String HashedPI;
+
+				public String getHashedPI () {
+					return this.HashedPI;
+				}
+				
+			    public String CustomerState;
+
+				public String getCustomerState () {
+					return this.CustomerState;
+				}
+				
+			    public String CustomerSegment;
+
+				public String getCustomerSegment () {
+					return this.CustomerSegment;
+				}
+				
+			    public String SupplierName;
+
+				public String getSupplierName () {
+					return this.SupplierName;
+				}
+				
+			    public String SupplierLocation;
+
+				public String getSupplierLocation () {
+					return this.SupplierLocation;
+				}
+				
+			    public String SupplierContact;
+
+				public String getSupplierContact () {
+					return this.SupplierContact;
+				}
+				
+			    public String ShipperName;
+
+				public String getShipperName () {
+					return this.ShipperName;
+				}
+				
+			    public String ShippingMethod;
+
+				public String getShippingMethod () {
+					return this.ShippingMethod;
+				}
+				
+			    public Integer QuantitySold;
+
+				public Integer getQuantitySold () {
+					return this.QuantitySold;
+				}
+				
+			    public Float TotalAmount;
+
+				public Float getTotalAmount () {
+					return this.TotalAmount;
+				}
+				
+			    public Float DiscountAmount;
+
+				public Float getDiscountAmount () {
+					return this.DiscountAmount;
+				}
+				
+			    public Float NetAmount;
+
+				public Float getNetAmount () {
+					return this.NetAmount;
+				}
+				
+			    public Integer StockReceived;
+
+				public Integer getStockReceived () {
+					return this.StockReceived;
+				}
+				
+			    public Integer StockSold;
+
+				public Integer getStockSold () {
+					return this.StockSold;
+				}
+				
+			    public Integer StockOnHand;
+
+				public Integer getStockOnHand () {
+					return this.StockOnHand;
+				}
+				
+
+
+
+	private String readString(ObjectInputStream dis) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = dis.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_ECOMEVALUATION_transformation.length) {
+				if(length < 1024 && commonByteArray_ECOMEVALUATION_transformation.length == 0) {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[1024];
+				} else {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[2 * length];
+   				}
+			}
+			dis.readFully(commonByteArray_ECOMEVALUATION_transformation, 0, length);
+			strReturn = new String(commonByteArray_ECOMEVALUATION_transformation, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+	
+	private String readString(org.jboss.marshalling.Unmarshaller unmarshaller) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = unmarshaller.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_ECOMEVALUATION_transformation.length) {
+				if(length < 1024 && commonByteArray_ECOMEVALUATION_transformation.length == 0) {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[1024];
+				} else {
+   					commonByteArray_ECOMEVALUATION_transformation = new byte[2 * length];
+   				}
+			}
+			unmarshaller.readFully(commonByteArray_ECOMEVALUATION_transformation, 0, length);
+			strReturn = new String(commonByteArray_ECOMEVALUATION_transformation, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+
+    private void writeString(String str, ObjectOutputStream dos) throws IOException{
+		if(str == null) {
+            dos.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+	    	dos.writeInt(byteArray.length);
+			dos.write(byteArray);
+    	}
+    }
+    
+    private void writeString(String str, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(str == null) {
+			marshaller.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+            marshaller.writeInt(byteArray.length);
+            marshaller.write(byteArray);
+    	}
+    }
+	private Integer readInteger(ObjectInputStream dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+	
+	private Integer readInteger(org.jboss.marshalling.Unmarshaller dis) throws IOException{
+		Integer intReturn;
+        int length = 0;
+        length = dis.readByte();
+		if (length == -1) {
+			intReturn = null;
+		} else {
+	    	intReturn = dis.readInt();
+		}
+		return intReturn;
+	}
+
+	private void writeInteger(Integer intNum, ObjectOutputStream dos) throws IOException{
+		if(intNum == null) {
+            dos.writeByte(-1);
+		} else {
+			dos.writeByte(0);
+	    	dos.writeInt(intNum);
+    	}
+	}
+	
+	private void writeInteger(Integer intNum, org.jboss.marshalling.Marshaller marshaller) throws IOException{
+		if(intNum == null) {
+			marshaller.writeByte(-1);
+		} else {
+			marshaller.writeByte(0);
+			marshaller.writeInt(intNum);
+    	}
+	}
+
+    public void readData(ObjectInputStream dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_transformation) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.Date = readString(dis);
+					
+					this.ProductName = readString(dis);
+					
+					this.ProductCategory = readString(dis);
+					
+					this.ProductSubCategory = readString(dis);
+					
+					this.ProductPrice = readString(dis);
+					
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
+					
+					this.CustomerSegment = readString(dis);
+					
+					this.SupplierName = readString(dis);
+					
+					this.SupplierLocation = readString(dis);
+					
+					this.SupplierContact = readString(dis);
+					
+					this.ShipperName = readString(dis);
+					
+					this.ShippingMethod = readString(dis);
+					
+						this.QuantitySold = readInteger(dis);
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.TotalAmount = null;
+           				} else {
+           			    	this.TotalAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.DiscountAmount = null;
+           				} else {
+           			    	this.DiscountAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.NetAmount = null;
+           				} else {
+           			    	this.NetAmount = dis.readFloat();
+           				}
+					
+						this.StockReceived = readInteger(dis);
+					
+						this.StockSold = readInteger(dis);
+					
+						this.StockOnHand = readInteger(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+    
+    public void readData(org.jboss.marshalling.Unmarshaller dis) {
+
+		synchronized(commonByteArrayLock_ECOMEVALUATION_transformation) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.Date = readString(dis);
+					
+					this.ProductName = readString(dis);
+					
+					this.ProductCategory = readString(dis);
+					
+					this.ProductSubCategory = readString(dis);
+					
+					this.ProductPrice = readString(dis);
+					
+					this.HashedPI = readString(dis);
+					
+					this.CustomerState = readString(dis);
+					
+					this.CustomerSegment = readString(dis);
+					
+					this.SupplierName = readString(dis);
+					
+					this.SupplierLocation = readString(dis);
+					
+					this.SupplierContact = readString(dis);
+					
+					this.ShipperName = readString(dis);
+					
+					this.ShippingMethod = readString(dis);
+					
+						this.QuantitySold = readInteger(dis);
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.TotalAmount = null;
+           				} else {
+           			    	this.TotalAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.DiscountAmount = null;
+           				} else {
+           			    	this.DiscountAmount = dis.readFloat();
+           				}
+					
+			            length = dis.readByte();
+           				if (length == -1) {
+           	    			this.NetAmount = null;
+           				} else {
+           			    	this.NetAmount = dis.readFloat();
+           				}
+					
+						this.StockReceived = readInteger(dis);
+					
+						this.StockSold = readInteger(dis);
+					
+						this.StockOnHand = readInteger(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+
+    public void writeData(ObjectOutputStream dos) {
+        try {
+
+		
+					// String
+				
+						writeString(this.Date,dos);
+					
+					// String
+				
+						writeString(this.ProductName,dos);
+					
+					// String
+				
+						writeString(this.ProductCategory,dos);
+					
+					// String
+				
+						writeString(this.ProductSubCategory,dos);
+					
+					// String
+				
+						writeString(this.ProductPrice,dos);
+					
+					// String
+				
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
+					
+					// String
+				
+						writeString(this.CustomerSegment,dos);
+					
+					// String
+				
+						writeString(this.SupplierName,dos);
+					
+					// String
+				
+						writeString(this.SupplierLocation,dos);
+					
+					// String
+				
+						writeString(this.SupplierContact,dos);
+					
+					// String
+				
+						writeString(this.ShipperName,dos);
+					
+					// String
+				
+						writeString(this.ShippingMethod,dos);
+					
+					// Integer
+				
+						writeInteger(this.QuantitySold,dos);
+					
+					// Float
+				
+						if(this.TotalAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.TotalAmount);
+		            	}
+					
+					// Float
+				
+						if(this.DiscountAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.DiscountAmount);
+		            	}
+					
+					// Float
+				
+						if(this.NetAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.NetAmount);
+		            	}
+					
+					// Integer
+				
+						writeInteger(this.StockReceived,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockSold,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockOnHand,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+    
+    public void writeData(org.jboss.marshalling.Marshaller dos) {
+        try {
+
+		
+					// String
+				
+						writeString(this.Date,dos);
+					
+					// String
+				
+						writeString(this.ProductName,dos);
+					
+					// String
+				
+						writeString(this.ProductCategory,dos);
+					
+					// String
+				
+						writeString(this.ProductSubCategory,dos);
+					
+					// String
+				
+						writeString(this.ProductPrice,dos);
+					
+					// String
+				
+						writeString(this.HashedPI,dos);
+					
+					// String
+				
+						writeString(this.CustomerState,dos);
+					
+					// String
+				
+						writeString(this.CustomerSegment,dos);
+					
+					// String
+				
+						writeString(this.SupplierName,dos);
+					
+					// String
+				
+						writeString(this.SupplierLocation,dos);
+					
+					// String
+				
+						writeString(this.SupplierContact,dos);
+					
+					// String
+				
+						writeString(this.ShipperName,dos);
+					
+					// String
+				
+						writeString(this.ShippingMethod,dos);
+					
+					// Integer
+				
+						writeInteger(this.QuantitySold,dos);
+					
+					// Float
+				
+						if(this.TotalAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.TotalAmount);
+		            	}
+					
+					// Float
+				
+						if(this.DiscountAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.DiscountAmount);
+		            	}
+					
+					// Float
+				
+						if(this.NetAmount == null) {
+			                dos.writeByte(-1);
+						} else {
+               				dos.writeByte(0);
+           			    	dos.writeFloat(this.NetAmount);
+		            	}
+					
+					// Integer
+				
+						writeInteger(this.StockReceived,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockSold,dos);
+					
+					// Integer
+				
+						writeInteger(this.StockOnHand,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		sb.append("[");
+		sb.append("Date="+Date);
+		sb.append(",ProductName="+ProductName);
+		sb.append(",ProductCategory="+ProductCategory);
+		sb.append(",ProductSubCategory="+ProductSubCategory);
+		sb.append(",ProductPrice="+ProductPrice);
+		sb.append(",HashedPI="+HashedPI);
+		sb.append(",CustomerState="+CustomerState);
+		sb.append(",CustomerSegment="+CustomerSegment);
+		sb.append(",SupplierName="+SupplierName);
+		sb.append(",SupplierLocation="+SupplierLocation);
+		sb.append(",SupplierContact="+SupplierContact);
+		sb.append(",ShipperName="+ShipperName);
+		sb.append(",ShippingMethod="+ShippingMethod);
+		sb.append(",QuantitySold="+String.valueOf(QuantitySold));
+		sb.append(",TotalAmount="+String.valueOf(TotalAmount));
+		sb.append(",DiscountAmount="+String.valueOf(DiscountAmount));
+		sb.append(",NetAmount="+String.valueOf(NetAmount));
+		sb.append(",StockReceived="+String.valueOf(StockReceived));
+		sb.append(",StockSold="+String.valueOf(StockSold));
+		sb.append(",StockOnHand="+String.valueOf(StockOnHand));
+	    sb.append("]");
+
+	    return sb.toString();
+    }
+
+    /**
+     * Compare keys
+     */
+    public int compareTo(row5Struct other) {
+
+		int returnValue = -1;
+		
+	    return returnValue;
+    }
+
+
+    private int checkNullsAndCompare(Object object1, Object object2) {
+        int returnValue = 0;
+		if (object1 instanceof Comparable && object2 instanceof Comparable) {
+            returnValue = ((Comparable) object1).compareTo(object2);
+        } else if (object1 != null && object2 != null) {
+            returnValue = compareStrings(object1.toString(), object2.toString());
+        } else if (object1 == null && object2 != null) {
+            returnValue = 1;
+        } else if (object1 != null && object2 == null) {
+            returnValue = -1;
+        } else {
+            returnValue = 0;
+        }
+
+        return returnValue;
+    }
+
+    private int compareStrings(String string1, String string2) {
+        return string1.compareTo(string2);
+    }
+
+
+}
+public void tDBInput_2Process(final java.util.Map<String, Object> globalMap) throws TalendException {
+	globalMap.put("tDBInput_2_SUBPROCESS_STATE", 0);
+
+ final boolean execStat = this.execStat;
+	
+		String iterateId = "";
+	
+	
+	String currentComponent = "";
+	java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
+
+	try {
+			// TDI-39566 avoid throwing an useless Exception
+			boolean resumeIt = true;
+			if (globalResumeTicket == false && resumeEntryMethodName != null) {
+				String currentMethodName = new java.lang.Exception().getStackTrace()[0].getMethodName();
+				resumeIt = resumeEntryMethodName.equals(currentMethodName);
+			}
+			if (resumeIt || globalResumeTicket) { //start the resume
+				globalResumeTicket = true;
+
+
+
+		row5Struct row5 = new row5Struct();
+copyOftransformedStruct copyOftransformed = new copyOftransformedStruct();
+row4Struct row4 = new row4Struct();
+
+
+
+
+
+
+	
+	/**
+	 * [tAdvancedHash_row4 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tAdvancedHash_row4", false);
+		start_Hash.put("tAdvancedHash_row4", System.currentTimeMillis());
+		
+	
+	currentComponent="tAdvancedHash_row4";
+
+	
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row4");
+					}
+				
+		int tos_count_tAdvancedHash_row4 = 0;
+		
+
+			   		// connection name:row4
+			   		// source node:tUniqRow_2 - inputs:(copyOftransformed) outputs:(row4,row4) | target node:tAdvancedHash_row4 - inputs:(row4) outputs:()
+			   		// linked node: tMap_3 - inputs:(row2,row4) outputs:(FixedProduct)
+			   
+			   		org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE matchingModeEnum_row4 = 
+			   			org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE.UNIQUE_MATCH;
+			   			
+			   
+	   			org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row4Struct> tHash_Lookup_row4 =org.talend.designer.components.lookup.memory.AdvancedMemoryLookup.
+	   						<row4Struct>getLookup(matchingModeEnum_row4);
+	   						   
+		   	   	   globalMap.put("tHash_Lookup_row4", tHash_Lookup_row4);
+		   	   	   
+				
+           
+
+ 
+
+
+
+/**
+ * [tAdvancedHash_row4 begin ] stop
+ */
+
+
+
+	
+	/**
+	 * [tUniqRow_2 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tUniqRow_2", false);
+		start_Hash.put("tUniqRow_2", System.currentTimeMillis());
+		
+	
+	currentComponent="tUniqRow_2";
+
+	
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"copyOftransformed");
+					}
+				
+		int tos_count_tUniqRow_2 = 0;
+		
+
+	
+		class KeyStruct_tUniqRow_2 {
+	
+			private static final int DEFAULT_HASHCODE = 1;
+		    private static final int PRIME = 31;
+		    private int hashCode = DEFAULT_HASHCODE;
+		    public boolean hashCodeDirty = true;
+	
+	        
+					String ProductSubCategory;
+					Integer CalculatedPrice;        
+	        
+		    @Override
+			public int hashCode() {
+				if (this.hashCodeDirty) {
+					final int prime = PRIME;
+					int result = DEFAULT_HASHCODE;
+			
+								result = prime * result + ((this.ProductSubCategory == null) ? 0 : this.ProductSubCategory.hashCode());
+								
+								result = prime * result + ((this.CalculatedPrice == null) ? 0 : this.CalculatedPrice.hashCode());
+								
+		    		this.hashCode = result;
+		    		this.hashCodeDirty = false;		
+				}
+				return this.hashCode;
+			}
+			
+			@Override
+			public boolean equals(Object obj) {
+				if (this == obj) return true;
+				if (obj == null) return false;
+				if (getClass() != obj.getClass()) return false;
+				final KeyStruct_tUniqRow_2 other = (KeyStruct_tUniqRow_2) obj;
+				
+									if (this.ProductSubCategory == null) {
+										if (other.ProductSubCategory != null) 
+											return false;
+								
+									} else if (!this.ProductSubCategory.equals(other.ProductSubCategory))
+								 
+										return false;
+								
+									if (this.CalculatedPrice == null) {
+										if (other.CalculatedPrice != null) 
+											return false;
+								
+									} else if (!this.CalculatedPrice.equals(other.CalculatedPrice))
+								 
+										return false;
+								
+				
+				return true;
+			}
+	  
+	        
+		}
+
+	
+int nb_uniques_tUniqRow_2 = 0;
+int nb_duplicates_tUniqRow_2 = 0;
+KeyStruct_tUniqRow_2 finder_tUniqRow_2 = new KeyStruct_tUniqRow_2();
+java.util.Set<KeyStruct_tUniqRow_2> keystUniqRow_2 = new java.util.HashSet<KeyStruct_tUniqRow_2>(); 
+
+ 
+
+
+
+/**
+ * [tUniqRow_2 begin ] stop
+ */
+
+
+
+	
+	/**
+	 * [tMap_2 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tMap_2", false);
+		start_Hash.put("tMap_2", System.currentTimeMillis());
+		
+	
+	currentComponent="tMap_2";
+
+	
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row5");
+					}
+				
+		int tos_count_tMap_2 = 0;
+		
+
+
+
+
+// ###############################
+// # Lookup's keys initialization
+// ###############################        
+
+// ###############################
+// # Vars initialization
+class  Var__tMap_2__Struct  {
+}
+Var__tMap_2__Struct Var__tMap_2 = new Var__tMap_2__Struct();
+// ###############################
+
+// ###############################
+// # Outputs initialization
+copyOftransformedStruct copyOftransformed_tmp = new copyOftransformedStruct();
+// ###############################
+
+        
+        
+
+
+
+        
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+/**
+ * [tMap_2 begin ] stop
+ */
+
+
+
+	
+	/**
+	 * [tDBInput_2 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tDBInput_2", false);
+		start_Hash.put("tDBInput_2", System.currentTimeMillis());
+		
+	
+	currentComponent="tDBInput_2";
+
+	
+		int tos_count_tDBInput_2 = 0;
+		
+	
+    
+	
+			org.talend.designer.components.util.mssql.MSSqlGenerateTimestampUtil mssqlGTU_tDBInput_2 = org.talend.designer.components.util.mssql.MSSqlUtilFactory.getMSSqlGenerateTimestampUtil();
+			
+			java.util.List<String> talendToDBList_tDBInput_2 = new java.util.ArrayList();
+			String[] talendToDBArray_tDBInput_2  = new String[]{"FLOAT","NUMERIC","NUMERIC IDENTITY","DECIMAL","DECIMAL IDENTITY","REAL"}; 
+			java.util.Collections.addAll(talendToDBList_tDBInput_2, talendToDBArray_tDBInput_2); 
+		    int nb_line_tDBInput_2 = 0;
+		    java.sql.Connection conn_tDBInput_2 = null;
+				conn_tDBInput_2 = (java.sql.Connection)globalMap.get("conn_tDBConnection_1");
+				
+			String dbschema_tDBInput_2 = (String)globalMap.get("dbschema_tDBConnection_1");
+		    
+			java.sql.Statement stmt_tDBInput_2 = conn_tDBInput_2.createStatement();
+
+		    String dbquery_tDBInput_2 = "select * from ecomStaging";
+		    
+
+            	globalMap.put("tDBInput_2_QUERY",dbquery_tDBInput_2);
+		    java.sql.ResultSet rs_tDBInput_2 = null;
+
+		    try {
+		    	rs_tDBInput_2 = stmt_tDBInput_2.executeQuery(dbquery_tDBInput_2);
+		    	java.sql.ResultSetMetaData rsmd_tDBInput_2 = rs_tDBInput_2.getMetaData();
+		    	int colQtyInRs_tDBInput_2 = rsmd_tDBInput_2.getColumnCount();
+
+		    String tmpContent_tDBInput_2 = null;
+		    
+		    
+		    while (rs_tDBInput_2.next()) {
+		        nb_line_tDBInput_2++;
+		        
+							if(colQtyInRs_tDBInput_2 < 1) {
+								row5.Date = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(1);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(1).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.Date = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.Date = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.Date = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 2) {
+								row5.ProductName = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(2);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(2).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.ProductName = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.ProductName = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.ProductName = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 3) {
+								row5.ProductCategory = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(3);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(3).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.ProductCategory = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.ProductCategory = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.ProductCategory = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 4) {
+								row5.ProductSubCategory = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(4);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(4).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.ProductSubCategory = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.ProductSubCategory = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.ProductSubCategory = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 5) {
+								row5.ProductPrice = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(5);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(5).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.ProductPrice = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.ProductPrice = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.ProductPrice = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 6) {
+								row5.HashedPI = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(6);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(6).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.HashedPI = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.HashedPI = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.HashedPI = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 7) {
+								row5.CustomerState = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(7);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(7).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.CustomerState = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.CustomerState = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.CustomerState = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 8) {
+								row5.CustomerSegment = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(8);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(8).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.CustomerSegment = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.CustomerSegment = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.CustomerSegment = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 9) {
+								row5.SupplierName = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(9);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(9).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.SupplierName = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.SupplierName = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.SupplierName = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 10) {
+								row5.SupplierLocation = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(10);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(10).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.SupplierLocation = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.SupplierLocation = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.SupplierLocation = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 11) {
+								row5.SupplierContact = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(11);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(11).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.SupplierContact = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.SupplierContact = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.SupplierContact = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 12) {
+								row5.ShipperName = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(12);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(12).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.ShipperName = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.ShipperName = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.ShipperName = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 13) {
+								row5.ShippingMethod = null;
+							} else {
+	                         		
+           		tmpContent_tDBInput_2 = rs_tDBInput_2.getString(13);
+            if(tmpContent_tDBInput_2 != null) {
+            	if (talendToDBList_tDBInput_2 .contains(rsmd_tDBInput_2.getColumnTypeName(13).toUpperCase(java.util.Locale.ENGLISH))) {
+            		row5.ShippingMethod = FormatterUtils.formatUnwithE(tmpContent_tDBInput_2);
+            	} else {
+                	row5.ShippingMethod = tmpContent_tDBInput_2;
+                }
+            } else {
+                row5.ShippingMethod = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 14) {
+								row5.QuantitySold = null;
+							} else {
+		                          
+            row5.QuantitySold = rs_tDBInput_2.getInt(14);
+            if(rs_tDBInput_2.wasNull()){
+                    row5.QuantitySold = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 15) {
+								row5.TotalAmount = null;
+							} else {
+		                          
+            row5.TotalAmount = rs_tDBInput_2.getFloat(15);
+            if(rs_tDBInput_2.wasNull()){
+                    row5.TotalAmount = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 16) {
+								row5.DiscountAmount = null;
+							} else {
+		                          
+            row5.DiscountAmount = rs_tDBInput_2.getFloat(16);
+            if(rs_tDBInput_2.wasNull()){
+                    row5.DiscountAmount = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 17) {
+								row5.NetAmount = null;
+							} else {
+		                          
+            row5.NetAmount = rs_tDBInput_2.getFloat(17);
+            if(rs_tDBInput_2.wasNull()){
+                    row5.NetAmount = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 18) {
+								row5.StockReceived = null;
+							} else {
+		                          
+            row5.StockReceived = rs_tDBInput_2.getInt(18);
+            if(rs_tDBInput_2.wasNull()){
+                    row5.StockReceived = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 19) {
+								row5.StockSold = null;
+							} else {
+		                          
+            row5.StockSold = rs_tDBInput_2.getInt(19);
+            if(rs_tDBInput_2.wasNull()){
+                    row5.StockSold = null;
+            }
+		                    }
+							if(colQtyInRs_tDBInput_2 < 20) {
+								row5.StockOnHand = null;
+							} else {
+		                          
+            row5.StockOnHand = rs_tDBInput_2.getInt(20);
+            if(rs_tDBInput_2.wasNull()){
+                    row5.StockOnHand = null;
+            }
+		                    }
+					
+
+
+
+
+
+ 
+
+
+
+/**
+ * [tDBInput_2 begin ] stop
+ */
+	
+	/**
+	 * [tDBInput_2 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBInput_2";
+
+	
+
+ 
+
+
+	tos_count_tDBInput_2++;
+
+/**
+ * [tDBInput_2 main ] stop
+ */
+	
+	/**
+	 * [tDBInput_2 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBInput_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tDBInput_2 process_data_begin ] stop
+ */
+
+	
+	/**
+	 * [tMap_2 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tMap_2";
+
+	
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1
+						
+							,"row5"
+						
+						);
+					}
+					
+
+		
+		
+		boolean hasCasePrimitiveKeyWithNull_tMap_2 = false;
+		
+
+        // ###############################
+        // # Input tables (lookups)
+		  boolean rejectedInnerJoin_tMap_2 = false;
+		  boolean mainRowRejected_tMap_2 = false;
+            				    								  
+		// ###############################
+        { // start of Var scope
+        
+	        // ###############################
+        	// # Vars tables
+        
+Var__tMap_2__Struct Var = Var__tMap_2;// ###############################
+        // ###############################
+        // # Output tables
+
+copyOftransformed = null;
+
+
+// # Output table : 'copyOftransformed'
+// # Filter conditions 
+if( 
+
+row5.ProductName != "NonExistentProduct" && row5.ProductCategory != "InvalidCategory"
+
+ ) {
+copyOftransformed_tmp.ProductName = row5.ProductName ;
+copyOftransformed_tmp.ProductSubCategory = row5.ProductSubCategory ;
+copyOftransformed_tmp.CalculatedPrice = Math.round(row5.TotalAmount/row5.QuantitySold) ;
+copyOftransformed_tmp.ProductCategory = row5.ProductCategory ;
+copyOftransformed = copyOftransformed_tmp;
+} // closing filter/reject
+// ###############################
+
+} // end of Var scope
+
+rejectedInnerJoin_tMap_2 = false;
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+	tos_count_tMap_2++;
+
+/**
+ * [tMap_2 main ] stop
+ */
+	
+	/**
+	 * [tMap_2 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tMap_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tMap_2 process_data_begin ] stop
+ */
+// Start of branch "copyOftransformed"
+if(copyOftransformed != null) { 
+
+
+
+	
+	/**
+	 * [tUniqRow_2 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tUniqRow_2";
+
+	
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1
+						
+							,"copyOftransformed"
+						
+						);
+					}
+					
+row4 = null;			row4 = null;			
+if(copyOftransformed.ProductSubCategory == null){
+	finder_tUniqRow_2.ProductSubCategory = null;
+}else{
+	finder_tUniqRow_2.ProductSubCategory = copyOftransformed.ProductSubCategory.toLowerCase();
+}
+finder_tUniqRow_2.CalculatedPrice = copyOftransformed.CalculatedPrice;	
+finder_tUniqRow_2.hashCodeDirty = true;
+if (!keystUniqRow_2.contains(finder_tUniqRow_2)) {
+		KeyStruct_tUniqRow_2 new_tUniqRow_2 = new KeyStruct_tUniqRow_2();
+
+		
+if(copyOftransformed.ProductSubCategory == null){
+	new_tUniqRow_2.ProductSubCategory = null;
+}else{
+	new_tUniqRow_2.ProductSubCategory = copyOftransformed.ProductSubCategory.toLowerCase();
+}
+new_tUniqRow_2.CalculatedPrice = copyOftransformed.CalculatedPrice;
+		
+		keystUniqRow_2.add(new_tUniqRow_2);if(row4 == null){ 
+	
+	row4 = new row4Struct();
+}row4.ProductName = copyOftransformed.ProductName;			row4.ProductSubCategory = copyOftransformed.ProductSubCategory;			row4.CalculatedPrice = copyOftransformed.CalculatedPrice;			row4.ProductCategory = copyOftransformed.ProductCategory;			if(row4 == null){ 
+	
+	row4 = new row4Struct();
+}row4.ProductName = copyOftransformed.ProductName;			row4.ProductSubCategory = copyOftransformed.ProductSubCategory;			row4.CalculatedPrice = copyOftransformed.CalculatedPrice;			row4.ProductCategory = copyOftransformed.ProductCategory;					
+		nb_uniques_tUniqRow_2++;
+	} else {
+	  nb_duplicates_tUniqRow_2++;
+	}
+
+ 
+
+
+	tos_count_tUniqRow_2++;
+
+/**
+ * [tUniqRow_2 main ] stop
+ */
+	
+	/**
+	 * [tUniqRow_2 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tUniqRow_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tUniqRow_2 process_data_begin ] stop
+ */
+// Start of branch "row4"
+if(row4 != null) { 
+
+
+
+	
+	/**
+	 * [tAdvancedHash_row4 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tAdvancedHash_row4";
+
+	
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1
+						
+							,"row4"
+						
+						);
+					}
+					
+
+
+			   
+			   
+
+					row4Struct row4_HashRow = new row4Struct();
+		   	   	   
+				
+				row4_HashRow.ProductName = row4.ProductName;
+				
+				row4_HashRow.ProductSubCategory = row4.ProductSubCategory;
+				
+				row4_HashRow.CalculatedPrice = row4.CalculatedPrice;
+				
+				row4_HashRow.ProductCategory = row4.ProductCategory;
+				
+			tHash_Lookup_row4.put(row4_HashRow);
+			
+            
+
+
+
+
+ 
+
+
+	tos_count_tAdvancedHash_row4++;
+
+/**
+ * [tAdvancedHash_row4 main ] stop
+ */
+	
+	/**
+	 * [tAdvancedHash_row4 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tAdvancedHash_row4";
+
+	
+
+ 
+
+
+
+/**
+ * [tAdvancedHash_row4 process_data_begin ] stop
+ */
+	
+	/**
+	 * [tAdvancedHash_row4 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tAdvancedHash_row4";
+
+	
+
+ 
+
+
+
+/**
+ * [tAdvancedHash_row4 process_data_end ] stop
+ */
+
+} // End of branch "row4"
+
+
+
+
+	
+	/**
+	 * [tUniqRow_2 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tUniqRow_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tUniqRow_2 process_data_end ] stop
+ */
+
+} // End of branch "copyOftransformed"
+
+
+
+
+	
+	/**
+	 * [tMap_2 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tMap_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tMap_2 process_data_end ] stop
+ */
+
+
+
+	
+	/**
+	 * [tDBInput_2 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBInput_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tDBInput_2 process_data_end ] stop
+ */
+	
+	/**
+	 * [tDBInput_2 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBInput_2";
+
+	
+
+	}
+}finally{
+	if (rs_tDBInput_2 != null) {
+		rs_tDBInput_2.close();
+	}
+	if (stmt_tDBInput_2 != null) {
+		stmt_tDBInput_2.close();
+	}
+}
+globalMap.put("tDBInput_2_NB_LINE",nb_line_tDBInput_2);
+
+ 
+
+ok_Hash.put("tDBInput_2", true);
+end_Hash.put("tDBInput_2", System.currentTimeMillis());
+
+
+
+
+/**
+ * [tDBInput_2 end ] stop
+ */
+
+	
+	/**
+	 * [tMap_2 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tMap_2";
+
+	
+
+
+// ###############################
+// # Lookup hashes releasing
+// ###############################      
+
+
+
+
+
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row5");
+			  	}
+			  	
+ 
+
+ok_Hash.put("tMap_2", true);
+end_Hash.put("tMap_2", System.currentTimeMillis());
+
+
+
+
+/**
+ * [tMap_2 end ] stop
+ */
+
+	
+	/**
+	 * [tUniqRow_2 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tUniqRow_2";
+
+	
+
+globalMap.put("tUniqRow_2_NB_UNIQUES",nb_uniques_tUniqRow_2);
+globalMap.put("tUniqRow_2_NB_DUPLICATES",nb_duplicates_tUniqRow_2);
+
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"copyOftransformed");
+			  	}
+			  	
+ 
+
+ok_Hash.put("tUniqRow_2", true);
+end_Hash.put("tUniqRow_2", System.currentTimeMillis());
+
+
+
+
+/**
+ * [tUniqRow_2 end ] stop
+ */
+
+	
+	/**
+	 * [tAdvancedHash_row4 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tAdvancedHash_row4";
+
+	
+
+tHash_Lookup_row4.endPut();
+
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row4");
+			  	}
+			  	
+ 
+
+ok_Hash.put("tAdvancedHash_row4", true);
+end_Hash.put("tAdvancedHash_row4", System.currentTimeMillis());
+
+
+
+
+/**
+ * [tAdvancedHash_row4 end ] stop
+ */
+
+
+
+
+
+
+
+
+
+				}//end the resume
+
+				
+
+
+
+	
+			}catch(java.lang.Exception e){	
+				
+				TalendException te = new TalendException(e, currentComponent, globalMap);
+				
+				throw te;
+			}catch(java.lang.Error error){	
+				
+					runStat.stopThreadStat();
+				
+				throw error;
+			}finally{
+				
+				try{
+					
+	
+	/**
+	 * [tDBInput_2 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tDBInput_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tDBInput_2 finally ] stop
+ */
+
+	
+	/**
+	 * [tMap_2 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tMap_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tMap_2 finally ] stop
+ */
+
+	
+	/**
+	 * [tUniqRow_2 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tUniqRow_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tUniqRow_2 finally ] stop
+ */
+
+	
+	/**
+	 * [tAdvancedHash_row4 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tAdvancedHash_row4";
+
+	
+
+ 
+
+
+
+/**
+ * [tAdvancedHash_row4 finally ] stop
+ */
+
+
+
+
+
+
+
+
+
+				}catch(java.lang.Exception e){	
+					//ignore
+				}catch(java.lang.Error error){
+					//ignore
+				}
+				resourceMap = null;
+			}
+		
+
+		globalMap.put("tDBInput_2_SUBPROCESS_STATE", 1);
 	}
 	
     public String resuming_logs_dir_path = null;
@@ -5381,6 +9872,6 @@ if (execStat) {
     ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- *     137829 characters generated by Talend Open Studio for Data Integration 
- *     on the October 6, 2023 at 11:10:26 AM WEST
+ *     243285 characters generated by Talend Open Studio for Data Integration 
+ *     on the October 7, 2023 at 10:40:11 PM WEST
  ************************************************************************************************/

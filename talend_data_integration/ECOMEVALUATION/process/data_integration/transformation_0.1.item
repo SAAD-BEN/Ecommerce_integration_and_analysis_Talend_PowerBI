@@ -51,7 +51,7 @@
     <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:id5RXFLzWS6uyr+c7qpuOIazJaTJ7AwwXeZnI9iU" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:anGCyrcKZyyqEtXd6wtaHMA0lIIwRK6aKsev64WE" show="false"/>
     <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
@@ -86,7 +86,7 @@
     <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:itPjNxpI/+tuwwk6FEo0EN5pgVdHNod2h06vWjtm" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:67V8scZlgxmFT7kKBtNuFPdEWNaPBerPTxcMq6wY" show="false"/>
     <elementParameter field="FILE" name="DBFILE" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_STATS" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_LOGS" value="&quot;&quot;" show="false"/>
@@ -116,11 +116,11 @@
     <routinesParameter id="_No5E0F7hEe6fj-7pc4XMIg" name="TalendString"/>
     <routinesParameter id="_-hoSAGBlEe6ysYilorZjdA" name="Encryption"/>
   </parameters>
-  <node componentName="tPrejob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="192">
+  <node componentName="tPrejob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPrejob_1" show="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tMSSqlConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="192">
+  <node componentName="tMSSqlConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBConnection_1" show="false"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_wdT9oF7vEe6fj-7pc4XMIg" show="false"/>
@@ -131,7 +131,7 @@
     <elementParameter field="TEXT" name="SCHEMA_DB" value="context.ecom_eval_staging_Schema"/>
     <elementParameter field="TEXT" name="DBNAME" value="context.ecom_eval_staging_Database"/>
     <elementParameter field="TEXT" name="USER" value="context.ecom_eval_staging_Login"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:ZW1eAXUg3M8t7612mNlAWGJZbAb6j9mrIfx0/Rp3KHn1b9VVy+XJl23rqJJ5BUlxTBc6GVHvMfYYG24xEn8="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:AGkTU+khtOsjVKGLV8QEq5VfykBTl2EIkMOw3Y0fmRMvhSVgFzlSJnZo7Osh+xjuQqgrwkpRK8wISzKK5y4="/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="TEXT" name="PROPERTIES" value="context.ecom_eval_staging_AdditionalParams"/>
@@ -146,16 +146,16 @@
     <elementParameter field="TEXT" name="LABEL" value="ecom_eval_staging"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tPostjob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="384">
+  <node componentName="tPostjob" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tPostjob_1" show="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tMSSqlClose" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="416" posY="384">
+  <node componentName="tMSSqlClose" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="416" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBClose_1" show="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_1"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="160" posY="288">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="160" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_1" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_1"/>
@@ -168,7 +168,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="context.ecom_eval_staging_Schema" show="false"/>
     <elementParameter field="TEXT" name="DBNAME" value="context.ecom_eval_staging_Database" show="false"/>
     <elementParameter field="TEXT" name="USER" value="context.ecom_eval_staging_Login" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:qgmOHYL5qcP9ImousJoGfWURazpaiiPL9lhMns6T/UKosTs/hiEGA8byOttJLst2TxueQbPKV7ojjP2bEZc=" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:4ieAui6Q3LN/pxAgWmlQnwaNdoWG9877/3FL+1RoXYnJSnmU+I20Ub4x/8CwiJ1nr4lcLth8WWdh/NwlLgo=" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;ecomStaging&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
@@ -195,7 +195,9 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="ProductPrice"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="CustomerID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="HashedPI"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CustomerState"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="CustomerSegment"/>
       <elementValue elementRef="TRIM" value="false"/>
@@ -232,13 +234,14 @@
       <column comment="" key="false" length="50" name="ProductCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="200" name="CustomerID" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="255" name="HashedPI" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="CustomerState" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="SupplierName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="SupplierLocation" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="SupplierContact" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="60" name="ShipperName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="60" name="ShippingMethod" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="60" name="ShipperName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="60" name="ShippingMethod" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="QuantitySold" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="7" name="TotalAmount" nullable="true" pattern="" precision="0" sourceType="REAL" type="id_Float" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="7" name="DiscountAmount" nullable="true" pattern="" precision="0" sourceType="REAL" type="id_Float" originalLength="-1" usefulColumn="true"/>
@@ -248,7 +251,7 @@
       <column comment="" defaultValue="" key="false" length="10" name="StockOnHand" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="320" posY="288">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="320" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_1" show="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="LINE"/>
@@ -275,12 +278,13 @@
       <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Double" usefulColumn="true">
+      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="CustomerID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="255" name="HashedPI" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
+      <column comment="" key="false" length="50" name="CustomerState" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -319,7 +323,7 @@
       </column>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var">
         <mapperTableEntries name="Date" expression="TalendDate.isDate(row1.Date, &quot;yyyy-MM-dd&quot;) ? TalendDate.TO_DATE(row1.Date, &quot;yyyy-MM-dd&quot;) : TalendDate.TO_DATE(row1.Date, &quot;MM-dd-yyyy&quot;) " type="id_Date"/>
       </varTables>
@@ -328,8 +332,9 @@
         <mapperTableEntries name="ProductName" expression="row1.ProductName " type="id_String" nullable="true"/>
         <mapperTableEntries name="ProductCategory" expression="row1.ProductCategory " type="id_String" nullable="true"/>
         <mapperTableEntries name="ProductSubCategory" expression="row1.ProductSubCategory " type="id_String" nullable="true"/>
-        <mapperTableEntries name="ProductPrice" expression="row1.ProductPrice.contains(&quot;InvalidPrice&quot;)  ? 0.0 : Double.parseDouble(row1.ProductPrice) " type="id_Double" nullable="true"/>
-        <mapperTableEntries name="CustomerID" expression="row1.CustomerID" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductPrice" expression="Math.round(row1.TotalAmount/row1.QuantitySold)  " type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="HashedPI" expression="row1.HashedPI " type="id_String" nullable="true"/>
+        <mapperTableEntries name="CustomerState" expression="row1.CustomerState " type="id_String" nullable="true"/>
         <mapperTableEntries name="CustomerSegment" expression="row1.CustomerSegment " type="id_String" nullable="true"/>
         <mapperTableEntries name="SupplierName" expression="row1.SupplierName " type="id_String" nullable="true"/>
         <mapperTableEntries name="SupplierLocation" expression="row1.SupplierLocation " type="id_String" nullable="true"/>
@@ -349,7 +354,8 @@
         <mapperTableEntries name="ProductCategory" type="id_String" nullable="true"/>
         <mapperTableEntries name="ProductSubCategory" type="id_String" nullable="true"/>
         <mapperTableEntries name="ProductPrice" type="id_String" nullable="true"/>
-        <mapperTableEntries name="CustomerID" type="id_String"/>
+        <mapperTableEntries name="HashedPI" type="id_String"/>
+        <mapperTableEntries name="CustomerState" type="id_String" nullable="true"/>
         <mapperTableEntries name="CustomerSegment" type="id_String" nullable="true"/>
         <mapperTableEntries name="SupplierName" type="id_String" nullable="true"/>
         <mapperTableEntries name="SupplierLocation" type="id_String" nullable="true"/>
@@ -366,7 +372,7 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tUniqRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="288">
+  <node componentName="tUniqRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tUniqRow_1" show="false"/>
     <elementParameter field="TABLE" name="UNIQUE_KEY">
       <elementValue elementRef="SCHEMA_COLUMN" value="Date"/>
@@ -384,8 +390,11 @@
       <elementValue elementRef="SCHEMA_COLUMN" value="ProductPrice"/>
       <elementValue elementRef="KEY_ATTRIBUTE" value="true"/>
       <elementValue elementRef="CASE_SENSITIVE" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="CustomerID"/>
-      <elementValue elementRef="KEY_ATTRIBUTE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="HashedPI"/>
+      <elementValue elementRef="KEY_ATTRIBUTE" value="false"/>
+      <elementValue elementRef="CASE_SENSITIVE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CustomerState"/>
+      <elementValue elementRef="KEY_ATTRIBUTE" value="false"/>
       <elementValue elementRef="CASE_SENSITIVE" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="CustomerSegment"/>
       <elementValue elementRef="KEY_ATTRIBUTE" value="true"/>
@@ -443,12 +452,13 @@
       <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Double" usefulColumn="true">
+      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="CustomerID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="255" name="HashedPI" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
+      <column comment="" key="false" length="50" name="CustomerState" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -499,12 +509,13 @@
       <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Double" usefulColumn="true">
+      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="CustomerID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="255" name="HashedPI" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
+      <column comment="" key="false" length="50" name="CustomerState" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -555,12 +566,13 @@
       <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Double" usefulColumn="true">
+      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="CustomerID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="255" name="HashedPI" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
+      <column comment="" key="false" length="50" name="CustomerState" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -599,7 +611,337 @@
       </column>
     </metadata>
   </node>
-  <node componentName="tBufferOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="896" posY="288">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="160" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_2" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_1"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_wdT9oF7vEe6fj-7pc4XMIg" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="context.ecom_eval_staging_Server" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DRIVER" value="JTDS" show="false"/>
+    <elementParameter field="TEXT" name="TYPE" value="MSSQL" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="context.ecom_eval_staging_Port" show="false"/>
+    <elementParameter field="TEXT" name="DB_SCHEMA" value="context.ecom_eval_staging_Schema" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.ecom_eval_staging_Database" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="context.ecom_eval_staging_Login" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:nhsUFOmddfxSyLzrxDy06YCqk2BO5XkkPej+4sg6r0g2ye9uHVxCUmHfpeMNuemg7BPtCMNV8ue0ahjSP4Y=" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;ecomStaging&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select * from ecomStaging&quot;"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" value="id_MSSQL" show="false"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="context.ecom_eval_staging_AdditionalParams" show="false"/>
+    <elementParameter field="CHECK" name="ACTIVE_DIR_AUTH" value="false" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
+    <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="Date"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ProductName"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ProductCategory"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ProductSubCategory"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ProductPrice"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="HashedPI"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CustomerState"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CustomerSegment"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SupplierName"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SupplierLocation"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SupplierContact"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ShipperName"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ShippingMethod"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="QuantitySold"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="TotalAmount"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="DiscountAmount"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="NetAmount"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="StockReceived"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="StockSold"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="StockOnHand"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LABEL" value="ecom_eval_staging"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tDBInput_2">
+      <column comment="" key="false" length="10" name="Date" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="255" name="HashedPI" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="CustomerState" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="60" name="SupplierName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="60" name="SupplierLocation" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="60" name="SupplierContact" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="60" name="ShipperName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="60" name="ShippingMethod" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="QuantitySold" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="7" name="TotalAmount" nullable="true" pattern="" precision="0" sourceType="REAL" type="id_Float" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="7" name="DiscountAmount" nullable="true" pattern="" precision="0" sourceType="REAL" type="id_Float" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="7" name="NetAmount" nullable="true" pattern="" precision="0" sourceType="REAL" type="id_Float" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="StockReceived" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="StockSold" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="StockOnHand" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="320" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_2" show="false"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="LINE"/>
+    <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_qCqfQF-8Ee6LNOCPZCiSRQ-tMap_2-PREVIEW.bmp"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true" show="false"/>
+    <elementParameter field="CHECK" name="LKUP_PARALLELIZE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="LEVENSHTEIN" value="0" show="false"/>
+    <elementParameter field="TEXT" name="JACCARD" value="0" show="false"/>
+    <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="copyOftransformed">
+      <column comment="" key="false" length="50" name="ProductName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="-1" name="CalculatedPrice" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+    <nodeData xsi:type="TalendMapper:MapperData">
+      <uiProperties shellMaximized="true"/>
+      <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
+      <outputTables sizeState="INTERMEDIATE" name="copyOftransformed" expressionFilter="row5.ProductName != &quot;NonExistentProduct&quot; &amp;&amp; row5.ProductCategory != &quot;InvalidCategory&quot;" activateExpressionFilter="true" columnNameFilter="">
+        <mapperTableEntries name="ProductName" expression="row5.ProductName " type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductSubCategory" expression="row5.ProductSubCategory " type="id_String" nullable="true"/>
+        <mapperTableEntries name="CalculatedPrice" expression="Math.round(row5.TotalAmount/row5.QuantitySold) " type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="ProductCategory" expression="row5.ProductCategory " type="id_String" nullable="true"/>
+      </outputTables>
+      <inputTables sizeState="INTERMEDIATE" name="row5" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+        <mapperTableEntries name="Date" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductName" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductCategory" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductSubCategory" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductPrice" type="id_String" nullable="true"/>
+        <mapperTableEntries name="HashedPI" type="id_String"/>
+        <mapperTableEntries name="CustomerState" type="id_String" nullable="true"/>
+        <mapperTableEntries name="CustomerSegment" type="id_String" nullable="true"/>
+        <mapperTableEntries name="SupplierName" type="id_String" nullable="true"/>
+        <mapperTableEntries name="SupplierLocation" type="id_String" nullable="true"/>
+        <mapperTableEntries name="SupplierContact" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ShipperName" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ShippingMethod" type="id_String" nullable="true"/>
+        <mapperTableEntries name="QuantitySold" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="TotalAmount" type="id_Float" nullable="true"/>
+        <mapperTableEntries name="DiscountAmount" type="id_Float" nullable="true"/>
+        <mapperTableEntries name="NetAmount" type="id_Float" nullable="true"/>
+        <mapperTableEntries name="StockReceived" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="StockSold" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="StockOnHand" type="id_Integer" nullable="true"/>
+      </inputTables>
+    </nodeData>
+  </node>
+  <node componentName="tUniqRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tUniqRow_2" show="false"/>
+    <elementParameter field="TABLE" name="UNIQUE_KEY">
+      <elementValue elementRef="SCHEMA_COLUMN" value="ProductName"/>
+      <elementValue elementRef="KEY_ATTRIBUTE" value="false"/>
+      <elementValue elementRef="CASE_SENSITIVE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ProductSubCategory"/>
+      <elementValue elementRef="KEY_ATTRIBUTE" value="true"/>
+      <elementValue elementRef="CASE_SENSITIVE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CalculatedPrice"/>
+      <elementValue elementRef="KEY_ATTRIBUTE" value="true"/>
+      <elementValue elementRef="CASE_SENSITIVE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ProductCategory"/>
+      <elementValue elementRef="KEY_ATTRIBUTE" value="false"/>
+      <elementValue elementRef="CASE_SENSITIVE" value="false"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="ONLY_ONCE_EACH_DUPLICATED_KEY" value="false"/>
+    <elementParameter field="CHECK" name="IS_VIRTUAL_COMPONENT" value="false"/>
+    <elementParameter field="OPENED_LIST" name="BUFFER_SIZE" value="M" show="false"/>
+    <elementParameter field="DIRECTORY" name="TEMP_DIRECTORY" value="" show="false"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tUniqRow_2">
+      <column comment="" key="false" length="50" name="ProductName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="-1" name="CalculatedPrice" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="UNIQUE" name="UNIQUE">
+      <column comment="" key="false" length="50" name="ProductName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="-1" name="CalculatedPrice" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="DUPLICATE" name="DUPLICATE">
+      <column comment="" key="false" length="50" name="ProductName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="-1" name="CalculatedPrice" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="ProductCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="608" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_3" show="false"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
+    <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_qCqfQF-8Ee6LNOCPZCiSRQ-tMap_3-PREVIEW.bmp"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true" show="false"/>
+    <elementParameter field="CHECK" name="LKUP_PARALLELIZE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="LEVENSHTEIN" value="0" show="false"/>
+    <elementParameter field="TEXT" name="JACCARD" value="0" show="false"/>
+    <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="FixedProduct">
+      <column comment="" key="false" length="10" name="Date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ProductName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ProductCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="HashedPI" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="CustomerState" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="60" name="SupplierName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="60" name="SupplierLocation" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="60" name="ShipperName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="60" name="ShippingMethod" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="QuantitySold" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="24" name="TotalAmount" nullable="true" pattern="" precision="0" sourceType="REAL" type="id_Float" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="24" name="DiscountAmount" nullable="true" pattern="" precision="0" sourceType="REAL" type="id_Float" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="24" name="NetAmount" nullable="true" pattern="" precision="0" sourceType="REAL" type="id_Float" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="StockReceived" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="StockSold" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="StockOnHand" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+    </metadata>
+    <nodeData xsi:type="TalendMapper:MapperData">
+      <uiProperties shellMaximized="true"/>
+      <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
+      <outputTables sizeState="INTERMEDIATE" name="FixedProduct">
+        <mapperTableEntries name="Date" expression="row2.Date " type="id_Date" nullable="true"/>
+        <mapperTableEntries name="ProductName" expression="row4.ProductName " type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductCategory" expression="row4.ProductCategory " type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductSubCategory" expression="row2.ProductSubCategory " type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductPrice" expression="row2.ProductPrice " type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="HashedPI" expression="row2.HashedPI " type="id_String" nullable="true"/>
+        <mapperTableEntries name="CustomerState" expression="row2.CustomerState " type="id_String" nullable="true"/>
+        <mapperTableEntries name="CustomerSegment" expression="row2.CustomerSegment " type="id_String" nullable="true"/>
+        <mapperTableEntries name="SupplierName" expression="row2.SupplierName " type="id_String" nullable="true"/>
+        <mapperTableEntries name="SupplierLocation" expression="row2.SupplierLocation " type="id_String" nullable="true"/>
+        <mapperTableEntries name="ShipperName" expression="row2.ShipperName " type="id_String" nullable="true"/>
+        <mapperTableEntries name="ShippingMethod" expression="row2.ShippingMethod " type="id_String" nullable="true"/>
+        <mapperTableEntries name="QuantitySold" expression="row2.QuantitySold " type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="TotalAmount" expression="row2.TotalAmount " type="id_Float" nullable="true"/>
+        <mapperTableEntries name="DiscountAmount" expression="row2.DiscountAmount " type="id_Float" nullable="true"/>
+        <mapperTableEntries name="NetAmount" expression="row2.NetAmount " type="id_Float" nullable="true"/>
+        <mapperTableEntries name="StockReceived" expression="row2.StockReceived " type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="StockSold" expression="row2.StockSold " type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="StockOnHand" expression="row2.StockOnHand " type="id_Integer" nullable="true"/>
+      </outputTables>
+      <inputTables sizeState="INTERMEDIATE" name="row2" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+        <mapperTableEntries name="Date" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="ProductName" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductCategory" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductSubCategory" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductPrice" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="HashedPI" type="id_String" nullable="true"/>
+        <mapperTableEntries name="CustomerState" type="id_String" nullable="true"/>
+        <mapperTableEntries name="CustomerSegment" type="id_String" nullable="true"/>
+        <mapperTableEntries name="SupplierName" type="id_String" nullable="true"/>
+        <mapperTableEntries name="SupplierLocation" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ShipperName" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ShippingMethod" type="id_String" nullable="true"/>
+        <mapperTableEntries name="QuantitySold" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="TotalAmount" type="id_Float" nullable="true"/>
+        <mapperTableEntries name="DiscountAmount" type="id_Float" nullable="true"/>
+        <mapperTableEntries name="NetAmount" type="id_Float" nullable="true"/>
+        <mapperTableEntries name="StockReceived" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="StockSold" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="StockOnHand" type="id_Integer" nullable="true"/>
+      </inputTables>
+      <inputTables sizeState="INTERMEDIATE" name="row4" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
+        <mapperTableEntries name="ProductName" type="id_String" nullable="true"/>
+        <mapperTableEntries name="ProductSubCategory" expression="row2.ProductSubCategory" type="id_String" nullable="true"/>
+        <mapperTableEntries name="CalculatedPrice" expression="row2.ProductPrice" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="ProductCategory" expression=" " type="id_String" nullable="true"/>
+      </inputTables>
+    </nodeData>
+  </node>
+  <node componentName="tBufferOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="832" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tBufferOutput_1" show="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tBufferOutput_1">
@@ -615,12 +957,13 @@
       <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Double" usefulColumn="true">
+      <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="50" name="CustomerID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="255" name="HashedPI" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
+      <column comment="" key="false" length="50" name="CustomerState" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -670,12 +1013,46 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row1" show="false"/>
   </connection>
   <connection connectorName="FLOW" label="transformed" lineStyle="0" metaname="transformed" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tUniqRow_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="CalculatedPrice"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CustomerState"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="transformed" show="false"/>
   </connection>
-  <connection connectorName="UNIQUE" label="row2" lineStyle="0" metaname="UNIQUE" offsetLabelX="0" offsetLabelY="0" source="tUniqRow_1" target="tBufferOutput_1">
+  <connection connectorName="UNIQUE" label="row2" lineStyle="0" metaname="UNIQUE" offsetLabelX="0" offsetLabelY="0" source="tUniqRow_1" target="tMap_3">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row2" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row5" lineStyle="0" metaname="tDBInput_2" offsetLabelX="0" offsetLabelY="0" source="tDBInput_2" target="tMap_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row5" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="copyOftransformed" lineStyle="0" metaname="copyOftransformed" offsetLabelX="0" offsetLabelY="0" source="tMap_2" target="tUniqRow_2">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="ProductCategory"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="copyOftransformed" show="false"/>
+  </connection>
+  <connection connectorName="UNIQUE" label="row4" lineStyle="8" metaname="UNIQUE" offsetLabelX="0" offsetLabelY="0" source="tUniqRow_2" target="tMap_3">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row4" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="FixedProduct" lineStyle="0" metaname="FixedProduct" offsetLabelX="0" offsetLabelY="0" source="tMap_3" target="tBufferOutput_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="CustomerState"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="FixedProduct" show="false"/>
   </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true" show="false"/>

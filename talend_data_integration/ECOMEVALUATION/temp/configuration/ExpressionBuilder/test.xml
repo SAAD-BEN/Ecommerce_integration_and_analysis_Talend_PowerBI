@@ -1,11 +1,14 @@
 <?xml version="1.1" encoding="UTF-8"?>
-<expression:EMFExpression xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:expression="http:///expression.ecore" id="tMap_1=>" expression="TalendDate.isDate(row1.Date, &quot;yyyy-MM-dd&quot;) ? TalendDate.TO_DATE(row1.Date, &quot;yyyy-MM-dd&quot;) : TalendDate.TO_DATE(row1.Date, &quot;MM-dd-yyyy&quot;)">
+<expression:EMFExpression xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:expression="http:///expression.ecore" id="tMap_1=>" expression="StateFinder.getStateFromAddress(row1.CustomerAddress)">
   <variables name="row1.Date" value="null" talendType="id_String" nullable="true"/>
   <variables name="row1.ProductName" value="null" talendType="id_String" nullable="true"/>
   <variables name="row1.ProductCategory" value="null" talendType="id_String" nullable="true"/>
   <variables name="row1.ProductSubCategory" value="null" talendType="id_String" nullable="true"/>
   <variables name="row1.ProductPrice" value="null" talendType="id_String" nullable="true"/>
-  <variables name="row1.CustomerID" value="null" talendType="id_String"/>
+  <variables name="row1.CustomerName" value="null" talendType="id_String" nullable="true"/>
+  <variables name="row1.CustomerEmail" value="null" talendType="id_String" nullable="true"/>
+  <variables name="row1.CustomerAddress" value="null" talendType="id_String" nullable="true"/>
+  <variables name="row1.CustomerPhone" value="null" talendType="id_String" nullable="true"/>
   <variables name="row1.CustomerSegment" value="null" talendType="id_String" nullable="true"/>
   <variables name="row1.SupplierName" value="null" talendType="id_String" nullable="true"/>
   <variables name="row1.SupplierLocation" value="null" talendType="id_String" nullable="true"/>
@@ -19,5 +22,4 @@
   <variables name="row1.StockReceived" value="null" talendType="id_Integer" nullable="true"/>
   <variables name="row1.StockSold" value="null" talendType="id_Integer" nullable="true"/>
   <variables name="row1.StockOnHand" value="null" talendType="id_Integer" nullable="true"/>
-  <variables name="TalendDate.isDate(row1.Date, &quot;yyyy-MM-dd&quot;) ? TalendDate.TO_DATE(row1.Date, &quot;yyyy-MM-dd&quot;) : TalendDate.TO_DATE(row1.Date, &quot;MM-dd-yyyy&quot;) " value="null" talendType="id_Date"/>
 </expression:EMFExpression>

@@ -52,7 +52,7 @@
     <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:u4pdlQTwBv7T0K43qh/t5LwUt+BNzNRlZNL3fnp9" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:f058nAoXQ8fub8rDZA4wKA7VEBGNnaGkoDHczL4Q" show="false"/>
     <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
@@ -87,7 +87,7 @@
     <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:E+oVnpXIJRHlnZj2nqiYCFxVYjRqTx1EAEGo4x9+" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:l0MrE24TTvad8qkaUNLs9SifZd4C4CY98DlV1eIl" show="false"/>
     <elementParameter field="FILE" name="DBFILE" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_STATS" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_LOGS" value="&quot;&quot;" show="false"/>
@@ -116,6 +116,7 @@
     <routinesParameter id="_No5E0F7hEe6fj-7pc4XMIg" name="TalendString"/>
     <routinesParameter id="_NpSGYF7hEe6fj-7pc4XMIg" name="TalendStringUtil"/>
     <routinesParameter id="_-hoSAGBlEe6ysYilorZjdA" name="Encryption"/>
+    <routinesParameter id="_lNIOQGVPEe6vGpc2rUfpyQ" name="StateFinder"/>
   </parameters>
   <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_1" show="false"/>
@@ -585,6 +586,7 @@
       <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="HashedPI" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" originalLength="500" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="CustomerState" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="50" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="SupplierName" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="SupplierLocation" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
@@ -611,6 +613,7 @@
         <mapperTableEntries name="ProductSubCategory" expression="row3.ProductSubCategory " type="id_String" nullable="true"/>
         <mapperTableEntries name="ProductPrice" expression="row3.ProductPrice " type="id_String" nullable="true"/>
         <mapperTableEntries name="HashedPI" expression="Var.CustomerID " type="id_String"/>
+        <mapperTableEntries name="CustomerState" expression="StateFinder.getStateFromAddress(row3.CustomerAddress) " type="id_String" nullable="true"/>
         <mapperTableEntries name="CustomerSegment" expression="row3.CustomerSegment " type="id_String" nullable="true"/>
         <mapperTableEntries name="SupplierName" expression="row3.SupplierName " type="id_String" nullable="true"/>
         <mapperTableEntries name="SupplierLocation" expression="row3.SupplierLocation " type="id_String" nullable="true"/>
@@ -665,7 +668,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="context.ecom_eval_staging_Schema" show="false"/>
     <elementParameter field="TEXT" name="DBNAME" value="context.ecom_eval_staging_Database" show="false"/>
     <elementParameter field="TEXT" name="USER" value="context.ecom_eval_staging_Login" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:KLv3LNpnHC4gARv8B6+xdXpA3khG/AavzudtnZH6XhSWa93v0JmDlKJsGuavH85r/Tl/BAywkElyd2RABbE=" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:rVfqhgMp8WXV5ARTM6ghMPE6egWotyLqM9iEAWMC9iqIR5PeVAMFZYtuRNVxVzB1cRowL5oqzfdhN+mMpnc=" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;ecomStaging&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="DROP_IF_EXISTS_AND_CREATE"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Program Files (x86)/TOS_DI-8.0.1/studio/workspace/mssql_data.txt&quot;"/>
@@ -690,6 +693,7 @@
       <column comment="" key="false" length="50" name="ProductSubCategory" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="50" name="ProductPrice" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="HashedPI" nullable="false" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="500" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="CustomerState" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="50" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="CustomerSegment" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="SupplierName" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="60" name="SupplierLocation" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
@@ -720,7 +724,7 @@
     <elementParameter field="TEXT" name="SCHEMA_DB" value="context.ecom_eval_staging_Schema"/>
     <elementParameter field="TEXT" name="DBNAME" value="context.ecom_eval_staging_Database"/>
     <elementParameter field="TEXT" name="USER" value="context.ecom_eval_staging_Login"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:aGP/WCBYXO7XO1ER1wvWEsbhMhC4x/IhY97cNxRJ2hAezRi37XRsmzkhZu0riFISQr9XS41B3yXmhrgG9J0="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:vUMLcn9MDza0RdD41156rKo2wg5z17Zi/GWMlNUox0lnFqg3BaVD2RTl9m4KjQyGQo8L2L2zDNHmUUAk8G4="/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="TEXT" name="PROPERTIES" value="context.ecom_eval_staging_AdditionalParams"/>
@@ -771,6 +775,11 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row2" show="false"/>
   </connection>
   <connection connectorName="FLOW" label="EncryptedPI" lineStyle="0" metaname="EncryptedPI" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tDBOutputBulkExec_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="CustomerState"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="EncryptedPI" show="false"/>
   </connection>
